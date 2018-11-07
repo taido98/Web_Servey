@@ -52,8 +52,12 @@ class Excel
                     //    set will be iterated.
                     $j = 0;
                     foreach ($cellIterator as $cell) {
+
                         if ($j >= 1) {
                             $value = $cell->getValue();
+                            if($j === 1) {
+                                $value = preg_replace('/[^0-9][^a-z][^A-Z]/', '', $value);
+                            }
                             if (strpos($value, '&')) {
                                 $arr = explode("&", $value);
                                 $index = str_replace('"', '', str_replace('=', '', $arr[0]));
@@ -64,6 +68,7 @@ class Excel
 
                             } else {
                                 if($value != null) {
+
                                     array_push($rowValue, trim($value));
                                 }
 
@@ -145,7 +150,7 @@ class Excel
                         }
                         if(str_replace(":","", $value) == Excel::TinChi)
                         {
-                            $data[Excel::SubjectName] = trim($worksheet->getCellByColumnAndRow($j+1, $i)->getValue());
+                            $data[Excel::TinChi] = trim($worksheet->getCellByColumnAndRow($j+1, $i)->getValue());
 //                            echo "Số tín chỉ:" . $data[Excel::TinChi] ."<br>";
 
                         }

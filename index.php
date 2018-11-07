@@ -17,7 +17,7 @@ if(isset($_POST['BtnSubmit'])) {
         echo $fileName ."<br>";
         $data = [];
         try {
-            $data = \excel\Excel::readStudentTeacherExcel($fileName);
+//            $data = \excel\Excel::readStudentTeacherExcel($fileName);
             $data =\excel\Excel::readSubjectExcel($fileName);
 //            print_r($data);
             $serverName = 'localhost';
@@ -35,6 +35,7 @@ if(isset($_POST['BtnSubmit'])) {
 
 //            \database\Database::insertTeacherToDataBase("mysql:host=$serverName;dbname=$dbName;", $username, $password, $data);
 //            \database\Database::insertAdminToDataBase("mysql:host=$serverName;dbname=$dbName;", $username, $password, [['vanminh2', '123', 'Ta Van Minh'],['vanminh1 ', '123', 'Ta Van Minh']]);
+//            \database\Database::insertStudentToDataBase("mysql:host=$serverName;dbname=$dbName;", $username, $password, $data);
 
         } catch (\PhpOffice\PhpSpreadsheet\Exception $e) {
             print_r($e->getMessage());
