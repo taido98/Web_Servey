@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: vanminh
  * Date: 07/11/2018
- * Time: 09:57
+ * Time: 21:38
  */
 
-namespace database;
+namespace manager;
 
 
-class StudentDB
+class Manager
 {
 
 }

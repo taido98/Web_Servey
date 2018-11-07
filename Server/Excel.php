@@ -30,7 +30,7 @@ class Excel
      * ...]
      * ]
      */
-    public static function readStudentTeacherExcel($filePath)
+    public static function readStudentExcel($filePath)
     {
         $data = [];
         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
@@ -56,8 +56,65 @@ class Excel
                         if ($j >= 1) {
                             $value = $cell->getValue();
                             if($j === 1) {
-                                $value = preg_replace('/[^0-9][^a-z][^A-Z]/', '', $value);
+                                $value = preg_replace('/[^0-9]/', '', $value);
                             }
+                            if (strpos($value, '&')) {
+                                $arr = explode("&", $value);
+                                $index = str_replace('"', '', str_replace('=', '', $arr[0]));
+//                        $arr = preg_split('/(?=[^A-Z]+)(?<=[^0-9])/',$index);
+                                $id = $worksheet->getCell($index)->getValue();
+                                array_push($rowValue, trim($id) . trim(str_replace('"', '', $arr[1])));
+
+
+                            } else {
+                                if($value != null) {
+
+                                    array_push($rowValue, trim($value));
+                                }
+
+                            }
+                        }
+                        ++$j;
+                    }
+                    if(count($rowValue) >= 1) {
+                        array_push($data, $rowValue);
+                    }
+                }
+                ++$i;
+
+            }
+        } catch (Exception $e) {
+            $e->getTrace();
+        }
+
+        return $data;
+    }
+
+    public static function readTeacherExcel($filePath)
+    {
+        $data = [];
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+//        $reader->setLoadSheetsOnly(["Sheet 1", "My special sudentheet"]);
+        try {
+            $spreadsheet = $reader->load($filePath);
+            $worksheet = $spreadsheet->getActiveSheet();
+            $i = 0;
+
+            foreach ($worksheet->getRowIterator() as $row) {
+
+                if ($i >= 1) {
+                    $rowValue = [];
+                    $cellIterator = $row->getCellIterator();
+                    $cellIterator->setIterateOnlyExistingCells(FALSE);
+                    // This loops through all cells,
+                    //    even if a cell value is not set.
+                    // By default, only cells that have a value
+                    //    set will be iterated.
+                    $j = 0;
+                    foreach ($cellIterator as $cell) {
+
+                        if ($j >= 1) {
+                            $value = $cell->getValue();
                             if (strpos($value, '&')) {
                                 $arr = explode("&", $value);
                                 $index = str_replace('"', '', str_replace('=', '', $arr[0]));

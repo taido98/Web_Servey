@@ -17,41 +17,41 @@ abstract class ActionDBType {
 }
 
 
-class CriteriaDB extends DB
-{
-
-    public function __construct($dsn, $username, $password, $tableName, $columnNames, $differentIndexColumn)
-    {
-        parent::__construct($dsn, $username, $password, $tableName, $columnNames, $differentIndexColumn);
-
-    }
-
-    /**
-     * @param $data = ['idClass', 'idStudent' , 'data':[[criteriaName(string), value(int)], [], []]
-     */
-    public function insertIntoTable($data)
-    {
-
-        $criteriaData = $data['data'];
-
-
-        $serveyFormDB = new DB($this->dsn, $this->username, $this->password,
-            'serveyForm', ['idClass', 'idStudent'], [0, 1]);
-
-        for ($i = 0; $i < count($criteriaData); ++$i) {
-            $serveyData = $serveyFormDB->selectData(['id'], ['idClass'=>$data['idClass'],
-                ['idStudent'=> ]]);
-        }
-
-
-
-            $this->execute();
-
-
-    }
-
-
-
-
-
-}
+//class CriteriaDB extends DB
+//{
+//
+//    public function __construct($dsn, $username, $password, $tableName, $columnNames, $differentIndexColumn)
+//    {
+//        parent::__construct($dsn, $username, $password, $tableName, $columnNames, $differentIndexColumn);
+//
+//    }
+//
+//    /**
+//     * @param $data = ['idClass', 'idStudent' , 'data':[[criteriaName(string), value(int)], [], []]
+//     */
+//    public function insertIntoTable($data)
+//    {
+//
+//        $criteriaData = $data['data'];
+//
+//
+//        $serveyFormDB = new DB($this->dsn, $this->username, $this->password,
+//            'serveyForm', ['idClass', 'idStudent'], [0, 1]);
+//
+//        for ($i = 0; $i < count($criteriaData); ++$i) {
+////            $serveyData = $serveyFormDB->selectData(['id'], ['idClass'=>$data['idClass'],
+////                ['idStudent'=> ]]);
+//        }
+//
+//
+//
+//            $this->execute();
+//
+//
+//    }
+//
+//
+//
+//
+//
+//}

@@ -23,7 +23,7 @@ abstract class UserType {
 
 }
 
-class Database
+class DatabaseUtils
 {
     /**
      * @param $dsn
