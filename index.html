@@ -6,10 +6,50 @@
 </head>
 <body>
 
-    <form method="post" action="index.php" enctype="multipart/form-data">
-        <input type="file">
-        <button type="submit" name="Submit"></button>
-    </form>
+    <!--<form method="post" action="index.php" enctype="multipart/form-data">-->
+        <!--<input type="file">-->
+        <!--<button type="submit" name="Submit"></button>-->
+    <!--</form>-->
+    
+    <input type="button" id="btn">
 
+    <script>
+        let btn = document.getElementById("btn");
+        btn.onclick = function (e) {
+            this.disabled = true;
+            let xmlhttp = getXmlHttpObject();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState === 4) document.innerHTML = this.responseText;
+            };
+
+            let data = new FormData();
+            data.append('user', 'vanminh');
+            data.append('password', '123456789');
+
+            xmlhttp.open("POST", "http://bulletin.any.com.vn/login.php", true);
+            xmlhttp.send(data);
+        };
+
+
+
+        function getXmlHttpObject() {
+            var xmlHttp = null;
+            try {
+                xmlHttp = new XMLHttpRequest();
+            } catch (e) {
+                try  {
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {
+                        return null;
+                    }
+                }
+            }
+            return xmlHttp;
+        }
+    </script>
+    
 </body>
 </html>

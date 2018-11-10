@@ -1,5 +1,8 @@
 {
     "require": {
-        "phpoffice/phpspreadsheet": "^1.5"
+        "phpoffice/phpspreadsheet": "^1.5",
+        "firebase/php-jwt": "^5.0",
+        "zendframework/zend-config": "~2.3",
+        "zendframework/zend-http": "~2.3"
     }
 }

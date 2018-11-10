@@ -42,8 +42,9 @@ class Statistic
         return $this->variant;
     }
 
+
     /**
-     * @throws Exception
+     *
      */
     public function calculate()
     {

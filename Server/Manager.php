@@ -9,7 +9,7 @@
 namespace manager;
 
 
-class Manager
+interface Manager
 {
-
+    function process();
 }
