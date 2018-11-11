@@ -14,6 +14,7 @@
 //require_once "Server/AdminController.php";
 //require_once "Server/ClassController.php";
 //require_once 'Server/CriteriaLevelController.php';
+
 //
 //$serverName = 'localhost';
 //$dbName = 'servey';
@@ -118,6 +119,7 @@
 
 
 
+//echo base64_encode(openssl_random_pseudo_bytes(\config\Config::LENGTH_OPENSSL_GENERATE));
 
 
 

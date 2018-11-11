@@ -10,46 +10,37 @@
         <!--<input type="file">-->
         <!--<button type="submit" name="Submit"></button>-->
     <!--</form>-->
-    
+    <div id="d">
     <input type="button" id="btn">
+    </div>
 
     <script>
         let btn = document.getElementById("btn");
-        btn.onclick = function (e) {
+        btn.onclick = function () {
             this.disabled = true;
             let xmlhttp = getXmlHttpObject();
             xmlhttp.onreadystatechange = function() {
-                if (this.readyState === 4) document.innerHTML = this.responseText;
+                if (this.readyState === 4) {
+
+                    console.log(this.status);
+                    console.log(this.responseText);
+                    if(this.status === 200) {
+                        document.getElementById("d").innerHTML = this.responseText;
+                    } else {
+
+                    }
+
+
+                }
             };
 
-            let data = new FormData();
-            data.append('user', 'vanminh');
-            data.append('password', '123456789');
 
-            xmlhttp.open("POST", "http://bulletin.any.com.vn/login.php", true);
-            xmlhttp.send(data);
         };
 
 
 
-        function getXmlHttpObject() {
-            var xmlHttp = null;
-            try {
-                xmlHttp = new XMLHttpRequest();
-            } catch (e) {
-                try  {
-                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-                } catch (e) {
-                    try {
-                        xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch (e) {
-                        return null;
-                    }
-                }
-            }
-            return xmlHttp;
-        }
+
     </script>
-    
+
 </body>
 </html>

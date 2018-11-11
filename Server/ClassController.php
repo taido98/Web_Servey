@@ -125,4 +125,15 @@ class ClassController extends Controller
         return $stmt->fetchAll();
     }
 
+    public function getIdClassName($db, $idClassDB) {
+        $sql = "SELECT idClass, subjectName FROM $this->tableName WHERE id= ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(1, $idClassDB);
+        $stmt->execute();
+        $ret = $stmt->fetchAll();
+
+        return   $ret[0];
+
+    }
+
 }

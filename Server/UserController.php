@@ -11,8 +11,11 @@ namespace controller;
 require_once 'Controller.php';
 
 use config\Config;
+use exception\NotFoundUserException;
+use utils\UtilsServer;
 
 require_once 'Role.php';
+require_once 'NotFoundUserException.php';
 
 
 class UserController extends Controller
@@ -58,5 +61,54 @@ class UserController extends Controller
             return true;
         }
 
+    }
+
+    /**
+     * @param $db
+     * @param $userName
+     * @return array|null
+     */
+    public function selectIdPassword($db, $userName) {
+        $sql = "SELECT id, password FROM $this->tableName WHERE username= ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(1, '' . $userName);
+        $stmt->execute();
+        $retUserName = $stmt->fetchAll();
+
+        if(count($retUserName) === 1){
+            return ['id'=>$retUserName[0][0], 'password'=>$retUserName[0][1]];
+        } else {
+            return null;
+        }
+    }
+    public function getRole($db, $userName) {
+        $sql = "SELECT role FROM $this->tableName WHERE username= ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(1, '' . $userName);
+        $stmt->execute();
+        $ret = $stmt->fetchAll();
+
+        if(count($ret) === 1) {
+            return $ret[0][0];
+        } else {
+            throw new NotFoundUserException();
+        }
+    }
+
+    public function updateTokenForUserName($db, $userName, $token) {
+        $sql = "UPDATE $this->tableName SET token=? WHERE username=?";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(1,''.$token);
+        $stmt->bindValue(2, ''.$userName);
+        $stmt->execute();
+    }
+
+    public function equalsTokenWithUserName($db, $userName, $token) {
+        $sql = "SELECT token FROM $this->tableName WHERE username= ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(1, '' . $userName);
+        $stmt->execute();
+        $ret = $stmt->fetchAll();
+        return $ret[0]['token'] === $token;
     }
 }

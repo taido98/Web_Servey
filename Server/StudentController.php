@@ -95,4 +95,12 @@ class StudentController extends Controller
         $stmt->bindValue(6, ''.$data[0]);
         $stmt->execute();
     }
+    public function getFullName($db, $idStudent) {
+        $sql = "SELECT fullName FROM $this->tableName WHERE idStudent= ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(1, '' . $idStudent);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }

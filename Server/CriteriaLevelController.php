@@ -33,9 +33,6 @@ class CriteriaLevelController extends Controller
         for($i = 0; $i < count($retSQL); ++$i) {
             $retArr[$retSQL[$i][0]] = $retSQL[$i][1];
         }
-
-
-
         return  $retArr;
     }
 
