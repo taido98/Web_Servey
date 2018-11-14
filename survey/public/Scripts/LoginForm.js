@@ -12,7 +12,7 @@ loginBtn.onclick = function () {
                 let responseObj = JSON.parse(this.responseText);
                 window.localStorage.setItem('jwt', responseObj['jwt']);
 
-                window.location.replace("temp.html");
+                // window.location.replace("../temp.html");
             } else {
 
             }
@@ -21,9 +21,11 @@ loginBtn.onclick = function () {
         }
 
     };
-    xmlhttp.open("GET", "../login.php?username=" +document.getElementById('username').value
-        +"&password="+document.getElementById('password').value, true);
-    xmlhttp.send(null);
+    let data = new FormData();
+    data.append('username', document.getElementById('username').value);
+    data.append('password', document.getElementById('password').value);
+    xmlhttp.open("POST", "/login", true);
+    xmlhttp.send(data);
 };
 
 
