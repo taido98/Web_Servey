@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/survey/src" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/survey/tests" isTestSource="true" packagePrefix="App\Tests\" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/clue/stream-filter" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/doctrine/cache" />
@@ -28,18 +29,32 @@
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/facebook/webdriver" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/fig/link-util" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/firebase/php-jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/guzzlehttp/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/jdorn/sql-formatter" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/markbaker/complex" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/ocramius/package-versions" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/ocramius/proxy-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/cache-plugin" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/client-common" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/curl-client" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/discovery" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/httplug" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/httplug-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/httplug-pack" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/logger-plugin" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/message" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/message-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/promise" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/php-http/stopwatch-plugin" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/phpdocumentor/reflection-common" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/phpdocumentor/reflection-docblock" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/phpdocumentor/type-resolver" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/phpoffice/phpspreadsheet" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/survey/vendor/psr/http-message" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/psr/link" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/survey/vendor/psr/simple-cache" />

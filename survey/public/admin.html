@@ -5,11 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="/admin/student/create" enctype="multipart/form-data">
-<input type="file">
-<button type="submit" name="Submit"></button>
-</form>
+<!--<form method="post" action="/admin/students/add" enctype="multipart/form-data">-->
+<input type="file" id="fileUpload">
+<button type="button" id="submitBtn"></button>
+<!--</form>-->
 
-<script src="Scripts/admin.js" type="text/javascript"></script>
+<input type="file" id="fileUploadTeacher">
+teacher
+
+<button type="button" id="submitBtnTeacher" name="teacher"></button>
+
+<input type="file" id="fileUploadClass">
+class
+
+<button type="button" id="submitBtnClass" name="teacher"></button>
+
+<script src="Scripts/Utils.js"></script>
+<script src="Scripts/uploadFile.js"></script>
 </body>
 </html>

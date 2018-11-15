@@ -12,7 +12,7 @@ loginBtn.onclick = function () {
                 let responseObj = JSON.parse(this.responseText);
                 window.localStorage.setItem('jwt', responseObj['jwt']);
 
-                // window.location.replace("../temp.html");
+                window.location.replace("../admin.html");
             } else {
 
             }

@@ -116,7 +116,30 @@ class MyLoginFormAuthenticator
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
         }
+        return $user;
+    }
 
+    /**
+     * Return a UserInterface object based on the credentials.
+     *
+     * The *credentials* are the return value from getCredentials()
+     *
+     * You may throw an AuthenticationException if you wish. If you return
+     * null, then a UsernameNotFoundException is thrown for you.
+     *
+     * @param mixed $credentials
+     *
+     * @throws AuthenticationException
+     *
+     * @return User|null|object
+     */
+    public function getUserByJWT($credentials) {
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['jwt' => $credentials['jwt']]);
+
+        if (!$user) {
+            // fail authentication with a custom error
+            throw new CustomUserMessageAuthenticationException('Username could not be found.');
+        }
         return $user;
     }
 

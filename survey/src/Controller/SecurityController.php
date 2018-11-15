@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class SecurityController extends AbstractController
 {
@@ -40,7 +41,7 @@ class SecurityController extends AbstractController
             $response = new Response(json_encode(['jwt' => $user->getJwt()], JSON_UNESCAPED_UNICODE));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
-        } catch (AuthenticationException $e) {
+        } catch (AuthenticationException| CustomUserMessageAuthenticationException $e) {
             $response = new Response('');
             $response->setStatusCode(401, 'Unauthorized');
             return $response;
