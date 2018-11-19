@@ -14,7 +14,6 @@ use App\Security\Authenticator;
 use App\Security\MyLoginFormAuthenticator;
 use App\Security\NotFoundJWTException;
 use App\Security\NotTrueRoleException;
-use controller\TeacherController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -166,6 +165,7 @@ class AdminController extends AbstractController
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
+     * @throws \Doctrine\DBAL\ConnectionException
      */
     public function addTeachers(Request $request, EntityManagerInterface $entityManager)
     {
@@ -388,7 +388,7 @@ class AdminController extends AbstractController
                     throw new NotFoundException();
                 }
                 $user = $entityManager->getRepository(User::class)->findOneBy(['id' => $student->getIduserdb()]);
-                if(!$user) {
+                if (!$user) {
                     throw new NotFoundException();
                 }
                 $entityManager->remove($student);
@@ -456,6 +456,7 @@ class AdminController extends AbstractController
 
 
     }
+
     private function verifyTemplate(Request $request, EntityManagerInterface $entityManager, $func)
     {
         $entityManager->getConnection()->beginTransaction();
@@ -507,9 +508,109 @@ class AdminController extends AbstractController
     }
 
 
+    /**
+     * @Route("/admin/students/getall", name="admin_students_getall")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+
+    public function getAllStudents(Request $request, EntityManagerInterface $entityManager)
+    {
+
+        $response = $this->verifyTemplateForGet($request, $entityManager, function ($request, $entityManager) {
+
+            $student = $entityManager->getRepository(Student::class)->findAll();
+            $retData = [];
+            foreach ($student as $value) {
+                $retData[] = ['idStudent' => $value->getIdstudent(),
+                    'fullname' => $value->getFullname(),
+                    'vnuemail' => $value->getVnuemail(),
+                    'course' => $value->getCourse()];
+            }
+            return $retData;
+        });
+
+        return $response;
+
+    }
 
 
+    private function verifyTemplateForGet(Request $request, EntityManagerInterface $entityManager, $func)
+    {
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            Authenticator::verifyFor($request, $entityManager, AdminController::$role);
+
+            $data = $func($request, $entityManager);
 
 
+            $response = new Response(json_encode(['ok' => 'true', 'data' => $data], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+
+        } catch
+        (AuthenticationException $e) {
+            $response = new Response(json_encode(['ok' => "AuthenticationException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch
+        (CustomUserMessageAuthenticationException $e) {
+            $response = new Response(json_encode(['ok' => "CustomUserMessageAuthenticationException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (UnexpectedValueException | SignatureInvalidException |
+        BeforeValidException | ExpiredException $e) {
+//            $response = new Response(json_encode(['ok' => "SignatureInvalidException"], JSON_UNESCAPED_UNICODE));
+//            $response->headers->set('Content-Type', 'application/json');
+//            return $response;
+            return $this->redirectToRoute('/');
+
+        } catch (NotTrueRoleException $e) {
+            $loginForm = new MyLoginFormAuthenticator($entityManager);
+            $credentials = $loginForm->getCredentials($request);
+            $user = $loginForm->getUserByJWT($credentials);
+            $response = new Response(json_encode(['ok' => 'NotTrueRoleException'], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (NotFoundJWTException $e) {
+            $response = new Response(json_encode(['ok' => "NotFoundJWTException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (\PhpOffice\PhpSpreadsheet\Exception $e) {
+            $response = new Response(json_encode(['ok' => "\PhpOffice\PhpSpreadsheet\Exception"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (Exception $e) {
+            $entityManager->getConnection()->rollBack();
+        }
+    }
+
+
+    /**
+     * @Route("/admin/teachers/getall", name="admin_teachers_getall")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+
+    public function getAllTeachers(Request $request, EntityManagerInterface $entityManager)
+    {
+
+        $response = $this->verifyTemplateForGet($request, $entityManager, function ($request, $entityManager) {
+
+            $teachers = $entityManager->getRepository(Teacher::class)->findAll();
+            $retData = [];
+            foreach ($teachers as $value) {
+                $retData[] = ['idTeacher' => $value->getIdteacher(),
+                    'fullname' => $value->getFullname(),
+                    'vnuemail' => $value->getVnuemail()];
+            }
+            return $retData;
+        });
+
+        return $response;
+
+    }
 
 }
