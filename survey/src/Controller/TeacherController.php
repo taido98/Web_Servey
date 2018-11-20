@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: vanminh
+ * Date: 20/11/2018
+ * Time: 20:48
+ */
 
 namespace App\Controller;
 
@@ -30,25 +36,97 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Role\Role;
 
-class StudentManagement extends AbstractController
+class TeacherController extends AbstractController
 {
-    public static $role = 'ROLE_STUDENT';
+    public static $role = 'ROLE_TEACHER';
 
     /**
-     * @Route("/studentcontroller", name="s")
+     * @Route("/teacher", name="teacher")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
+     * @throws NotFoundException
      * @throws \Doctrine\DBAL\ConnectionException
      */
     public function index(Request $request, EntityManagerInterface $entityManager)
     {
         $entityManager->getConnection()->beginTransaction();
         try {
-            Authenticator::verifyFor($request, $entityManager, TeacherManagement::$role);
+            Authenticator::verifyFor($request, $entityManager, TeacherController::$role);
+
+            $user = $entityManager->getRepository(User::class)->findOneBy(['jwt'=>$request->request->get('jwt')]);
+            if($user === null) {
+                throw new NotFoundException();
+            }
+            $teacher = $entityManager->getRepository(Teacher::class)->findOneBy(['userdb'=>$user]);
+            if($teacher === null) {
+                throw new NotFoundException();
+            }
+            // get criterialLevel
+//            $criterialLevels = [];
+            $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
+//            if($criterialLevels === null) {
+//                $criterialLevels = [];
+//                for($i = 0; $i < count(SRCConfig::DEFAULT_FORM); ++$i) {
+//                    $criterialLevel = new CriteriaLevel();
+//                    $criterialLevel->setName(SRCConfig::DEFAULT_FORM[$i]);
+////                    $entityManager->persist($criterialLevel);
+//
+//                    $criterialLevels[] = $criterialLevel;
+//                }
+////                $entityManager->flush();
+////                $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
+//
+//            }
+
+            $criterialLevelArr = [];
+            foreach ($criterialLevels as $criterialLevel) {
+                $criterialLevelArr[$criterialLevel->getId()] = $criterialLevel->getName();
+            }
+
+            //=====================
+
+
+
+
+
+
+            $classes = $entityManager->getRepository(ClassSubject::class)->findBy(['teacher'=>$teacher]);
+            $retData = [];
+            foreach ($classes as $class) {
+                $statistic = [];
+                $surveyForms = $class->getSurveyForm();
+
+                $criterialValues = [];
+                foreach($criterialLevelArr as $key=>$value) {
+                    $criterialValues[$key] = 0;
+                }
+
+                foreach ($surveyForms as $surveyForm) {
+                    $content = $surveyForm->getContent();
+                    if($content !== null) {
+                        foreach ($content as $key=>$value) {
+                            $criterialValues[$key] += (int)$value;
+                        }
+                    }
+
+
+                }
+
+                foreach ($criterialValues as $key=>$value) {
+                    $statistic[$key] = $value;
+                }
+
+
+                $retData[] = ['idClass'=> $class->getIdclass(),
+                    'namesubject'=>$class->getNamesubject(),
+                    'location'=>$class->getLocation(),
+                    'numberLesson'=>$class->getNumberlesson(),
+                    'statistic'=>$statistic];
+            }
 
             $entityManager->getConnection()->commit();
-            $retData = [];
+
             $response = new Response(json_encode(['ok' => 'true', 'data'=>$retData], JSON_UNESCAPED_UNICODE));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
@@ -89,7 +167,5 @@ class StudentManagement extends AbstractController
             $entityManager->getConnection()->close();
         }
     }
-
-
 
 }

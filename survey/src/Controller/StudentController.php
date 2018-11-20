@@ -17,12 +17,12 @@ use App\Security\Authenticator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
-class Collage extends AbstractController
+class StudentController extends AbstractController
 {
     public static $role = 'ROLE_STUDENT';
 
     /**
-     * @Route("/collage/submit_survey_form", name="collage_submit_survey_form")
+     * @Route("/student/submit_survey_form", name="student_submit_survey_form")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
@@ -32,7 +32,7 @@ class Collage extends AbstractController
     {
         $entityManager->getConnection()->beginTransaction();
         try {
-            Authenticator::verifyFor($request, $entityManager, Collage::$role);
+            Authenticator::verifyFor($request, $entityManager, StudentController::$role);
 
             if(!$request->request->has('survey_form'))
             {
