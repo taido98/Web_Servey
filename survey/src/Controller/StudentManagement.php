@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Config\SRCConfig;
 use App\Entity\ClassSubject;
+use App\Entity\CriteriaLevel;
 use App\Entity\Student;
 use App\Entity\SurveyForm;
 use App\Entity\Teacher;
@@ -16,6 +17,7 @@ use App\Security\NotFoundJWTException;
 use App\Security\NotTrueRoleException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Firebase\JWT\SignatureInvalidException;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -28,11 +30,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Role\Role;
 
-class TeacherController extends AbstractController
+class StudentManagement extends AbstractController
 {
-    public static $role = 'ROLE_TEACHER';
+    public static $role = 'ROLE_STUDENT';
+
     /**
-     * @Route("/teacher", name="teacher")
+     * @Route("/studentcontroller", name="s")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
@@ -40,43 +43,15 @@ class TeacherController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $entityManager)
     {
-
         $entityManager->getConnection()->beginTransaction();
         try {
-            Authenticator::verifyFor($request, $entityManager, Teacher::$role);
-//            $isSuccess = false;
+            Authenticator::verifyFor($request, $entityManager, TeacherManagement::$role);
 
-//            $isSuccess = $func($request, $entityManager);
-
-            $teacher = $entityManager->getRepository(Teacher::class)->findOneBy(['idteacher'=>$request->request->get('id')]);
-
-            if($teacher === null) {
-                throw new NotFoundException();
-            }
-
-            $classes = $entityManager->getRepository(ClassSubject::class)->find(['teacher_id'=>$teacher->getId()]);
-
+            $entityManager->getConnection()->commit();
             $retData = [];
-            foreach ($classes as $class) {
-
-                $statistic = [];
-
-                $surveyForms = $class->getSurveyForm();
-
-
-
-                $retData[] = ['idClass'=> $class->getIdclass(),
-                    'namesubject'=>$class->getNamesubject(),
-                    'location'=>$class->getLocation(),
-                    'numberLesson'=>$class->getNumberlesson(),
-                    'statistic'=>$statistic];
-            }
-
-
             $response = new Response(json_encode(['ok' => 'true', 'data'=>$retData], JSON_UNESCAPED_UNICODE));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
-
         } catch
         (AuthenticationException $e) {
             $response = new Response(json_encode(['ok' => "AuthenticationException"], JSON_UNESCAPED_UNICODE));
@@ -93,7 +68,6 @@ class TeacherController extends AbstractController
 //            $response->headers->set('Content-Type', 'application/json');
 //            return $response;
             return $this->redirectToRoute('/');
-
         } catch (NotTrueRoleException $e) {
             $loginForm = new MyLoginFormAuthenticator($entityManager);
             $credentials = $loginForm->getCredentials($request);
@@ -111,10 +85,11 @@ class TeacherController extends AbstractController
             return $response;
         } catch (Exception $e) {
             $entityManager->getConnection()->rollBack();
+        } finally {
+            $entityManager->getConnection()->close();
         }
-
-//        return $this->render('teacher/index.html.twig', [
-//            'controller_name' => 'TeacherController',
-//        ]);
     }
+
+
+
 }

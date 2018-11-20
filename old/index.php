@@ -9,8 +9,6 @@
 
 //require_once "Server/Excel.php";
 //require_once "Server/DatabaseUtils.php";
-//require_once "Server/StudentController.php";
-//require_once "Server/TeacherController.php";
 //require_once "Server/AdminController.php";
 //require_once "Server/ClassController.php";
 //require_once 'Server/CriteriaLevelController.php';

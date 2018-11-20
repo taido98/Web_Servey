@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Config\SRCConfig;
 use App\Entity\ClassSubject;
+use App\Entity\CriteriaLevel;
 use App\Entity\Student;
 use App\Entity\SurveyForm;
 use App\Entity\Teacher;
@@ -41,6 +42,22 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);
+    }
+
+    /**
+     * @Route("/admin/criterialLevel/setdefault", name="admin_criterialLevel_setdefault")
+     */
+    public function setDefaultCriterialLevels(Request $request, EntityManagerInterface $entityManager)
+    {
+        for ($i = 0; $i < count(SRCConfig::DEFAULT_FORM); ++$i) {
+            $criterialLevel = new CriteriaLevel();
+            $criterialLevel->setName(SRCConfig::DEFAULT_FORM[$i]);
+            $entityManager->persist($criterialLevel);
+
+            $criterialLevels[] = $criterialLevel;
+        }
+        $entityManager->flush();
+        return new Response();
     }
 
     /**
@@ -272,6 +289,8 @@ class AdminController extends AbstractController
             return $response;
         } catch (Exception $e) {
             $entityManager->getConnection()->rollBack();
+        } finally {
+            $entityManager->getConnection()->close();
         }
     }
 
