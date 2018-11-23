@@ -16,4 +16,14 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
+
+    /**
+     * @Route("/login_form", name="login_form")
+     */
+    public function loginForm()
+    {
+        return $this->render('default/login.html.twig', [
+            'controller_name' => 'DefaultController',
+        ]);
+    }
 }

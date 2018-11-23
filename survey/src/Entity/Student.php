@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StudentRepository")
@@ -145,5 +146,21 @@ class Student
         }
 
         return $this;
+    }
+
+    public function getProfile():array
+    {
+        return ['fullName'=>$this->fullname,
+            'idStudent'=>$this->idstudent,
+            'courses'=>$this->course];
+    }
+
+    public function getNecessarySurveyFormsInfo($criterialLevels): array
+    {
+        $returnData = [];
+        foreach($this->surveyForms as $surveyForm) {
+            $returnData[] = $surveyForm->getNecessaryInfo($criterialLevels);
+        }
+        return $returnData;
     }
 }

@@ -107,4 +107,19 @@ class SurveyForm
 
         return $this;
     }
+
+    public function getNecessaryInfo($criterialLevels): array
+    {
+        $retData = [];
+        $retContent = $this->content;
+        if($this->content === []) {
+            $retContent = $criterialLevels;
+        }
+        $retData = ['content'=>$retContent];
+        foreach ($this->classSubject[0]->toString() as $key=>$value) {
+            $retData[$key] = $value;
+        }
+
+        return $retData;
+    }
 }

@@ -37,4 +37,13 @@ class CriteriaLevel
 
         return $this;
     }
+
+    public static function convertArrayCriterialLevelObjectsToArray($criterialLevels): array
+    {
+        $retData = [];
+        foreach ($criterialLevels as $c) {
+            $retData[$c->getId()] = $c->getName();
+        }
+        return $retData;
+    }
 }

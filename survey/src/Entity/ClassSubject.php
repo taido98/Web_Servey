@@ -163,4 +163,14 @@ class ClassSubject
 
         return $this;
     }
+
+
+    public function toString(): array
+    {
+        return ['idClass'=>$this->idclass,
+            'subjectName'=>$this->namesubject,
+            'numberLesson'=>$this->numberlesson,
+            'location'=>$this->location];
+    }
+
 }
