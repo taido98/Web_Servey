@@ -180,10 +180,34 @@ class ClassSubject
      */
     public function getStatistic(array $appendix): array
     {
-        // TO DO calculate 6 properties
         $retData = [];
 
+        $retStatistic = $this->getRawStatistic($appendix);
+        $statistic = $retStatistic['statistic'];
+        $retData['numberStudentDone'] = $retStatistic['numberStudentDone'];
+
+        $sta = new Statistic($statistic);
+        try {
+            $sta->calculate();
+            $retData['M'] = $sta->getAverage();
+            $retData['STD'] = $sta->getVariant();
+
+        } catch (\ErrorException $e) {
+            $retData['M'] = 0;
+            $retData['STD'] = 0;
+        }
+
+
+
+        return $retData;
+    }
+
+    public function getRawStatistic(array $appendix): array
+    {
+        $retStatistic = [];
         $statistic = [];
+        $retStatistic['statistic'] = $statistic;
+        $retStatistic['numberStudentDone'] = 0;
         foreach ($appendix as $key=>$value) {
             $statistic[$key] = [0, 0];
         }
@@ -191,22 +215,15 @@ class ClassSubject
         foreach ($this->surveyForm as $s) {
             $contentData = $s->getContent();
             if($contentData !== null) {
+                $retStatistic['numberStudentDone'] += 1;
                 foreach ($contentData as $key=>$value) {
-
-
                     $statistic[$key][0] += (float) $value;
                     $statistic[$key][1] += 1;
                 }
             }
 
         }
-
-        $sta = new Statistic($statistic);
-        $sta->calculate();
-        $retData['M'] = $sta->getAverage();
-        $retData['STD'] = $sta->getVariant();
-
-        return $retData;
+        return $retStatistic;
     }
 
 }

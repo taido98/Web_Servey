@@ -81,8 +81,8 @@ class TeacherController extends AbstractController
                     $criterialLevels[] = $criterialLevel;
                 }
                 $entityManager->flush();
-                $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
 
+                $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
             }
             $appendix = CriteriaLevel::convertArrayCriterialLevelObjectsToArray($criterialLevels);
 
@@ -92,7 +92,7 @@ class TeacherController extends AbstractController
 
 
 
-            $classes = $teacher->getStatisticAndClassInfo($appendix);
+            $classes = $teacher->getStatisticAndClassInfo($appendix, $entityManager);
 
 
 //            foreach ($classes as $class) {
@@ -147,7 +147,7 @@ class TeacherController extends AbstractController
 //            $response = new Response(json_encode(['ok' => "SignatureInvalidException"], JSON_UNESCAPED_UNICODE));
 //            $response->headers->set('Content-Type', 'application/json');
 //            return $response;
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('login_form');
         } catch (NotTrueRoleException $e) {
             $loginForm = new MyLoginFormAuthenticator($entityManager);
             $credentials = $loginForm->getCredentials($request);

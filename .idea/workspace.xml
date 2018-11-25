@@ -2,24 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79b4d1b8-b128-45c4-9dfc-aaf2135bb5e6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/survey/src/Controller/LogOutController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/Controller/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Controller/StudentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/survey/src/Controller/TeacherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Controller/TeacherController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/survey/src/Entity/ClassSubject.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Entity/ClassSubject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/Entity/SurveyForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Entity/SurveyForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/survey/src/Entity/Teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Entity/Teacher.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/Statistic/Statistic.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Statistic/Statistic.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/web/uploads/5bee7707e176e.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/web/uploads/5beeb4147c881.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/web/uploads/5beeb57fd8c04.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/web/uploads/5beeb59657bc9.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/web/uploads/5beebc53de8c5.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/web/uploads/5beebc9a4517a.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/web/uploads/5beebd9574573.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/web/uploads/5beebdd75bf58.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/web/uploads/5beec0cc102f2.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/web/uploads/5beec10e725be.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/Security/Authenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Security/Authenticator.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +56,7 @@
           <entry key="env" value="48" />
           <entry key="html" value="1135" />
           <entry key="js" value="1085" />
-          <entry key="php" value="35806" />
+          <entry key="php" value="36737" />
           <entry key="sh" value="1" />
           <entry key="twig" value="140" />
           <entry key="txt" value="183" />
@@ -79,7 +67,7 @@
         <counts>
           <entry key="HTML" value="1135" />
           <entry key="JavaScript" value="1085" />
-          <entry key="PHP" value="35795" />
+          <entry key="PHP" value="36726" />
           <entry key="PLAIN_TEXT" value="325" />
           <entry key="SQL" value="11" />
           <entry key="Twig" value="140" />
@@ -88,7 +76,7 @@
       </usages-collector>
       <usages-collector id="statistics.php.new.class">
         <counts>
-          <entry key="PHP Class.type" value="60" />
+          <entry key="PHP Class.type" value="61" />
           <entry key="PHP Interface.type" value="1" />
         </counts>
       </usages-collector>
@@ -98,14 +86,14 @@
           <entry key="d9VUfynXosRNZQEFLW8b" value="1" />
           <entry key="env" value="7" />
           <entry key="gitignore" value="1" />
-          <entry key="html" value="34" />
+          <entry key="html" value="36" />
           <entry key="js" value="32" />
           <entry key="json" value="2" />
           <entry key="md" value="1" />
-          <entry key="php" value="418" />
-          <entry key="png" value="10" />
+          <entry key="php" value="427" />
+          <entry key="png" value="13" />
           <entry key="sh" value="7" />
-          <entry key="twig" value="28" />
+          <entry key="twig" value="30" />
           <entry key="xlsx#" value="2" />
           <entry key="yaml" value="29" />
           <entry key="yml" value="1" />
@@ -115,14 +103,14 @@
         <counts>
           <entry key="Bash" value="2" />
           <entry key="CSS" value="1" />
-          <entry key="HTML" value="34" />
-          <entry key="Image" value="10" />
+          <entry key="HTML" value="36" />
+          <entry key="Image" value="13" />
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="32" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="418" />
+          <entry key="PHP" value="427" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Twig" value="28" />
+          <entry key="Twig" value="30" />
           <entry key="YAML" value="30" />
         </counts>
       </usages-collector>
@@ -136,20 +124,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/survey/src/Controller/TeacherController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="10" column="14" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="14" />
+            <state relative-caret-position="222">
+              <caret line="59" column="13" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="59" selection-end-column="13" />
               <folding>
-                <element signature="e#3590#3634#0#PHP" />
+                <element signature="e#118#143#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/survey/src/Controller/LogOutController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="43" column="43" lean-forward="true" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+              <folding>
+                <element signature="e#119#139#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/survey/src/Entity/Student.php">
+        <entry file="file://$PROJECT_DIR$/survey/src/Controller/AdminController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="24" column="22" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="22" />
+            <state relative-caret-position="150">
+              <caret line="131" column="38" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="38" />
+              <folding>
+                <element signature="e#34#59#0#PHP" expanded="true" />
+                <element signature="e#2199#2822#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/old/Data/statistic.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/survey/src/Entity/ClassSubject.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-342">
+              <caret line="30" column="20" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="20" />
+              <folding>
+                <element signature="e#30#78#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -157,49 +178,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/survey/src/Statistic/Statistic.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="49" column="29" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/survey/src/Entity/SurveyForm.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-348">
-              <caret line="98" column="30" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/survey/src/Controller/AdminController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="243" lean-forward="true" selection-start-line="243" selection-end-line="243" />
-              <folding>
-                <element signature="e#34#59#0#PHP" expanded="true" />
-                <element signature="e#1346#1501#0#PHP" />
-                <element signature="e#1613#2086#0#PHP" />
-                <element signature="e#2160#2783#0#PHP" />
-                <element signature="e#2976#6964#0#PHP" />
-                <element signature="e#6971#7203#0#PHP" />
-                <element signature="e#7208#8229#0#PHP" />
-                <element signature="e#12133#16378#0#PHP" />
-                <element signature="e#14288#14938#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/survey/src/Entity/ClassSubject.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="30" column="20" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="20" />
-              <folding>
-                <element signature="e#30#78#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="546">
+              <caret line="54" column="22" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -216,11 +196,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Bundle</find>
-      <find>entityManager</find>
-      <find>i</find>
-      <find>startAuthentication</find>
-      <find>Role</find>
       <find>response-&gt;setC</find>
       <find>linkApi</find>
       <find>this.linkApi</find>
@@ -233,19 +208,24 @@
       <find>addFromExcel</find>
       <find>CriteriaLevel</find>
       <find>StudentController</find>
-      <find>EntityManagerInterface</find>
       <find>$idclass</find>
       <find>notFoundJ</find>
       <find>SignatureInvalidException</find>
       <find>AuthenticationException</find>
-      <find>UnexpectedValueException</find>
       <find>Exception</find>
       <find>use Symfony\Component\Config\Definition\Exception\Exception;CustomUserMessageAuthenticationException</find>
       <find>userdb</find>
       <find>getIduserdb</find>
       <find>$userdb</find>
-      <find>CustomUserMessageAuthenticationException</find>
       <find>NotFoundTeacherException</find>
+      <find>re</find>
+      <find>redir</find>
+      <find>default</find>
+      <find>EntityManagerInterface</find>
+      <find>CustomUserMessageAuthenticationException</find>
+      <find>use App\Security\NotFoundJWTException;UnexpectedValueException</find>
+      <find>UnexpectedValueException</find>
+      <find>entitymanager</find>
     </findStrings>
     <replaceStrings>
       <replace>btnId</replace>
@@ -257,7 +237,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/survey/src/Security/Autheniticator.php" />
         <option value="$PROJECT_DIR$/survey/src/Security/Config.php" />
         <option value="$PROJECT_DIR$/survey/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/survey/templates/admin/index.html.twig" />
@@ -267,7 +246,6 @@
         <option value="$PROJECT_DIR$/survey/src/Security/NotFoundJWTException.php" />
         <option value="$PROJECT_DIR$/survey/src/Security/NotTrueRoleException.php" />
         <option value="$PROJECT_DIR$/survey/src/Entity/User.php" />
-        <option value="$PROJECT_DIR$/survey/src/Security/Authenticator.php" />
         <option value="$PROJECT_DIR$/survey/src/Form/FileSurveyType.php" />
         <option value="$PROJECT_DIR$/survey/src/Service/FileUploader.php" />
         <option value="$PROJECT_DIR$/survey/templates/filesurvey/new.html.twig" />
@@ -302,12 +280,14 @@
         <option value="$PROJECT_DIR$/survey/src/Entity/Student.php" />
         <option value="$PROJECT_DIR$/survey/src/Entity/CriteriaLevel.php" />
         <option value="$PROJECT_DIR$/survey/src/Controller/StudentController.php" />
-        <option value="$PROJECT_DIR$/survey/src/Entity/Teacher.php" />
         <option value="$PROJECT_DIR$/survey/src/Entity/SurveyForm.php" />
         <option value="$PROJECT_DIR$/survey/src/Statistic/Statistic.php" />
-        <option value="$PROJECT_DIR$/survey/src/Controller/TeacherController.php" />
-        <option value="$PROJECT_DIR$/survey/src/Entity/ClassSubject.php" />
         <option value="$PROJECT_DIR$/survey/src/Controller/AdminController.php" />
+        <option value="$PROJECT_DIR$/survey/src/Entity/ClassSubject.php" />
+        <option value="$PROJECT_DIR$/survey/src/Entity/Teacher.php" />
+        <option value="$PROJECT_DIR$/survey/src/Controller/TeacherController.php" />
+        <option value="$PROJECT_DIR$/survey/src/Security/Authenticator.php" />
+        <option value="$PROJECT_DIR$/survey/src/Controller/LogOutController.php" />
       </list>
     </option>
   </component>
@@ -487,6 +467,26 @@
               <item name="Servey" type="b2602c69:ProjectViewProjectNode" />
               <item name="Servey" type="462c0819:PsiDirectoryNode" />
               <item name="survey" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Servey" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Servey" type="462c0819:PsiDirectoryNode" />
+              <item name="survey" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Servey" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Servey" type="462c0819:PsiDirectoryNode" />
+              <item name="survey" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="default" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Servey" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Servey" type="462c0819:PsiDirectoryNode" />
+              <item name="survey" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -574,18 +574,18 @@
       <workItem from="1542779353812" duration="992000" />
       <workItem from="1542969514936" duration="817000" />
       <workItem from="1542980225086" duration="8381000" />
-      <workItem from="1543107266686" duration="7301000" />
+      <workItem from="1543107266686" duration="12567000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244702000" />
+    <option name="totallyTimeSpent" value="249968000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="32" width="1366" height="701" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49818182" visible="true" weight="0.18244275" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49818182" visible="true" weight="0.3129771" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5018182" side_tool="true" weight="0.0870229" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -637,27 +637,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/old/Server/Excel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Controller/Excel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Exception/NotFoundTeacherException.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/survey/vendor/symfony/security/Core/Role/Role.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -731,13 +710,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/survey/public/admin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="31" column="37" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/survey/src/Utils/Utils.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -773,13 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="55" column="25" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Security/Authenticator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="96" column="17" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -836,27 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/survey/templates/default/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="43" column="49" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/survey/templates/default/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/survey/src/Entity/CriteriaLevel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
@@ -874,36 +818,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Entity/Teacher.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="143" column="5" lean-forward="true" selection-start-line="143" selection-start-column="5" selection-end-line="143" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/old/Data/statistic.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/survey/src/Entity/Admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1062" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Entity/ClassSubject.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="30" column="20" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="20" />
-          <folding>
-            <element signature="e#30#78#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Entity/SurveyForm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-348">
-          <caret line="98" column="30" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="30" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/survey/src/Entity/Student.php">
@@ -913,37 +830,113 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Statistic/Statistic.php">
+    <entry file="file://$PROJECT_DIR$/survey/public/admin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="49" column="29" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="29" />
+        <state relative-caret-position="426">
+          <caret line="31" column="37" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Controller/TeacherController.php">
+    <entry file="file://$PROJECT_DIR$/survey/public/formAllpage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="14" />
+        <state relative-caret-position="-72" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Entity/SurveyForm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="98" column="30" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/old/Data/image005.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/old/Data/statistic.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Statistic/Statistic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="54" column="22" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Entity/ClassSubject.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-342">
+          <caret line="30" column="20" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="20" />
           <folding>
-            <element signature="e#3590#3634#0#PHP" />
+            <element signature="e#30#78#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Entity/Teacher.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="30" />
+          <folding>
+            <element signature="e#30#58#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/templates/default/login.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/templates/default/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="43" column="49" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Security/Authenticator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="108" column="47" selection-start-line="108" selection-start-column="27" selection-end-line="108" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="40" lean-forward="true" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/survey/src/Controller/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="243" lean-forward="true" selection-start-line="243" selection-end-line="243" />
+        <state relative-caret-position="150">
+          <caret line="131" column="38" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="38" />
           <folding>
             <element signature="e#34#59#0#PHP" expanded="true" />
-            <element signature="e#1346#1501#0#PHP" />
-            <element signature="e#1613#2086#0#PHP" />
-            <element signature="e#2160#2783#0#PHP" />
-            <element signature="e#2976#6964#0#PHP" />
-            <element signature="e#6971#7203#0#PHP" />
-            <element signature="e#7208#8229#0#PHP" />
-            <element signature="e#12133#16378#0#PHP" />
-            <element signature="e#14288#14938#0#PHP" />
+            <element signature="e#2199#2822#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Controller/TeacherController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="59" column="13" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="59" selection-end-column="13" />
+          <folding>
+            <element signature="e#118#143#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Controller/LogOutController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="43" column="43" lean-forward="true" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+          <folding>
+            <element signature="e#119#139#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
