@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Statistic\Statistic;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClassSubjectRepository")
@@ -171,6 +172,41 @@ class ClassSubject
             'subjectName'=>$this->namesubject,
             'numberLesson'=>$this->numberlesson,
             'location'=>$this->location];
+    }
+
+    /**
+     * @param array $appendix
+     * @return array
+     */
+    public function getStatistic(array $appendix): array
+    {
+        // TO DO calculate 6 properties
+        $retData = [];
+
+        $statistic = [];
+        foreach ($appendix as $key=>$value) {
+            $statistic[$key] = [0, 0];
+        }
+
+        foreach ($this->surveyForm as $s) {
+            $contentData = $s->getContent();
+            if($contentData !== null) {
+                foreach ($contentData as $key=>$value) {
+
+
+                    $statistic[$key][0] += (float) $value;
+                    $statistic[$key][1] += 1;
+                }
+            }
+
+        }
+
+        $sta = new Statistic($statistic);
+        $sta->calculate();
+        $retData['M'] = $sta->getAverage();
+        $retData['STD'] = $sta->getVariant();
+
+        return $retData;
     }
 
 }

@@ -68,8 +68,8 @@ class Statistic
     public static function calculateVariant($data, $aver, $n)
     {
         $s = 0.0;
-        for ($i = 0; $i < count($data); ++$i) {
-            $s += pow($data[$i][0] - $aver, 2);
+        foreach ($data as $key=>$value) {
+            $s += pow($value[0] - $aver, 2);
         }
         return sqrt($s / ($n - 1));
     }
@@ -83,10 +83,10 @@ class Statistic
 
         $sum = 0.0;
         $n = 0;
-        for ($i = 0; $i < count($data); ++$i) {
-            $sum += $data[$i][0] * $data[$i][1];
+        foreach ($data as $key=>$value) {
+            $sum += $value[0] * $value[1];
 
-            $n += $data[$i][1];
+            $n += $value[1];
 
         }
 

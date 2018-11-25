@@ -62,72 +62,74 @@ class TeacherController extends AbstractController
             if($teacher === null) {
                 throw new NotFoundException();
             }
+
+
+            //get profile
+            $profile = $teacher->getProfile();
+
+
             // get criterialLevel
 //            $criterialLevels = [];
             $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
-//            if($criterialLevels === null) {
-//                $criterialLevels = [];
-//                for($i = 0; $i < count(SRCConfig::DEFAULT_FORM); ++$i) {
-//                    $criterialLevel = new CriteriaLevel();
-//                    $criterialLevel->setName(SRCConfig::DEFAULT_FORM[$i]);
-////                    $entityManager->persist($criterialLevel);
+            if($criterialLevels === null) {
+                $criterialLevels = [];
+                for($i = 0; $i < count(SRCConfig::DEFAULT_FORM); ++$i) {
+                    $criterialLevel = new CriteriaLevel();
+                    $criterialLevel->setName(SRCConfig::DEFAULT_FORM[$i]);
+                    $entityManager->persist($criterialLevel);
+
+                    $criterialLevels[] = $criterialLevel;
+                }
+                $entityManager->flush();
+                $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
+
+            }
+            $appendix = CriteriaLevel::convertArrayCriterialLevelObjectsToArray($criterialLevels);
+
+
+
+
+
+
+
+            $classes = $teacher->getStatisticAndClassInfo($appendix);
+
+
+//            foreach ($classes as $class) {
+//                $statistic = [];
+//                $surveyForms = $class->getSurveyForm();
 //
-//                    $criterialLevels[] = $criterialLevel;
+//                $criterialValues = [];
+//                foreach($criterialLevelArr as $key=>$value) {
+//                    $criterialValues[$key] = 0;
 //                }
-////                $entityManager->flush();
-////                $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
 //
+//                foreach ($surveyForms as $surveyForm) {
+//                    $content = $surveyForm->getContent();
+//                    if($content !== null) {
+//                        foreach ($content as $key=>$value) {
+//                            $criterialValues[$key] += (int)$value;
+//                        }
+//                    }
+//
+//
+//                }
+//
+//                foreach ($criterialValues as $key=>$value) {
+//                    $statistic[$key] = $value;
+//                }
+//
+//
+//                $retData[] = ['idClass'=> $class->getIdclass(),
+//                    'namesubject'=>$class->getNamesubject(),
+//                    'location'=>$class->getLocation(),
+//                    'numberLesson'=>$class->getNumberlesson(),
+//                    'statistic'=>$statistic];
 //            }
-
-            $criterialLevelArr = [];
-            foreach ($criterialLevels as $criterialLevel) {
-                $criterialLevelArr[$criterialLevel->getId()] = $criterialLevel->getName();
-            }
-
-            //=====================
-
-
-
-
-
-
-            $classes = $entityManager->getRepository(ClassSubject::class)->findBy(['teacher'=>$teacher]);
-            $retData = [];
-            foreach ($classes as $class) {
-                $statistic = [];
-                $surveyForms = $class->getSurveyForm();
-
-                $criterialValues = [];
-                foreach($criterialLevelArr as $key=>$value) {
-                    $criterialValues[$key] = 0;
-                }
-
-                foreach ($surveyForms as $surveyForm) {
-                    $content = $surveyForm->getContent();
-                    if($content !== null) {
-                        foreach ($content as $key=>$value) {
-                            $criterialValues[$key] += (int)$value;
-                        }
-                    }
-
-
-                }
-
-                foreach ($criterialValues as $key=>$value) {
-                    $statistic[$key] = $value;
-                }
-
-
-                $retData[] = ['idClass'=> $class->getIdclass(),
-                    'namesubject'=>$class->getNamesubject(),
-                    'location'=>$class->getLocation(),
-                    'numberLesson'=>$class->getNumberlesson(),
-                    'statistic'=>$statistic];
-            }
 
             $entityManager->getConnection()->commit();
 
-            $response = new Response(json_encode(['ok' => 'true', 'data'=>$retData], JSON_UNESCAPED_UNICODE));
+            $response = new Response(json_encode(['ok' => 'true', 'data'=>['profile'=>$profile, 'classes'=>$classes,'appendix'=>$appendix]], JSON_UNESCAPED_UNICODE));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         } catch

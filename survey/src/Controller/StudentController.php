@@ -152,9 +152,10 @@ class StudentController extends AbstractController
                 $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
 
             }
-            $classes = $student->getNecessarySurveyFormsInfo(CriteriaLevel::convertArrayCriterialLevelObjectsToArray($criterialLevels));
+            $appendix = CriteriaLevel::convertArrayCriterialLevelObjectsToArray($criterialLevels);
+            $classes = $student->getNecessarySurveyFormsInfo($appendix);
 
-            $response = new Response(json_encode(['ok' => 'true', 'data'=>['profile'=>$profile, 'classes'=>$classes]], JSON_UNESCAPED_UNICODE));
+            $response = new Response(json_encode(['ok' => 'true', 'data'=>['profile'=>$profile, 'classes'=>$classes, 'appendix'=>$appendix]], JSON_UNESCAPED_UNICODE));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         } catch

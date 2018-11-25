@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TeacherRepository")
@@ -132,4 +133,23 @@ class Teacher
 
         return $this;
     }
+
+    public function getProfile(): array
+    {
+        return ['fullName'=>$this->fullname,
+            'idStudent'=>$this->idteacher,
+            'vnuemail'=>$this->vnuemail];
+    }
+    public function getStatisticAndClassInfo($appendix): array
+    {
+        $retData = [];
+        foreach ($this->teacher as $class) {
+            $classData = $class->toString();
+            $classData['statistic'] = $class->getStatistic($appendix);
+            $retData[] = $classData;
+        }
+        return $retData;
+    }
+
+
 }

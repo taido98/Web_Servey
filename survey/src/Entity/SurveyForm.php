@@ -113,7 +113,9 @@ class SurveyForm
         $retData = [];
         $retContent = $this->content;
         if($this->content === []) {
-            $retContent = $criterialLevels;
+            foreach ($criterialLevels as $key=>$value) {
+                $retContent[$key] = 0;
+            }
         }
         $retData = ['content'=>$retContent];
         foreach ($this->classSubject[0]->toString() as $key=>$value) {

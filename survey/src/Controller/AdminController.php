@@ -15,6 +15,7 @@ use App\Security\Authenticator;
 use App\Security\MyLoginFormAuthenticator;
 use App\Security\NotFoundJWTException;
 use App\Security\NotTrueRoleException;
+use Doctrine\DBAL\Driver\PDOException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -244,7 +245,7 @@ class AdminController extends AbstractController
             if (file_exists($file)) {
 
                 $isSuccess = $func($entityManager, $file);
-
+                unlink($file);
             }
 
 
@@ -270,7 +271,7 @@ class AdminController extends AbstractController
 //            $response = new Response(json_encode(['ok' => "SignatureInvalidException"], JSON_UNESCAPED_UNICODE));
 //            $response->headers->set('Content-Type', 'application/json');
 //            return $response;
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('default');
 
         } catch (NotTrueRoleException $e) {
             $loginForm = new MyLoginFormAuthenticator($entityManager);
@@ -285,6 +286,10 @@ class AdminController extends AbstractController
             return $response;
         } catch (\PhpOffice\PhpSpreadsheet\Exception $e) {
             $response = new Response(json_encode(['ok' => "\PhpOffice\PhpSpreadsheet\Exception"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (PDOException $e) {
+            $response = new Response(json_encode(['ok' => "PDOException"], JSON_UNESCAPED_UNICODE));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         } catch (Exception $e) {
@@ -310,69 +315,80 @@ class AdminController extends AbstractController
             return $this->addFromExcel($request, $entityManager, function ($entityManager, $file) {
 
                 $data = Excel::readSubjectExcel($file);
-
+                $isSuccess = false;
                 if ($data) {
 
-
-                    // class
-                    $class = new ClassSubject();
-                    $class->setIdclass($data[Excel::SubSubjectId]);
-                    $class->setIdsubject($data[Excel::SubjectId]);
-                    $class->setLocation($data[Excel::LectureLocation]);
-                    $class->setNumberlesson($data[Excel::TinChi]);
-                    $class->setNamesubject($data[Excel::SubjectName]);
-
-
-                    // find teacher
                     $teacher = $entityManager->getRepository(Teacher::class)->findOneBy(['idteacher' => $data[Excel::TeacherId]]);
-
-                    if ($teacher) {
-                        $class->setTeacher($teacher);
-                        $studentData = $data['data'];
-
-                        foreach ($studentData as $value) {
-                            // student
-                            $student = new Student();
-                            $student->setIdstudent($value[0]);
-                            $student->setFullname($value[1]);
-                            $student->setCourse($value[3]);
-                            $student->setVnuemail($value[0] . '@vnu.edu.vn');
-
-                            // find if this student have account
-                            $userStudent = $entityManager->getRepository(User::class)->findOneBy(['username' => $student->getIdstudent()]);
-
-
-                            if ($userStudent) {
-
-                            } else {
-                                // not had account then add account
-                                $user = new User();
-                                $user->setUsername($student->getIdstudent());
-                                $user->setPassword(SRCConfig::DEFAULT_PASSWORD);
-                                $user->setRoles([(new Role('ROLE_STUDENT'))->getRole()]);
-                                $student->setIduserdb($user);
-                            }
-
-                            // add formsurvey
-                            $surveyForm = new SurveyForm();
-                            $surveyForm->setContent([]);
-                            $surveyForm->addClassSubject($class);
-                            $surveyForm->addStudent($student);
-                            $entityManager->persist($class);
-                            $entityManager->persist($student);
-                            $entityManager->persist($surveyForm);
-
-                        }
-
-
-                    } else {
-                        throw new NotFoundTeacherException();
+                    $class = null;
+                    if ($teacher !== null) {
+                        $class = $entityManager->getRepository(ClassSubject::class)->findOneBy(
+                            ['idclass' => $data[Excel::SubSubjectId], 'teacher' => $teacher]);
                     }
 
 
+                    if ($class === null) {
+                        // class
+                        $class = new ClassSubject();
+                        $class->setIdclass($data[Excel::SubSubjectId]);
+                        $class->setIdsubject($data[Excel::SubjectId]);
+                        $class->setLocation($data[Excel::LectureLocation]);
+                        $class->setNumberlesson($data[Excel::TinChi]);
+                        $class->setNamesubject($data[Excel::SubjectName]);
+
+
+                        // find teacher
+                        $teacher = $entityManager->getRepository(Teacher::class)->findOneBy(['idteacher' => $data[Excel::TeacherId]]);
+
+                        if ($teacher) {
+                            $class->setTeacher($teacher);
+                            $studentData = $data['data'];
+
+                            foreach ($studentData as $value) {
+
+                                $student = $entityManager->getRepository(Student::class)->findOneBy(['idstudent' => $value[0]]);
+                                // student
+                                if ($student === null) {
+                                    $student = new Student();
+                                    $student->setIdstudent($value[0]);
+                                    $student->setFullname($value[1]);
+                                    $student->setCourse($value[3]);
+                                    $student->setVnuemail($value[0] . '@vnu.edu.vn');
+                                }
+
+
+                                // find if this student have account
+                                $userStudent = $entityManager->getRepository(User::class)->findOneBy(['username' => $student->getIdstudent()]);
+
+
+                                if ($userStudent) {
+
+                                } else {
+                                    // not had account then add account
+                                    $user = new User();
+                                    $user->setUsername($student->getIdstudent());
+                                    $user->setPassword(SRCConfig::DEFAULT_PASSWORD);
+                                    $user->setRoles([(new Role('ROLE_STUDENT'))->getRole()]);
+
+                                    $student->setIduserdb($user);
+                                    $entityManager->persist($user);
+                                    $entityManager->persist($student);
+                                }
+
+                                // add formsurvey
+                                $surveyForm = new SurveyForm();
+                                $surveyForm->setContent([]);
+                                $surveyForm->addClassSubject($class);
+                                $surveyForm->addStudent($student);
+
+                                $entityManager->persist($class);
+                                $entityManager->persist($surveyForm);
+
+                            }
+                        } else {
+                            throw new NotFoundTeacherException();
+                        }
+                    }
                     $isSuccess = true;
-
-
                 }
                 return $isSuccess;
             });
