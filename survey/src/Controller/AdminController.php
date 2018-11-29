@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Config\SRCConfig;
+use App\Entity\Admin;
 use App\Entity\ClassSubject;
 use App\Entity\CriteriaLevel;
 use App\Entity\Student;
@@ -40,7 +41,7 @@ class AdminController extends AbstractController
      */
     public function index()
     {
-        return $this->render('admin/index.html.twig', [
+        return $this->render('admin/admin.html.twig', [
             'controller_name' => 'AdminController',
         ]);
     }
@@ -268,10 +269,10 @@ class AdminController extends AbstractController
             return $response;
         } catch (UnexpectedValueException | SignatureInvalidException |
         BeforeValidException | ExpiredException $e) {
-//            $response = new Response(json_encode(['ok' => "SignatureInvalidException"], JSON_UNESCAPED_UNICODE));
+            $response = new Response(json_encode(['ok' => "false", 'route'=>"login_form"], JSON_UNESCAPED_UNICODE));
 //            $response->headers->set('Content-Type', 'application/json');
-//            return $response;
-            return $this->redirectToRoute('default');
+            return $response;
+//            return $this->redirectToRoute('login_form');
 
         } catch (NotTrueRoleException $e) {
             $loginForm = new MyLoginFormAuthenticator($entityManager);
@@ -520,7 +521,7 @@ class AdminController extends AbstractController
 //            $response = new Response(json_encode(['ok' => "SignatureInvalidException"], JSON_UNESCAPED_UNICODE));
 //            $response->headers->set('Content-Type', 'application/json');
 //            return $response;
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('default');
 
         } catch (NotTrueRoleException $e) {
             $loginForm = new MyLoginFormAuthenticator($entityManager);
@@ -596,10 +597,10 @@ class AdminController extends AbstractController
             return $response;
         } catch (UnexpectedValueException | SignatureInvalidException |
         BeforeValidException | ExpiredException $e) {
-//            $response = new Response(json_encode(['ok' => "SignatureInvalidException"], JSON_UNESCAPED_UNICODE));
+            $response = new Response(json_encode(['ok' => "false", 'route'=>'login_form'], JSON_UNESCAPED_UNICODE));
 //            $response->headers->set('Content-Type', 'application/json');
-//            return $response;
-            return $this->redirectToRoute('/');
+            return $response;
+//            return $this->redirectToRoute('login_form');
 
         } catch (NotTrueRoleException $e) {
             $loginForm = new MyLoginFormAuthenticator($entityManager);
@@ -641,6 +642,54 @@ class AdminController extends AbstractController
                     'fullname' => $value->getFullname(),
                     'vnuemail' => $value->getVnuemail()];
             }
+            return $retData;
+        });
+
+        return $response;
+
+    }
+
+    /**
+     * @Route("/admin/getProfile", name="admin_get_profile")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+
+    public function getProfile(Request $request, EntityManagerInterface $entityManager) {
+        $response = $this->verifyTemplateForGet($request,  $entityManager, function ($request, $entityManager) {
+
+            $user = $entityManager->getRepository(User::class)->findOneBy(['jwt'=>$request->request->get('jwt')]);
+            $admin = $entityManager->getRepository(Admin::class)->findOneBy(['userdb'=>$user]);
+            $retData = [
+                    'username' => $user->getUsername(),
+                    'fullname' => $admin->getFullname()];
+            return $retData;
+        });
+
+        return $response;
+    }
+
+
+    /**
+     * @Route("/admin/classes/getall", name="admin_classes_getall")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+
+    public function getAllClasses(Request $request, EntityManagerInterface $entityManager)
+    {
+
+        $response = $this->verifyTemplateForGet($request, $entityManager, function ($request, $entityManager) {
+
+            $classes = $entityManager->getRepository(ClassSubject::class)->findAll();
+            $retData = [];
+            foreach ($classes as $c) {
+                $retData[] = $c->getFullInfo();
+            }
+
+
             return $retData;
         });
 

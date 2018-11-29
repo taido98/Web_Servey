@@ -168,10 +168,10 @@ class ClassSubject
 
     public function toString(): array
     {
-        return ['idClass'=>$this->idclass,
-            'subjectName'=>$this->namesubject,
-            'numberLesson'=>$this->numberlesson,
-            'location'=>$this->location];
+        return ['idClass' => $this->idclass,
+            'subjectName' => $this->namesubject,
+            'numberLesson' => $this->numberlesson,
+            'location' => $this->location];
     }
 
     /**
@@ -198,7 +198,6 @@ class ClassSubject
         }
 
 
-
         return $retData;
     }
 
@@ -208,16 +207,16 @@ class ClassSubject
         $statistic = [];
         $retStatistic['statistic'] = $statistic;
         $retStatistic['numberStudentDone'] = 0;
-        foreach ($appendix as $key=>$value) {
+        foreach ($appendix as $key => $value) {
             $statistic[$key] = [0, 0];
         }
 
         foreach ($this->surveyForm as $s) {
             $contentData = $s->getContent();
-            if($contentData !== null) {
+            if ($contentData !== null) {
                 $retStatistic['numberStudentDone'] += 1;
-                foreach ($contentData as $key=>$value) {
-                    $statistic[$key][0] += (float) $value;
+                foreach ($contentData as $key => $value) {
+                    $statistic[$key][0] += (float)$value;
                     $statistic[$key][1] += 1;
                 }
             }
@@ -226,4 +225,20 @@ class ClassSubject
         return $retStatistic;
     }
 
+    public function getFullInfo(): array
+    {
+        $doneStudent = 0;
+        foreach ($this->surveyForm as $s) {
+            $contentData = $s->getContent();
+            if ($contentData !== null) {
+                $doneStudent += 1;
+            }
+
+        }
+        return ['subjectName' => $this->namesubject,
+            'idClass' => $this->idclass,
+            'teacher' => $this->getTeacher()->getFullname(),
+            'Sỹ số' =>count($this->surveyForm),
+            'Serveyed'=>$doneStudent];
+    }
 }

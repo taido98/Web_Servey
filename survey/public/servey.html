@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Servey</title>
+
+	<!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+     <!-- Custom CSS -->
+    <link href="css/servey.css" rel="stylesheet">
+	
+	<!-- Custom CSS -->
+    <link href="css/css_giaodien.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Class Servey</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Tin nhắn <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>Nguyễn Tài Đô</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Đã mở một đánh giá môn học INT 1234</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong> Văn Minh </strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Today at 12:32</p>
+                                        <p>Đã gửi cho bạn một tin nhắn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Thông báo <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Nguyễn Trung Hiếu <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile </a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+	
+
+
+	<div id="page">
+	<div class="container">
+		<div class="subject">
+			<button type="button" class="btn"><i class="fa fa-fw fa-angle-double-left"></i>Quay lại</button>
+			<p class="name_subject">Toán rời rạc INT1234</p>
+		</div>
+		
+
+		<div class="row">
+			<table class="table table-hover">
+				<thead>
+			   		<tr>
+			   		<th class="number col-sm-1"></th>	
+					<th class="title_servey col-sm-6">1.* Cơ sở vật chất</th>
+					<th class="number col-sm-1">1</th>
+					<th class="number col-sm-1">2</th>
+					<th class="number col-sm-1">3</th>
+					<th class="number col-sm-1">4</th>
+					<th class="number col-sm-1">5</th>
+			   		</tr>
+				</thead>
+				<tbody>
+					<tr>
+					<th class="">1.</th>
+					<th class="content_servey"><p class="">Giảng đường đáp ứng yêu cầu môn học</p></th>
+					<th class=""><label><input type="radio" name="fooby[1][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[1][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[1][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[1][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[1][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">2.</th>
+					<th class="content_servey"><p class="">Các trang thiết bị tại giảng đường đáp ứng yêu cầu giảng dạy về học tập</p></th>
+					<th class=""><label><input type="radio" name="fooby[2][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[2][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[2][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[2][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[2][]" ></label></th>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table table-hover">
+				<thead>
+			   		<tr>
+			   		<th class="number col-sm-1"></th>	
+					<th class="title_servey col-sm-6">2.* Môn học</th>
+					<th class="number col-sm-1">1</th>
+					<th class="number col-sm-1">2</th>
+					<th class="number col-sm-1">3</th>
+					<th class="number col-sm-1">4</th>
+					<th class="number col-sm-1">5</th>
+			   		</tr>
+				</thead>
+				<tbody>
+					<tr>
+					<th class="">3.</th>
+					<th class="content_servey"><p class="">Bạn được hỗ trợ kịp thời trong môn học này</p></th>
+					<th class=""><label><input type="radio" name="fooby[3][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[3][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[3][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[3][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[3][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">4.</th>
+					<th class="content_servey"><p class="">Mục tiêu của môn học nêu rõ kiến thức và kỹ năng người học cần đạt được </p></th>
+					<th class=""><label><input type="radio" name="fooby[4][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[4][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[4][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[4][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[4][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">5.</th>
+					<th class="content_servey"><p class="">Thời lượng môn học được phân bổ hợp lý cho các hình thức học tập </p></th>
+					<th class=""><label><input type="radio" name="fooby[5][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[5][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[5][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[5][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[5][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">6.</th>
+					<th class="content_servey"><p class="">Các tài liệu phục vụ môn học được cập nhật</p></th>
+					<th class=""><label><input type="radio" name="fooby[6][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[6][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[6][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[6][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[6][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">7.</th>
+					<th class="content_servey"><p class=""> Môn học góp phần trang bị kiến thức, kỹ năng nghề nghiệp cho bạn </p></th>
+					<th class=""><label><input type="radio" name="fooby[7][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[7][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[7][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[7][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[7][]" ></label></th>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table table-hover">
+				<thead>
+			   		<tr>
+			   		<th class="number col-sm-1"></th>	
+					<th class="title_servey col-sm-6">3.* Hoạt động giảng dạy của giáo viên</th>
+					<th class="number col-sm-1">1</th>
+					<th class="number col-sm-1">2</th>
+					<th class="number col-sm-1">3</th>
+					<th class="number col-sm-1">4</th>
+					<th class="number col-sm-1">5</th>
+			   		</tr>
+				</thead>
+				<tbody>
+					<tr>
+					<th class="">8.</th>
+					<th class="content_servey"><p class=""> Giảng viên thực hiện đầy đủ nội dung và thời lượng của môn học theo kế hoạch</p></th>
+					<th class=""><label><input type="radio" name="fooby[8][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[8][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[8][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[8][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[8][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">9.</th>
+					<th class="content_servey"><p class=""> Giảng viên hướng dẫn bạn phương pháp học tập khi bắt đầu môn học </p></th>
+					<th class=""><label><input type="radio" name="fooby[9][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[9][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[9][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[9][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[9][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">10.</th>
+					<th class="content_servey"><p class=""> Phương pháp giảng dạy của giảng viên giúp bạn phát triển tư duy </p></th>
+					<th class=""><label><input type="radio" name="fooby[10][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[10][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[10][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[10][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[10][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">11.</th>
+					<th class="content_servey"><p class=""> Phương pháp giảng dạy của giảng viên giúp bạn phát triển tư duy </p></th>
+					<th class=""><label><input type="radio" name="fooby[11][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[11][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[11][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[11][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[11][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">12.</th>
+					<th class="content_servey"><p class=""> Giảng viên tạo cơ hội để bạn chủ động tham gia vào quá trình học tập </p></th>
+					<th class=""><label><input type="radio" name="fooby[12][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[12][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[12][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[12][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[12][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">13.</th>
+					<th class="content_servey"><p class=""> Giảng viên giúp bạn phát triển kỹ năng làm độc lập </p></th>
+					<th class=""><label><input type="radio" name="fooby[13][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[13][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[13][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[13][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[13][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">14.</th>
+					<th class="content_servey"><p class=""> Giảng viên rèn luyện cho bạn phương pháp liên hệ giữa các vấn đề trong môn học với thực tiễn </p></th>
+					<th class=""><label><input type="radio" name="fooby[14][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[14][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[14][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[14][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[14][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">15.</th>
+					<th class="content_servey"><p class=""> Giảng viên sử dụng hiệu quả phương tiện dạy học </p></th>
+					<th class=""><label><input type="radio" name="fooby[15][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[15][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[15][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[15][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[15][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">16.</th>
+					<th class="content_servey"><p class=""> Giảng viên quan tâm giáo dục tư cách, phẩm chất nghề nghiệp của người học </p></th>
+					<th class=""><label><input type="radio" name="fooby[16][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[16][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[16][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[16][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[16][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">17.</th>
+					<th class="content_servey"><p class=""> Bạn hiểu những vấn đề được truyền tải trên lớp </p></th>
+					<th class=""><label><input type="radio" name="fooby[17][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[17][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[17][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[17][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[17][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">18.</th>
+					<th class="content_servey"><p class=""> Kết quả học tập của người học được đánh giá bằng nhiều hình thức phù hợp với tính chất và đặc thù môn học </p></th>
+					<th class=""><label><input type="radio" name="fooby[18][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[18][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[18][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[18][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[18][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">19.</th>
+					<th class="content_servey"><p class=""> Nội dung kiểm tra đánh giá tổng hợp được các kỹ năng mà người học phát đạt theo yêu cầu </p></th>
+					<th class=""><label><input type="radio" name="fooby[19][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[19][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[19][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[19][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[19][]" ></label></th>
+					</tr>
+					<tr>
+					<th class="">20.</th>
+					<th class="content_servey"><p class=""> Thông tin phản hồi từ kiểm tra đánh giá giúp bạn cải thiện kết quả học tập </p></th>
+					<th class=""><label><input type="radio" name="fooby[20][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[20][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[20][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[20][]" ></label></th>
+					<th class=""><label><input type="radio" name="fooby[20][]" ></label></th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div class="footer">
+			<button class="btn btn-success">Lưu lại ý kiến đánh giá</button>
+		</div>		
+	</div>
+	</div>
+
+
+
+	
+
+
+
+
+
+
+	<!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

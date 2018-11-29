@@ -96,3 +96,7 @@ h1 {
     color: #ffc107;
 
 }
+
+#invalid {
+    color: red;
+}

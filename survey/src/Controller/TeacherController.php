@@ -144,10 +144,10 @@ class TeacherController extends AbstractController
             return $response;
         } catch (UnexpectedValueException | SignatureInvalidException |
         BeforeValidException | ExpiredException $e) {
-//            $response = new Response(json_encode(['ok' => "SignatureInvalidException"], JSON_UNESCAPED_UNICODE));
+            $response = new Response(json_encode(['ok' => "false", 'route'=>'login_form'], JSON_UNESCAPED_UNICODE));
 //            $response->headers->set('Content-Type', 'application/json');
-//            return $response;
-            return $this->redirectToRoute('login_form');
+            return $response;
+//            return $this->redirectToRoute('login_form');
         } catch (NotTrueRoleException $e) {
             $loginForm = new MyLoginFormAuthenticator($entityManager);
             $credentials = $loginForm->getCredentials($request);

@@ -38,20 +38,20 @@ class SecurityController extends AbstractController
             $authenticator = new Authenticator();
             $authenticator->generateJWTFor($user);
             $this->updateJWT($entityManager);
-            $response = new Response(json_encode(['jwt' => $user->getJwt()], JSON_UNESCAPED_UNICODE));
+            $response = new Response(json_encode(['ok'=>true,
+                'jwt' => $user->getJwt(),
+                'route'=>'admin'],
+                JSON_UNESCAPED_UNICODE));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         } catch (AuthenticationException| CustomUserMessageAuthenticationException $e) {
-            $response = new Response('');
-            $response->setStatusCode(401, 'Unauthorized');
+            $response = new Response(json_encode(['ok' => false], JSON_UNESCAPED_UNICODE));
             return $response;
         }
 
 
 
     }
-
-
     private function updateJWT(EntityManagerInterface $entityManager) {
         $entityManager->flush();
     }
