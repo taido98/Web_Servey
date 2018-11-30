@@ -38,8 +38,8 @@ class LogOutController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager)
     {
         try {
-            Authenticator::verifyForWithoutRole($request, $entityManager);
-            $user = $entityManager->getRepository(User::class)->findOneBy(['jwt'=>$request->request->get('jwt')]);
+            Authenticator::verifyJWTWithoutRole($request->query->get('jwt'), $entityManager);
+            $user = $entityManager->getRepository(User::class)->findOneBy(['jwt'=>$request->query->get('jwt')]);
             $user->setJWT('NULL');
             $entityManager->persist($user);
             $entityManager->flush();

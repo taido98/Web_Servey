@@ -120,6 +120,19 @@ class Authenticator
 //
     }
 
+    public static function verifyJWTWithoutRole(string $jwt, EntityManagerInterface $entityManager)
+    {
+        if ($jwt !== null) {
+            $loginForm = new MyLoginFormAuthenticator($entityManager);
+            $user = $loginForm->getUserByJWT(['jwt'=>$jwt]);
+            $secretKey = base64_decode(Config::CONFIG_SERVER['jwt']['key']);
+            $token = JWT::decode($user->getJwt(), $secretKey, [Config::CONFIG_SERVER['jwt']['algorithm']]);
+        } else {
+            throw new NotFoundJWTException();
+        }
+//
+    }
+
     public static function responseUnAuthonize(): Response
     {
         $response = new Response('');
