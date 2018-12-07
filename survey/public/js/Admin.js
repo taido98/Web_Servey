@@ -139,4 +139,24 @@ document.getElementById('getStudents').onclick = function () {
     getStudents();
 };
 
+let windowOverLay = document.getElementById('window-overlay');
+windowOverLay.onclick = function() {
+    console.log("click");
+    this.style.display = 'none';
+};
+let addNews = document.getElementsByClassName('addNew');
+for(let i = 0; i < addNews.length; ++i) {
+    addNews[i].onclick = function () {
+        windowOverLay.style.display = "flex";
+    }
+}
+// let file = document.getElementById('fileUpload').files[0];
+// if (file) {
+//     let data = new FormData();
+//     data.append('jwt', window.localStorage.getItem('jwt'));
+//     data.append('file', file);
+//     xmlhttp.open("POST", "/admin/students/add", true);
+//     xmlhttp.send(data);
+// }
+
 

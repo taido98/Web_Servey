@@ -51,6 +51,7 @@ var Table = function (parent, classTableName, classTHeadName, classTBodyName, ad
 
             let rowBody = this.body.insertRow(i);
             rowBody.id = 'rowBody'+i;
+
             let j = 0;
             rowBody.insertCell(0).outerHTML = '<th scope=\"row\">' + (i + 1) + '</th>';
 
@@ -74,7 +75,7 @@ var Table = function (parent, classTableName, classTHeadName, classTBodyName, ad
             }
         }
         this.parent.appendChild(this.table);
-        console.log(this.rows);
+        // console.log(this.rows);
     };
     this.createElement = function (tagName, className, href, id) {
         let tag = document.createElement(tagName);

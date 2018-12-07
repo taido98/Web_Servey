@@ -1,0 +1,18 @@
+#window-overlay {
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(23, 57, 77);
+    display: flex;
+    font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    height: 594px;
+    justify-content: center;
+    left: 0px;
+    right: 0px;
+    line-height: 20px;
+    overflow-y: auto;
+    position: absolute;
+    top: 0px;
+    z-index: 20;
+}
