@@ -137,6 +137,11 @@ class Student
 
         return $this;
     }
+    public function deleteAllSurveyForm(): self
+    {
+        $this->surveyForms = new ArrayCollection();
+        return $this;
+    }
 
     public function removeSurveyForm(SurveyForm $surveyForm): self
     {

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Statistic\Statistic;
 
@@ -163,6 +164,12 @@ class ClassSubject
         }
 
         return $this;
+    }
+
+    public function deleteSurveyForm(EntityManagerInterface $entityManager) {
+        foreach ($this->surveyForm as $sF) {
+            $entityManager->remove($sF);
+        }
     }
 
 

@@ -1,0 +1,48 @@
+.card {
+    color: rgb(255, 255, 255);
+    font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    min-height: 600px;
+}
+.dialog-close-button {
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    color: rgb(121, 141, 153);
+    display: block;
+    font-family: trellicons;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    line-height: 32px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+    position: absolute;
+    right: 0px;
+    text-align: center;
+    text-decoration: none;
+    text-decoration-color: rgb(121, 141, 153);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    top: 100px;
+    transition-delay: 0s, 0s;
+    transition-duration: 0.1s, 0.1s;
+    transition-property: background-color, color;
+    transition-timing-function: ease, ease;
+    width: 32px;
+    z-index: 2;
+}

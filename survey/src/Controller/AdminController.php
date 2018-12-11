@@ -134,7 +134,9 @@ class AdminController extends AbstractController
                         $entityManager->flush();
                         $user = $entityManager->getRepository(User::class)->findOneBy(['username' => $userStudent->getUsername()]);
                         $student->setIduserdb($user);
+                        $student->deleteAllSurveyForm();
                         $entityManager->persist($student);
+
                     }
                     $entityManager->flush();
                 }
@@ -427,8 +429,12 @@ class AdminController extends AbstractController
                 if (!$user) {
                     throw new NotFoundException();
                 }
+                foreach($student->getSurveyForms() as $surveyForm) {
+                    $entityManager->remove($surveyForm);
+                }
                 $entityManager->remove($student);
                 $entityManager->remove($user);
+
                 $entityManager->flush();
                 $entityManager->getConnection()->commit();
                 return true;
@@ -474,6 +480,11 @@ class AdminController extends AbstractController
 //                }
                 $entityManager->remove($teacher);
                 $entityManager->remove($user);
+
+                // delete class subject
+                foreach ($teacher->getTeacher() as $class) {
+                    $class->deleteSurveyForm($entityManager);
+                }
                 $entityManager->flush();
                 $entityManager->getConnection()->commit();
                 return true;

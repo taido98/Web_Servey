@@ -7,7 +7,6 @@ var Table = function (parent, classTableName, classTHeadName, classTBodyName, ad
     this.classTBodyName = classTBodyName;
     this.lablesTitle = [];
     this.additionColumns = additionColumns;
-    this.rows = [];
     this.body = null;
     this.keyColumn = keyColumn;
     this.generate = function (data, htmlDataPre, htmlDataEnd, callBack) {
@@ -37,19 +36,22 @@ var Table = function (parent, classTableName, classTHeadName, classTBodyName, ad
             row.insertCell(i).outerHTML = '<th scope=\"col\">' + this.lablesTitle[i] + '</th>';
         }
         this.body = this.table.createTBody();
+        this.body.rowsTable = [];
 
         if (this.classTBodyName) {
             this.body.className = this.classTBodyName;
         }
-        if(this.keyColumn) {
-            this.rows = [];
-        }
         for (let i = 0; i < data.length; ++i) {
-            if(this.keyColumn) {
-                this.rows.push(data[i][this.keyColumn]);
-            }
+
 
             let rowBody = this.body.insertRow(i);
+            rowBody.index = i;
+            if(this.keyColumn) {
+
+                rowBody.idRequest = data[i][this.keyColumn];
+                console.log('idRequest ' + rowBody['idRequest']);
+            }
+            this.body.rowsTable.push(rowBody);
             rowBody.id = 'rowBody'+i;
 
             let j = 0;
@@ -90,5 +92,12 @@ var Table = function (parent, classTableName, classTHeadName, classTBodyName, ad
         }
 
         return tag;
+    }
+    this.deleteRow = function (i) {
+            for(let index = i+1; index < this.body.rowsTable.length; ++index) {
+                --this.body.rowsTable[index].index;
+            }
+        this.body.rowsTable.splice(i, 1);
+           this.body.deleteRow(i);
     }
 };

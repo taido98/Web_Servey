@@ -131,7 +131,7 @@
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Quản lý giáo viên <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="demo" class="collapse">
                         <li>
-                            <a href="#" class="addNew">Add new teacher</a>
+                            <a href="#" class="addNew" id="teachers">Add new teacher</a>
                         </li>
                         <li>
                             <a href="#" id="getTeachers">Thông tin giáo viên</a>
@@ -142,7 +142,7 @@
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo_1"><i class="fa fa-fw fa-arrows-v"></i> Quản lý sinh viên <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="demo_1" class="collapse">
                         <li>
-                            <a href="#" class="addNew">Add new student </a>
+                            <a href="#" class="addNew" id="students">Add new student </a>
                         </li>
                         <li>
                             <a href="#" id="getStudents">Thông tin sinh viên </a>
@@ -165,14 +165,23 @@
         </div>
         <!-- /.navbar-collapse -->
         <div id="window-overlay" style="display: none">
-            <input type="file" id="fileUpload" style="position: relative; z-index: 1000; top: 200px;">
-            <button id="submit" style="position: relative;top: 200px;">Submit</button>
+            <div class="card js-tab-parent">
+                {#<a class="icon-lg icon-close dialog-close-button js-close-window" href="#">#}
+                {#</a>#}
+
+                <input type="file" id="fileUpload" style="position: relative; z-index: 1000; top: 200px;">
+                <button id="submit" style="position: relative;top: 200px;">Submit</button>
+                <button id="closeCard" style="position: relative; top: 200px;">close</button>
+            </div>
+
         </div>
     </nav>
 
     <div id="page-wrapper">
 
         <div class="container-fluid">
+
+            <span id="responseMessage" style="color: red; display: none;">Error</span>
 
             <!-- Page Heading -->
             <div class="row">
