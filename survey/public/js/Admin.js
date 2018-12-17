@@ -139,14 +139,11 @@ document.getElementById('getTeachers').onclick = function () {
             if (response['ok'] === 'true') {
                 mainTable.innerHTML = '';
                 let table = new Table(mainTable, 'table table-hover',
-                    'title', 'sub', ['Edit', 'Delete'], 'idTeacher');
+                    'title', 'sub', ['Delete'], 'idTeacher');
 
                 table.generate(response['data'],
-                    ['<td class="ABC"><a href="#" class="" id="edit',
-                        '<td class="ABC"><a href="#" class="" id="delete'],
+                    ['<td class="ABC"><a href="#" class="" id="delete'],
                     ['"><i class="fas fa-check"></i></a>\n' +
-                    '<a href="#" class="edit"><i class="fas fa-trash"></i></a></td>',
-                        '"><i class="fas fa-check"></i></a>\n' +
                         '<a href="#" class="delete"><i class="fas fa-trash"></i></a></td>']);
                 for (let i = 0; i < table.body.rowsTable.length; ++i) {
                     let deleteI = table.body.rowsTable[i];

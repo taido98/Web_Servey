@@ -1,165 +1,88 @@
-{#<!DOCTYPE html>#}
-{#<html>#}
-{#<head>#}
-    {#<meta charset="UTF-8">#}
-
-{#</head>#}
-{#<body>#}
-{#{% block body %}#}
-    {#<div class="loginbox">#}
-        {#<img src="{{asset('Contents/Images/usericon.png' )}}" alt="Symfony!" class="avatar">#}
-        {#<h1>Login Here</h1>#}
-        {#<form method="get" action="login">#}
-            {#<p>Username</p>#}
-            {#<input type="text" name="username" id="username" placeholder="Enter Username">#}
-            {#<p>Password</p>#}
-            {#<input type="password" name="password" id="password" placeholder="Enter Password">#}
-            {#<input type="button" name="" value="Login" id="loginBtn"><br>#}
-            {#<a href="#">Lost your password?</a>#}
-        {#</form>#}
-    {#</div>#}
-{#{% endblock %}#}
-{#{% block javascripts %}#}
-    {#<script src="{{ asset('Scripts/Utils.js') }}"></script>#}
-    {#<script src="{{ asset('Scripts/LoginForm.js') }}"></script>#}
-{#{% endblock %}#}
-{#</body>#}
-{#</html>#}
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="Nguyễn Trung Hiếu">
-    <meta name="keywords" content="ClassSurvey">
-    <meta name="description" content="Survey">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
 
-    <title>{% block title %}ClassSurvey!{% endblock %}</title>
-    {% block stylesheets %}
+    <link rel="stylesheet"  type="text/css" href="css/index.css">
 
-        <link href="{{ asset('css/index.css') }}" rel="stylesheet" type="text/css" />
-    {% endblock %}
-    {#<link REL="SHORTCUT ICON" HREF="{{ asset(img/logo_uet.ico) }}">#}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
 </head>
 <body>
-{% block body %}
-<section class="hero">
+<div class="hero pd-none" id="section_1">
     <header>
         <div class="wrapper">
-            <a href="#"><img src="img/logo_uet.png" class="logo" alt="" title=""/></a>
+            <a href="#"><img src="img/logo_uet.png" class="logo" alt="" title="" /></a>
             <nav>
-                <a href="LoginForm.html" class="login_btn">Login</a>
+                <ul>
+                    <li><a href="#section_1">Home</a></li>
+                    <li><a href="#section_2">About</a></li>
+                    <li><a href="#section_3">Course</a></li>
+                </ul>
+                <a href="/login_form" class="login_btn">Login</a>
             </nav>
         </div>
     </header><!--  end header section  -->
-
     <section class="caption">
-        <h2 class="caption">Welcome to ClassServey</h2>
-        <h3 class="properties">Minh-Đô-Hiếu</h3>
+        <h2 class="caption">Welcome My ClassServey</h2>
     </section>
-</section><!--  end hero section  -->
+</div>
+<div class="about" id="section_2">
+    <div class="banner"><img src="img/banner.png" alt="" class="banner"></div>
+    <div class="event">
+        <h2>Sự kiện nổi bật</h2>
 
-
-
-
-<section class="listings">
-    <div class="wrapper">
-        <ul class="properties_list">
-            <li>
-                <a href="#">
-                    <div>
-                        <img src="img/xulyanh.jpg" alt="" title="" class="property_img"/>
-                        <span class="course">INT3304</span>
-                        <div class="property_details">
-                            <h1><a href="#" class="name_course">Xử lý ảnh</a></h1>
-                            <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div>
-                        <img src="img/thigiacmay.jpg" alt="" title="" class="property_img"/>
-                        <span class="course">INT3412</span>
-                        <div class="property_details">
-                            <h1><a href="#" class="name_course">Thị giác máy</a></h1>
-                            <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div>
-                        <img src="img/xacsuatthongke.jpg" alt="" title="" class="property_img"/>
-                        <span class="course">MAT1104</span>
-                        <div class="property_details">
-                            <h1><a href="#" class="name_course">Xác suất thống kê</a></h1>
-                            <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div>
-                        <img src="img/xulyanh.jpg" alt="" title="" class="property_img"/>
-                        <span class="course">INT3304</span>
-                        <div class="property_details">
-                            <h1><a href="#" class="name_course">Xử lý ảnh</a></h1>
-                            <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div>
-                        <img src="img/xulyanh.jpg" alt="" title="" class="property_img"/>
-                        <span class="course">INT3304</span>
-                        <div class="property_details">
-                            <h1><a href="#" class="name_course">Xử lý ảnh</a></h1>
-                            <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div>
-                        <img src="img/xulyanh.jpg" alt="" title="" class="property_img"/>
-                        <span class="course">INT3304</span>
-                        <div class="property_details">
-                            <h1><a href="#" class="name_course">Xử lý ảnh</a></h1>
-                            <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
-                        </div>
-                    </div>
-                </a>
-            </li>
-        </ul>
-        <div class="more_listing">
-            <a href="#" class="more_listing_btn">View More Listings</a>
-        </div>
     </div>
-</section>	<!--  end listing section  -->
+</div>
+<div class="">
 
-
-
-
-<div class="footer">
-    <a href="#" class="copyright">@2018,Trường đại học Công Nghệ,ĐHQGHN</a>
 </div>
 
-{% block javascripts %}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-{% endblock %}
 
-{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Bootstrap Js -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- JQuery Poper -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+<script>
+    var imageUrls = ["img/demo1.jpg","img/demo2.jpg","img/demo3.jpg"];
+    var currentImage = 0;
+    function changeBg() {
+        $('#section_1').css('background', 'url(' + imageUrls[currentImage] + ')');
+        $('#section_1').css('background-size', 'cover');
+        $('#section_1').css('background-repeat', 'no-repeat');
+        ++currentImage;
+        if(currentImage == imageUrls.length) {
+            currentImage = 0;
+        }
+    }
+    $(document).ready(function(){
+        setInterval(changeBg, 5000);
+    })
+</script>
 </body>
 </html>

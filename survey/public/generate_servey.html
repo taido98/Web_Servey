@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <title>Class Servey-Admin</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/css_giaodien.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+</head>
+<body>
+	<div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Class Servey</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Tin nhắn <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>Nguyễn Tài Đô</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="far fa-clock"></i> Yesterday at 4:32 PM</p>
+                                        <p>Đã mở một đánh giá môn học INT 1234</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong> Văn Minh </strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="far fa-clock"></i> Today at 12:32</p>
+                                        <p>Đã gửi cho bạn một tin nhắn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Thông báo <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#"><i class="fas fa-bell"></i> Lớp INT 12345 đã hoàn thành cuộc khảo sát đánh giá</a>
+                        </li>
+                        <li>
+                           <a href="#"><i class="fas fa-bell"></i> Lớp INT 22345 đã hoàn thành cuộc khảo sát đánh giá</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Admin <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile </a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-cog"></i> Settings </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="login.html"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fas fa-atom"></i> Quản lý giáo viên <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="add_teacher.html">Add new teacher</a>
+                            </li>
+                            <li>
+                                <a href="#">Thông tin giáo viên</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo_1"><i class="fab fa-amazon"></i> Quản lý sinh viên <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo_1" class="collapse">
+                            <li>
+                                <a href="#">Add new student </a>
+                            </li>
+                            <li>
+                                <a href="#">Thông tin sinh viên </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-edit"></i> Generate servey </a>
+                    </li>
+                    <li class="active">
+                        <a href="#"><i class="fa fa-fw fa-desktop"></i> Show history servey </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Show history
+                        </h1>
+                    </div>
+                </div>
+                <!-- /.row_1 -->
+
+                <div class="row">
+  
+                    <!-- Table các lớp học đang đánh giá-->
+
+                    <div class="col-8">
+                            <table class="table table-hover">
+                        <thead class="title">
+                            <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Teacher</th>
+                  	<th scope="col">Begin</th>
+                  	<th scope="col">Close</th>
+                  	<th scope="col">Infor</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sub">
+                            <tr>
+                    <th scope="row">1</th>
+                    <td class="name-subject">Hệ quản trị cơ sở dữ liệu</td>
+                    <td class="id-subject">INT 12345</td>
+                    <td class="name-teacher">TS. Lê Hồng Hải</td>
+                    <td class="items">28/11/2018</td>
+                    <td class="items">30/11/2018</td>
+                    <td class="items"><img src="img/infor.jpg" alt="" class="img_infor" onclick="openInfor()" style="cursor: pointer;"></td>
+                            </tr>
+                        </tbody>
+                            </table> 
+                    </div>
+
+                    <!-- /.Table -->    
+                </div>
+                <!-- /.row_1 -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+
+
+	<!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

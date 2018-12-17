@@ -1,0 +1,166 @@
+/*!
+ * Start Bootstrap - SB Admin Bootstrap Admin Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Global Styles */
+
+body {
+    margin-top: 100px;
+    background-color: #fff;
+}
+
+@media(min-width:768px) {
+    body {
+        margin-top: 50px;
+    }
+}
+
+#wrapper {
+    padding-left: 0;
+}
+
+#page-wrapper {
+    width: 100%;
+    padding: 0;
+    background-color: #fff;
+}
+
+#wrapper nav.navbar a.navbar-brand,
+#wrapper nav.navbar ul li.dropdown a.dropdown-toggle{
+    color: white;
+    padding-top: 20px;
+
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        padding: 10px;
+    }
+}
+
+/* Top Navigation */
+
+.top-nav {
+    padding: 0 15px;
+}
+
+.top-nav>li {
+    display: inline-block;
+    float: left;
+}
+
+.top-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;
+    color: #999;
+}
+
+
+.top-nav>li>a:hover,
+.top-nav>li>a:focus,
+.top-nav>.open>a,
+.top-nav>.open>a:hover,
+.top-nav>.open>a:focus {
+    background-color: blue;
+    height: 60px;
+}
+
+
+.top-nav>.open>.dropdown-menu {
+    position: absolute;
+    margin-top: 0;
+    border: 1px solid rgba(0,0,0,.15);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    /* -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175); */
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    
+}
+
+.top-nav>.open>.dropdown-menu>li>a {
+    white-space: normal;
+
+}
+
+ul.message-dropdown {
+    padding: 0;
+    max-height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+li.message-preview {
+    width: 275px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+li.message-preview>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+li.message-footer {
+    margin: 5px 0;
+}
+
+ul.alert-dropdown {
+    width: 200px;
+}
+
+
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 60px;
+        left: 225px;
+        width: 250px;
+        margin-left: -225px;
+        border: none;
+        border-radius: 0;
+        overflow-y: auto;
+        background-color: #EFEFFB;
+        bottom: 0;
+        overflow-x: hidden;
+        padding-bottom: 40px;
+        color: black;
+        border-right: 1px solid #F8F1F1;
+
+	}
+}
+table{
+	border: 1px solid;
+	border-collapse: collapse;
+}
+#wrapper nav.navbar-inverse{
+    background-color:#2E64FE;
+    border-bottom: black;
+    height: 60px;
+}
+
+#uet{
+    width: 40px;
+    margin-top: 10px;
+}
+
+div.subject{
+	margin-top: 65px;
+}
+
+div.subject button.btn{
+	float: left;
+    padding-left: 30px;
+    padding-right: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(243, 137, 17);
+}
+
+div.subject p.name_subject{
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}

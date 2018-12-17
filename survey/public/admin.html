@@ -4,24 +4,18 @@
 <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Class Servay-Admin</title>
+    <title>Class Servey-Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    
     <!-- Custom CSS -->
     <link href="css/css_giaodien.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
 </head>
-
 <body>
 
     <div id="wrapper">
@@ -49,7 +43,7 @@
                                     <div class="media-body">
                                         <h5 class="media-heading"><strong>Nguyễn Tài Đô</strong>
                                         </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p class="small text-muted"><i class="far fa-clock"></i> Yesterday at 4:32 PM</p>
                                         <p>Đã mở một đánh giá môn học INT 1234</p>
                                     </div>
                                 </div>
@@ -61,7 +55,7 @@
                                     <div class="media-body">
                                         <h5 class="media-heading"><strong> Văn Minh </strong>
                                         </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Today at 12:32</p>
+                                        <p class="small text-muted"><i class="far fa-clock"></i> Today at 12:32</p>
                                         <p>Đã gửi cho bạn một tin nhắn</p>
                                     </div>
                                 </div>
@@ -76,22 +70,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Thông báo <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                            <a href="#"><i class="fas fa-bell"></i> Lớp INT 12345 đã hoàn thành cuộc khảo sát đánh giá</a>
                         </li>
                         <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                           <a href="#"><i class="fas fa-bell"></i> Lớp INT 22345 đã hoàn thành cuộc khảo sát đánh giá</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -109,11 +91,11 @@
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings </a>
+                            <a href="#"><i class="fas fa-cog"></i> Settings </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
+                            <a href="login.html"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
                         </li>
                     </ul>
                 </li>
@@ -122,13 +104,13 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Quản lý giáo viên <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fas fa-atom"></i> Quản lý giáo viên <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">Add new teacher</a>
+                                <a href="add_teacher.html">Add new teacher</a>
                             </li>
                             <li>
                                 <a href="#">Thông tin giáo viên</a>
@@ -136,7 +118,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo_1"><i class="fa fa-fw fa-arrows-v"></i> Quản lý sinh viên <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo_1"><i class="fab fa-amazon"></i> Quản lý sinh viên <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo_1" class="collapse">
                             <li>
                                 <a href="#">Add new student </a>
@@ -150,13 +132,7 @@
                         <a href="#"><i class="fa fa-fw fa-edit"></i> Generate servey </a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-desktop"></i> Create New </a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-wrench"></i> Sự kiện</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-dashboard"></i> Quản lý lớp học</a>
+                        <a href="#"><i class="fa fa-fw fa-desktop"></i> Show history servey </a>
                     </li>
                 </ul>
             </div>
@@ -171,26 +147,21 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Dashboard <small>Statistics Overview</small>
+                            Dashboard <small>Overview</small>
                         </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
-                            </li>
-                        </ol>
                     </div>
                 </div>
-                <!-- /.row -->
+                <!-- /.row_1 -->
 
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="alert alert-info alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="#" class="alert-link">SB Admin 2</a> for additional features!
+                            <i class="fa fa-info-circle"></i> Các khóa học đang trong đánh giá
                         </div>
 
 
-                    <!-- Table tổng quát -->
+                    <!-- Table các lớp học đang đánh giá-->
 
                         <div class="col-8">
                             <table class="table table-hover">
@@ -200,132 +171,36 @@
                     <th scope="col">Subject</th>
                     <th scope="col">ID</th>
                     <th scope="col">Teacher</th>
-                    <th scope="col">Sỹ số</th>
-                    <th scope="col">Serveyed</th>
-                    <th scope="col">No servey</th>
-                    <th scope="col">Feedback</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col" class="items">Sỹ số</th>
+                    <th scope="col" class="items">Serveyed</th>
+                    <th scope="col" class="items">No servey</th>
+                    <th scope="col" class="items">Edit</th>
+                    <th scope="col" class="items">Delete</th>
                             </tr>
                         </thead>
                         <tbody class="sub">
                             <tr>
                     <th scope="row">1</th>
-                    <td class="name-subject"><a href="#" class="dieuhuong">Hệ quản trị cơ sở dữ liệu</a></td>
-                    <td class="id-subject"><a href="#" class="dieuhuong">INT 12345</a></td>
-                    <td class="name-teacher"><a href="#" class="dieuhuong">TS. Lê Hồng Hải</a></td>
-                    <td class="number">80</th>
-                    <td class="number">60</td>
-                    <td class="number">20</td>
-                    <td class="t-feedback"></td>
-                    <td class="edit"><a href="#" class=""><a href="" class=""><img src=""></a></td>
+                    <td class="name-subject">Hệ quản trị cơ sở dữ liệu</td>
+                    <td class="id-subject">INT 12345</td>
+                    <td class="name-teacher">TS. Lê Hồng Hải</td>
+                    <td class="items">80</td>
+                    <td class="items">60</td>
+                    <td class="items">20</td>
+                    <td class="items"><img src="img/edit.png" onclick="openEdit()"
+                        style="cursor: pointer;"></td>
+                    <td class="items"><img src="img/trash.gif" onclick="openDelete()"
+                        style="cursor: pointer;"></td>
                             </tr>
-                            <tr>
-                    <th scope="row">2</th>
-                    <td class="name-subject">Phát triển ứng dụng web</td>
-                    <td class="id-subject">INT 22345</td>
-                    <td class="name-teacher">TS. Lê Đình Thanh</td>
-                    <td class="sum-student-class">50</th>
-                    <td class="evaluated">45</td>
-                    <td class="un-evaluated">5</td>
-                    <td class="t-feedback"><a href="#"><i class="fas fa-comments"></i></a></td>
-                    <td class="ABC"><a href="#" class=""><i class="fas fa-check"></i></a>
-                                            <a href="#" class=""><i class="fas fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                    <th scope="row">3</th>
-                    <td class="name-subject">Đồ họa máy tính</td>
-                    <td class="id-subject">INT 32345</td>
-                    <td class="name-teacher">Dư Phương Hạnh</td>
-                    <td class="sum-student-class">60</th>
-                    <td class="evaluated">60</td>
-                    <td class="un-evaluated">0</td>
-                    <td class="t-feedback"></td>
-                    <td class="ABC"><a href="#" class=""><i class="fas fa-check"></i></a>
-                                            <a href="#" class=""><i class="fas fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                    <th scope="row">2</th>
-                    <td class="name-subject">Phát triển ứng dụng web</td>
-                    <td class="id-subject">INT 22345</td>
-                    <td class="name-teacher">TS. Lê Đình Thanh</td>
-                    <td class="sum-student-class">50</th>
-                    <td class="evaluated">45</td>
-                    <td class="un-evaluated">5</td>
-                    <td class="t-feedback"><a href="#"><i class="fas fa-comments"></i></a></td>
-                    <td class="ABC"><a href="#" class=""><i class="fas fa-check"></i></a>
-                                            <a href="#" class=""><i class="fas fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                    <th scope="row">2</th>
-                    <td class="name-subject">Phát triển ứng dụng web</td>
-                    <td class="id-subject">INT 22345</td>
-                    <td class="name-teacher">TS. Lê Đình Thanh</td>
-                    <td class="sum-student-class">50</th>
-                    <td class="evaluated">45</td>
-                    <td class="un-evaluated">5</td>
-                    <td class="t-feedback"><a href="#"><i class="fas fa-comments"></i></a></td>
-                    <td class="ABC"><a href="#" class=""><i class="fas fa-check"></i></a>
-                                            <a href="#" class=""><i class="fas fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                    <th scope="row">2</th>
-                    <td class="name-subject">Phát triển ứng dụng web</td>
-                    <td class="id-subject">INT 22345</td>
-                    <td class="name-teacher">TS. Lê Đình Thanh</td>
-                    <td class="sum-student-class">50</th>
-                    <td class="evaluated">45</td>
-                    <td class="un-evaluated">5</td>
-                    <td class="t-feedback"><a href="#"><i class="fas fa-comments"></i></a></td>
-                    <td class="ABC"><a href="#" class=""><i class="fas fa-check"></i></a>
-                                            <a href="#" class=""><i class="fas fa-trash"></i></a></td>
-                            </tr><tr>
-                    <th scope="row">2</th>
-                    <td class="name-subject">Phát triển ứng dụng web</td>
-                    <td class="id-subject">INT 22345</td>
-                    <td class="name-teacher">TS. Lê Đình Thanh</td>
-                    <td class="sum-student-class">50</th>
-                    <td class="evaluated">45</td>
-                    <td class="un-evaluated">5</td>
-                    <td class="t-feedback"><a href="#"><i class="fas fa-comments"></i></a></td>
-                    <td class="ABC"><a href="#" class=""><i class="fas fa-check"></i></a>
-                                            <a href="#" class=""><i class="fas fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                    <th scope="row">2</th>
-                    <td class="name-subject">Phát triển ứng dụng web</td>
-                    <td class="id-subject">INT 22345</td>
-                    <td class="name-teacher">TS. Lê Đình Thanh</td>
-                    <td class="sum-student-class">50</th>
-                    <td class="evaluated">45</td>
-                    <td class="un-evaluated">5</td>
-                    <td class="t-feedback"><a href="#"><i class="fas fa-comments"></i></a></td>
-                    <td class="ABC"><a href="#" class=""><i class="fas fa-check"></i></a>
-                                            <a href="#" class=""><i class="fas fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                    <th scope="row">2</th>
-                    <td class="name-subject">Phát triển ứng dụng web</td>
-                    <td class="id-subject">INT 22345</td>
-                    <td class="name-teacher">TS. Lê Đình Thanh</td>
-                    <td class="sum-student-class">50</th>
-                    <td class="evaluated">45</td>
-                    <td class="un-evaluated">5</td>
-                    <td class="t-feedback"><a href="#"><i class="fas fa-comments"></i></a></td>
-                    <td class="ABC"><a href="#" class=""><i class="fas fa-check"></i></a>
-                                            <a href="#" class=""><i class="fas fa-trash"></i></a></td>
-                            </tr>
-                           
-                    </tbody>
-                        </table> 
+                        </tbody>
+                            </table> 
                     </div>
 
                     <!-- /.Table -->    
 
                     </div>
                 </div>
-                <!-- /.row -->
-
+                <!-- /.row_1 -->
 
             </div>
             <!-- /.container-fluid -->
@@ -336,14 +211,84 @@
     </div>
     <!-- /#wrapper -->
 
+    <div id="tabEdit">
+        <form class="formEdit">
+            <div class="title">
+                <h2>INT 12345</h2>
+                <h3>Hệ quản trị cơ sở dữ liệu</h3>
+            </div>
+            <div class="contentEdit">
+                <table>
+                    <tr>
+                        <th><label for="" class="css_contentEdit">Giảng viên :</label></th>
+                        <th><input></th>
+                    </tr>
+                    <tr>
+                        <th><label for="" class="css_contentEdit">Mã môn học :</label></th>
+                        <th><input></th>
+                    </tr>
+                    <tr>
+                        <th><label for="" class="css_contentEdit">Phòng học :</label></th>
+                        <th><input></th>
+                    </tr>
+                    <tr>
+                        <th><label for="" class="css_contentEdit"> Thời gian bắt đầu môn học :</label></th>
+                        <th><input></th>
+                    </tr>
+                     <tr>
+                        <th><label for="" class="css_contentEdit"> Thời gian kết thúc môn học :</label></th>
+                        <th><input></th>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-success clearfix">Lưu</button>
+                <button type="button" class="btn btn-danger  clearfix">Hủy</button>
+            </div>
+
+        </form>
+        <!-- /.formEdit -->
+    </div>
+    <!-- /#tabEdit -->
+    
+    <div id="tabDelete">
+        <form class="formDelete">
+            <h3>Bạn có chắc muốn xóa khóa học này ra khỏi danh sách?</h3>
+            <button type="button" class="btn btn-success">Yes</button>
+            <button type="button" class="btn btn-danger">No</button>
+        </form>
+    </div>
+
+
+    
+
+
+
+
+
+
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-   
-
-</body>
-
+    <script>
+        function openEdit() {
+            document.getElementById("tabEdit").style.display = "block";
+        }
+        function openDelete() {
+            document.getElementById("tabDelete").style.display = "block";
+        }   
+        var edit_tab = document.getElementById("tabEdit");
+        var edit_del = document.getElementById("tabDelete");
+        window.onclick = function(event) {
+            if(event.target == edit_tab) {
+                edit_tab.style.display = "none";
+            }
+            if(event.target == edit_del) {
+                edit_del.style.display = "none";
+            }
+        }
+        </script>
+</body>        
 </html>

@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: url('../img/bg_login.jpg') no-repeat center top;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+#layout {
+    margin: auto;
+    padding: 20px 100px;
+    text-align: center;
+}
+#login_header {
+    font-size: 3em;
+    color: white;
+    letter-spacing: 6px;
+    font-weight: 500;
+    font-family: 'Dosis', sans-serif;
+    text-shadow: 5px 3px 5px #101010;
+    margin-bottom: 2em;
+}
+#login_content #login {
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 4px;
+    margin-bottom: 2em;
+    font-weight: 400;
+}
+#login_content input {
+    outline: none;
+    font-size: .9em;
+    padding: 11px 0 11px 15px;
+    border: none;
+    margin-bottom: 18px;
+    margin-left: 33%;
+    background: rgba(255, 255, 255, 0.85);
+    width: 33%;
+    color: #000;
+    border-radius: 30px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+}
+.icon_login {
+    position: relative;
+    right: 100%;
+    bottom: 10px;
+    border: none !important;
+    border-radius: 30px !important;
+    background: transparent !important;
+    color: rgb(53, 166, 231) !important;
+}
+.icon_warn {
+    visibility: hidden;
+    position: relative;
+    right: 85%;
+    bottom: 10px;
+    border: none !important;
+    border-radius: 30px !important;
+    background: transparent !important;
+    color: #ea2858 !important;
+}
+.error_login {
+    visibility: hidden;
+    position: relative;
+    right: 74%;
+    top: 7px;
+    padding-right: 20px !important;
+    height: 30px !important;
+    font-size: 14px !important;
+    color: #ea2858 !important;
+    border-color: #ea2858 !important;
+    border-radius: 20px !important;
+}
+#error_sign_in {
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: red;
+    font-size: 14.5px;
+    font-weight: 400 !important;
+}
+#button_login {
+    outline: none;
+    border: none;
+    width: 15%;
+    border-radius: 30px;
+    margin-top: 1.5em;
+    font-size: 18px;
+    color: white;
+    background: #2582be;
+    padding: 7px 0;
+}
+#button_login:hover {
+    background:rgb(35, 163, 238) !important;
+    cursor: pointer;
+}
+#login_content p {
+    margin-top: 30px;
+    font-size: 18px;
+}
+#login_content span {
+    color: #fff;
+    letter-spacing: 1px;
+}
+#login_content a {
+    color:#ea2858;
+}
+#login_footer {
+    margin-top: 110px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: white;
+    font-size: 14.5px;
+    font-weight: 400;
+}
