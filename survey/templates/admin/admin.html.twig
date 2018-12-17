@@ -465,7 +465,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="login.html"><i class="fa fa-fw fa-power-off" id="logout"></i> Log Out </a>
+                        <a href="#" id="logout"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
                     </li>
                 </ul>
             </li>
@@ -480,7 +480,7 @@
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fas fa-atom"></i> Quản lý giáo viên <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="demo" class="collapse">
                         <li>
-                            <a href="add_teacher.html">Add new teacher</a>
+                            <a href="#" class="addNew" id="teachers">Add new teacher</a>
                         </li>
                         <li>
                             <a href="#" id="getTeachers">Thông tin giáo viên</a>
@@ -491,7 +491,7 @@
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo_1"><i class="fab fa-amazon"></i> Quản lý sinh viên <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="demo_1" class="collapse">
                         <li>
-                            <a href="#">Add new student </a>
+                            <a href="#" class="addNew" id="students">Add new student </a>
                         </li>
                         <li>
                             <a href="#" id="getStudents">Thông tin sinh viên </a>
@@ -499,10 +499,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-edit"></i> Generate servey </a>
+                    <a href="#" class="addNew" id="class"><i class="fa fa-fw fa-edit"></i> Generate servey </a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-desktop" id="getClasses"></i> Show history servey </a>
+                    <a href="#" id="getClasses"><i class="fa fa-fw fa-desktop"></i> Show history servey </a>
                 </li>
             </ul>
         </div>
@@ -512,7 +512,7 @@
     <div id="page-wrapper">
 
         <div class="container-fluid">
-
+            <span id="responseMessage"></span>
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
@@ -622,9 +622,20 @@
 <div id="tabDelete">
     <form class="formDelete">
         <h3>Bạn có chắc muốn xóa khóa học này ra khỏi danh sách?</h3>
-        <button type="button" class="btn btn-success">Yes</button>
-        <button type="button" class="btn btn-danger">No</button>
+        <button type="button" class="btn btn-success" id="yes">Yes</button>
+        <button type="button" class="btn btn-danger" id="no">No</button>
     </form>
+</div>
+
+<div id="addNewForm">
+    <div class="addNewForm">
+        <h3>Insert file excel</h3>
+        {#style="position: relative; z-index: 1000; top: 200px;"#}
+        {#style="position: relative;top: 200px;"#}
+        <input type="file" id="fileUpload" style="padding-left: auto">
+        <button id="submit" >Submit</button>
+        <button id="closeCard">close</button>
+    </div>
 </div>
 
 
@@ -662,8 +673,10 @@
 </script>
 <script src="js/Utils.js"></script>
 <script src="js/Table.js"></script>
-<script src="js/Admin.js"></script>
+<script src="js/FormOverlap.js"></script>
 <script src="js/Request.js"></script>
+<script src="js/Admin.js"></script>
+
 </body>
 </html>
 

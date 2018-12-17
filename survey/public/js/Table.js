@@ -92,7 +92,7 @@ var Table = function (parent, classTableName, classTHeadName, classTBodyName, ad
         }
 
         return tag;
-    }
+    };
     this.deleteRow = function (i) {
             for(let index = i+1; index < this.body.rowsTable.length; ++index) {
                 --this.body.rowsTable[index].index;

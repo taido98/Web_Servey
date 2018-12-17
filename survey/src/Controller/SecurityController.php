@@ -35,6 +35,9 @@ class SecurityController extends AbstractController
         $credentials = $loginForm->getCredentials($request);
         try {
             $user = $loginForm->getUser($credentials);
+            if(!$loginForm->checkCredentials($credentials, $user)) {
+
+            };
             $authenticator = new Authenticator();
             $authenticator->generateJWTFor($user);
             $this->updateJWT($entityManager);

@@ -1,6 +1,7 @@
-
+var conformDeleForm = new FormOverlap(document.getElementById('tabDelete'),
+    document.getElementById('yes'), document.getElementById('no'));
 var showMessage = function () {
-    this.MessageType = {'Error':0, "Success": 2};
+    this.MessageType = {'Error': 0, "Success": 2};
     this.show = function (message, messageType) {
         let responseMess = document.getElementById('responseMessage');
         switch (messageType) {
@@ -10,6 +11,8 @@ var showMessage = function () {
                 responseMess.style.color = 'green';
                 break;
             case this.MessageType.Error:
+
+                console.log('error');
                 responseMess.innerText = 'Error';
                 responseMess.style.display = 'inline';
                 responseMess.style.color = 'red';
@@ -25,6 +28,9 @@ var showMessage = function () {
     this.ShowMessageError = function () {
         this.show('Error', this.MessageType.Error);
     };
+    this.ShowMessageWaiting = function () {
+        this.show('Waiting', this.MessageType.Success);
+    }
 };
 
 var mainTable = document.getElementById('col-8');
@@ -41,9 +47,16 @@ var getAllClasses = function () {
                     // get main table
                     mainTable.innerHTML = '';
                     let table = new Table(mainTable, 'table table-hover',
-                        'title', 'sub');
+                        'title', 'sub',['edit', 'delete','view'],'idClass');
 
-                    table.generate(responseObj['data']);
+                    table.generate(responseObj['data'],
+                        ['<td class="items"><img id="edit',
+                            '<td class="items"><img id="delete',
+                            '<td class="items"><img id="view'],
+                        ['" src="img/edit.png" ' +
+                            'style="cursor: pointer;"></td>',
+                            '" src="img/trash.gif" style="cursor: pointer;"></td>',
+                            '" src="img/infor.jpg" style="cursor: pointer; height: 16px; width:16px"></td>']);
                 }
             }
         }
@@ -62,34 +75,40 @@ var getStudents = function () {
             if (response['ok'] === 'true') {
                 mainTable.innerHTML = '';
                 let table = new Table(mainTable, 'table table-hover',
-                    'title', 'sub', ['Edit', 'Delete'], 'idStudent');
+                    'title', 'sub', ['Delete'], 'idStudent');
 
                 table.generate(response['data'],
-                    ['<td class="ABC"><a href="#" class="" id="edit',
-                        '<td class="ABC"><a href="#" class="" id="delete'],
-                    ['"><i class="fas fa-check"></i></a>\n' +
-                    '<a href="#" class="edit"><i class="fas fa-trash"></i></a></td>',
-                        '"><i class="fas fa-check"></i></a>\n' +
-                        '<a href="#" class="delete"><i class="fas fa-trash"></i></a></td>']);
+                    ['<td class="items"><img id="delete'],
+                    ['" src="img/trash.gif" ' +
+                    'style="cursor: pointer;"></td>']);
                 for (let i = 0; i < table.body.rowsTable.length; ++i) {
                     table.body.rowsTable[i].onclick = function () {
-                        request('POST',
-                            {
-                                'jwt': window.localStorage.getItem('jwt'),
-                                'id': this.idRequest
-                            },
-                            '/admin/student/delete', function (response) {
-                                let showMessageObj = new showMessage();
-                                if (response['ok'] === true) {
-                                    showMessageObj.show('Success', showMessageObj.MessageType.Success);
+                        console.log('on onclick');
+                        conformDeleForm.setVisible(true);
+                        conformDeleForm.setOnClickYes(function () {
+                            request('POST',
+                                {
+                                    'jwt': window.localStorage.getItem('jwt'),
+                                    'id': this.idRequest
+                                },
+                                '/admin/student/delete', function (response) {
+                                    let showMess = new showMessage();
+                                    if (response['ok'] === true) {
+                                        showMess.show('Success', showMessageObj.MessageType.Success);
 
-                                    console.log('delete row');
-                                    document.getElementById('rowBody' + i).outerHTML = '';
+                                        console.log('delete row');
+                                        document.getElementById('rowBody' + i).outerHTML = '';
 
-                                } else {
-                                    showMessageObj.show('Error', showMessageObj.MessageType.Error);
-                                }
-                            })
+                                    } else {
+                                        showMess.show('Error', showMessageObj.MessageType.Error);
+                                    }
+                                });
+                            conformDeleForm.setVisible(false);
+                        }.bind(this));
+                        conformDeleForm.setOnClickNo(function () {
+                            conformDeleForm.setVisible(false);
+                        });
+                        //
                     }
                 }
             } else {
@@ -136,47 +155,49 @@ document.getElementById('getTeachers').onclick = function () {
     let dataPost = {'jwt': window.localStorage.getItem('jwt')};
     request('POST', dataPost,
         '/admin/teachers/getall', function (response) {
+            let showMessageObj = new showMessage();
             if (response['ok'] === 'true') {
                 mainTable.innerHTML = '';
                 let table = new Table(mainTable, 'table table-hover',
                     'title', 'sub', ['Delete'], 'idTeacher');
 
                 table.generate(response['data'],
-                    ['<td class="ABC"><a href="#" class="" id="delete'],
-                    ['"><i class="fas fa-check"></i></a>\n' +
-                        '<a href="#" class="delete"><i class="fas fa-trash"></i></a></td>']);
+                    ['<td class="items"><img id="delete'],
+                    ['" src="img/trash.gif" ' +
+                    'style="cursor: pointer;"></td>']);
                 for (let i = 0; i < table.body.rowsTable.length; ++i) {
                     let deleteI = table.body.rowsTable[i];
 
                     deleteI.onclick = function () {
-
-                        request('POST',
-                            {
-                                'jwt': window.localStorage.getItem('jwt'),
-                                'id': this.idRequest
-                            },
-                            '/admin/teacher/delete', function (response) {
-                                let responseMess = document.getElementById('responseMessage');
-                                if (response['ok'] === true) {
-                                    console.log('delete row ' + i);
-                                    table.deleteRow(this.index);
-                                    responseMess.innerHTML = 'success';
-                                    responseMess.style.display = 'inline';
-                                    responseMess.style.color = 'green';
-                                    setTimeout(function () {
-                                        document.getElementById('responseMessage').style.display = 'none';
-                                    }, 2000);
-                                    console.log('success');
-                                } else {
-                                    responseMess.innerHTML = 'error';
-                                    responseMess.style.display = 'inline';
-                                    responseMess.style.color = 'red';
-                                    console.log('error');
-
-                                }
-                            }.bind(this))
+                        conformDeleForm.setVisible(true);
+                        conformDeleForm.setOnClickYes(function () {
+                            request('POST',
+                                {
+                                    'jwt': window.localStorage.getItem('jwt'),
+                                    'id': this.idRequest
+                                },
+                                '/admin/teacher/delete', function (response) {
+                                    let responseMess = document.getElementById('responseMessage');
+                                    if (response['ok'] === true) {
+                                        console.log('delete row ' + i);
+                                        table.deleteRow(this.index);
+                                        responseMess.ShowMessageSuccess();
+                                        setTimeout(function () {
+                                            document.getElementById('responseMessage').style.display = 'none';
+                                        }, 2000);
+                                        console.log('success');
+                                    } else {
+                                        responseMess.ShowMessageError();
+                                    }
+                                }.bind(this))
+                        });
+                        conformDeleForm.setOnClickNo(function () {
+                            conformDeleForm.setVisible(false);
+                        });
                     }
                 }
+            } else {
+                showMessageObj.ShowMessageError();
             }
         })
 };
@@ -189,7 +210,7 @@ document.getElementById('getStudents').onclick = function () {
     getStudents();
 };
 
-let windowOverLay = document.getElementById('window-overlay');
+let windowOverLay = document.getElementById('addNewForm');
 // windowOverLay.onclick = function() {
 //     console.log("click");
 //     this.style.display = 'none';
@@ -198,14 +219,16 @@ let windowOverLay = document.getElementById('window-overlay');
 let addNews = document.getElementsByClassName('addNew');
 for (let i = 0; i < addNews.length; ++i) {
     addNews[i].onclick = function () {
-        document.getElementById('fileUpload').value = '';
         windowOverLay.style.display = "flex";
+        document.getElementById('fileUpload').value = '';
+
         document.getElementById('closeCard').onclick = function () {
-            document.getElementById('window-overlay').style.display = 'none';
+            document.getElementById('addNewForm').style.display = 'none';
 
         };
         document.getElementById('submit').onclick = function () {
             // this.disabled = true;
+            document.getElementById('addNewForm').style.display = 'none';
             let xmlhttp = getXmlHttpObject();
             xmlhttp.onreadystatechange = function () {
                 let showMessageObj = new showMessage();
@@ -217,7 +240,17 @@ for (let i = 0; i < addNews.length; ++i) {
                         let responseObj = JSON.parse(this.responseText);
                         if (responseObj['ok'] === true) {
                             showMessageObj.show('Success', showMessageObj.MessageType.Success);
-
+                            switch (addNews[i].id) {
+                                case 'teachers':
+                                    getAllTeacher();
+                                    break;
+                                case 'students':
+                                    getStudents();
+                                    break;
+                                case 'class':
+                                    getAllClasses();
+                                    break;
+                            }
                         }
                         // window.localStorage.setItem('jwt', responseObj['jwt']);
                         //
@@ -226,7 +259,7 @@ for (let i = 0; i < addNews.length; ++i) {
                         showMessageObj.show('Error', showMessageObj.MessageType.Error);
                     }
                 } else {
-                    showMessageObj.ShowMessageError();
+                    showMessageObj.ShowMessageWaiting();
                 }
 
             };

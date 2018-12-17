@@ -143,8 +143,7 @@ class AdminController extends AbstractController
 
 
             }
-//            }
-            $response = new Response(json_encode(['ok' => $data], JSON_UNESCAPED_UNICODE));
+            $response = new Response(json_encode(['ok' => true, 'data'=>$data], JSON_UNESCAPED_UNICODE));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
 

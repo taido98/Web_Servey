@@ -88,18 +88,18 @@
         $(document).ready(function () {
             $("#user_login_warn").mouseenter(function () {
                 document.getElementsByClassName("error_login")[0].style.visibility = 'visible';
-            })
+            });
             $("#user_login_warn").mouseleave(function () {
                 document.getElementsByClassName("error_login")[0].style.visibility = 'hidden';
-            })
+            });
             $("#psw_login_warn").mouseenter(function () {
                 document.getElementsByClassName("error_login")[1].style.visibility = 'visible';
-            })
+            });
             $("#psw_login_warn").mouseleave(function () {
                 document.getElementsByClassName("error_login")[1].style.visibility = 'hidden';
             })
         })
-        if(check_fail == 1) {
+        if(check_fail === 1) {
             return false;
         }
         return true;

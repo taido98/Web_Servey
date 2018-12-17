@@ -8,14 +8,14 @@ var request = function (method, data, route, callBack) {
             if (this.status === 200) {
                 let responseObj = JSON.parse(this.responseText);
                 if(callBack) {
+
                     callBack(responseObj);
                 }
-                // if(responseObj['ok'] === "true") {
-                //     getAllClasses();
-                //
-                // } else {
-                //     window.location.replace(responseObj['route']);
-                // }
+            } else if(this.status === 400) {
+                let responseObj = JSON.parse(this.responseText);
+                if(callBack) {
+                    callBack(responseObj);
+                }
             }
         }
 
