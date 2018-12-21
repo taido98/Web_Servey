@@ -36,15 +36,35 @@ class SecurityController extends AbstractController
         try {
             $user = $loginForm->getUser($credentials);
             if(!$loginForm->checkCredentials($credentials, $user)) {
-
+                throw new AuthenticationException();
             };
             $authenticator = new Authenticator();
             $authenticator->generateJWTFor($user);
             $this->updateJWT($entityManager);
-            $response = new Response(json_encode(['ok'=>true,
-                'jwt' => $user->getJwt(),
-                'route'=>'admin'],
-                JSON_UNESCAPED_UNICODE));
+            $response =null;
+            switch ($user->getRoles()[0]) {
+                case AdminController::$role:
+                    $response = new Response(json_encode(['ok'=>true,
+                        'jwt' => $user->getJwt(),
+                        'route'=>'admin'],
+                        JSON_UNESCAPED_UNICODE));
+                    break;
+
+                case TeacherController::$role:
+                    $response = new Response(json_encode(['ok'=>true,
+                        'jwt' => $user->getJwt(),
+                        'route'=>'teacher'],
+                        JSON_UNESCAPED_UNICODE));
+                    break;
+                case StudentController::$role:
+                    $response = new Response(json_encode(['ok'=>true,
+                        'jwt' => $user->getJwt(),
+                        'route'=>'student'],
+                        JSON_UNESCAPED_UNICODE));
+                    break;
+            }
+
+
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         } catch (AuthenticationException| CustomUserMessageAuthenticationException $e) {
@@ -57,5 +77,17 @@ class SecurityController extends AbstractController
     }
     private function updateJWT(EntityManagerInterface $entityManager) {
         $entityManager->flush();
+    }
+
+
+    /**
+     * @Route("/route", name="app_route")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function getRoute(Request $request, EntityManagerInterface $entityManager): Response
+    {
+
     }
 }

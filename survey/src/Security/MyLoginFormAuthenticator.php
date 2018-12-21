@@ -161,7 +161,7 @@ class MyLoginFormAuthenticator
      */
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return $user->getPassword() === $credentials['password'];
+        return password_verify($credentials['password'], $user->getPassword());
     }
 
     /**

@@ -117,6 +117,7 @@
       <path value="$PROJECT_DIR$/survey/vendor/php-http/httplug-bundle" />
       <path value="$PROJECT_DIR$/survey/vendor/clue/stream-filter" />
       <path value="$PROJECT_DIR$/survey/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/survey/vendor/twbs/bootstrap" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

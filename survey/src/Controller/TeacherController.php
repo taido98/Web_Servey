@@ -86,46 +86,8 @@ class TeacherController extends AbstractController
             }
             $appendix = CriteriaLevel::convertArrayCriterialLevelObjectsToArray($criterialLevels);
 
-
-
-
-
-
-
             $classes = $teacher->getStatisticAndClassInfo($appendix, $entityManager);
 
-
-//            foreach ($classes as $class) {
-//                $statistic = [];
-//                $surveyForms = $class->getSurveyForm();
-//
-//                $criterialValues = [];
-//                foreach($criterialLevelArr as $key=>$value) {
-//                    $criterialValues[$key] = 0;
-//                }
-//
-//                foreach ($surveyForms as $surveyForm) {
-//                    $content = $surveyForm->getContent();
-//                    if($content !== null) {
-//                        foreach ($content as $key=>$value) {
-//                            $criterialValues[$key] += (int)$value;
-//                        }
-//                    }
-//
-//
-//                }
-//
-//                foreach ($criterialValues as $key=>$value) {
-//                    $statistic[$key] = $value;
-//                }
-//
-//
-//                $retData[] = ['idClass'=> $class->getIdclass(),
-//                    'namesubject'=>$class->getNamesubject(),
-//                    'location'=>$class->getLocation(),
-//                    'numberLesson'=>$class->getNumberlesson(),
-//                    'statistic'=>$statistic];
-//            }
 
             $entityManager->getConnection()->commit();
 

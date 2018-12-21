@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
+use App\Statistic\Statistic;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
-use App\Statistic\Statistic;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClassSubjectRepository")
@@ -192,17 +192,20 @@ class ClassSubject
         $retStatistic = $this->getRawStatistic($appendix);
         $statistic = $retStatistic['statistic'];
         $retData['numberStudentDone'] = $retStatistic['numberStudentDone'];
+        $retData['statistic'] = [];
+        foreach ($statistic as $key => $value) {
+            $sta = new Statistic($value);
+            try {
+                $sta->calculate();
+                $retData['statistic'][$key]['M'] = $sta->getAverage();
+                $retData['statistic'][$key]['STD'] = $sta->getVariant();
 
-        $sta = new Statistic($statistic);
-        try {
-            $sta->calculate();
-            $retData['M'] = $sta->getAverage();
-            $retData['STD'] = $sta->getVariant();
-
-        } catch (\ErrorException $e) {
-            $retData['M'] = 0;
-            $retData['STD'] = 0;
+            } catch (\ErrorException $e) {
+                $retData['statistic'][$key]['M'] = 0;
+                $retData['statistic'][$key]['STD'] = 0;
+            }
         }
+
 
 
         return $retData;
@@ -212,23 +215,31 @@ class ClassSubject
     {
         $retStatistic = [];
         $statistic = [];
-        $retStatistic['statistic'] = $statistic;
+
         $retStatistic['numberStudentDone'] = 0;
         foreach ($appendix as $key => $value) {
-            $statistic[$key] = [0, 0];
+            $statistic[$key] = [];
+            for($i = 1;$i <= 5; ++$i){
+                $statistic[$key][$i] =0;
+            }
+
         }
 
         foreach ($this->surveyForm as $s) {
             $contentData = $s->getContent();
-            if ($contentData !== null) {
+            if ($contentData !== null && count($contentData) >= 1) {
                 $retStatistic['numberStudentDone'] += 1;
                 foreach ($contentData as $key => $value) {
-                    $statistic[$key][0] += (float)$value;
-                    $statistic[$key][1] += 1;
+                    if(array_key_exists($key, $statistic)) {
+                        $statistic[$key][(int)$value] += 1;
+                    }
+
+
                 }
             }
 
         }
+        $retStatistic['statistic'] = $statistic;
         return $retStatistic;
     }
 

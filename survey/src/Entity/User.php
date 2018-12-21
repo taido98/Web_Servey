@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -188,4 +189,5 @@ class User implements UserInterface
 
         return $this;
     }
+
 }

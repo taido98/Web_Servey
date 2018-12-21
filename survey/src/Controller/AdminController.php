@@ -16,9 +16,13 @@ use App\Security\Authenticator;
 use App\Security\MyLoginFormAuthenticator;
 use App\Security\NotFoundJWTException;
 use App\Security\NotTrueRoleException;
+use App\Security\PasswordEncoder;
+use function Clue\StreamFilter\remove;
 use Doctrine\DBAL\Driver\PDOException;
+use exception\NotFoundClassIdInDataBase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use function Symfony\Component\DependencyInjection\Tests\Fixtures\factoryFunction;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Firebase\JWT\SignatureInvalidException;
@@ -68,17 +72,22 @@ class AdminController extends AbstractController
     public function addAdmin()
     {
         $entityManager = $this->getDoctrine()->getManager();
-
+        $passwordEncoder = new PasswordEncoder();
         $adminUser = new User();
         $adminUser->setUsername('vanminh');
-        $adminUser->setPassword('12345');
+        $adminUser->setPassword($passwordEncoder->encode($adminUser, '12345'));
 
         $role = new Role('ROLE_ADMIN');
         $adminUser->setRoles([$role->getRole()]);
 
+        $admin = new Admin();
+        $admin->setFullname('Ta Van Minh');
+        $admin->setUserdb($adminUser);
 
         // tell Doctrine you want to (eventually) save the Product (no queries yet)
         $entityManager->persist($adminUser);
+        $entityManager->persist($admin);
+
 
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
@@ -113,7 +122,7 @@ class AdminController extends AbstractController
                 $data = Excel::readStudentExcel($file);
 
                 if ($data) {
-
+                    $passwordEncoder = new PasswordEncoder();
                     $isSuccess = true;
                     for ($i = 0; $i < count($data); ++$i) {
 
@@ -126,7 +135,8 @@ class AdminController extends AbstractController
 
                         $userStudent = new User();
                         $userStudent->setUsername($student->getIdstudent());
-                        $userStudent->setPassword($data[$i][1]);
+                        $userStudent->setPassword($passwordEncoder->encode($userStudent,
+                            $data[$i][1]));
 
                         $role = new Role('ROLE_STUDENT');
                         $userStudent->setRoles([$role->getRole()]);
@@ -143,7 +153,7 @@ class AdminController extends AbstractController
 
 
             }
-            $response = new Response(json_encode(['ok' => true, 'data'=>$data], JSON_UNESCAPED_UNICODE));
+            $response = new Response(json_encode(['ok' => true, 'data' => $data], JSON_UNESCAPED_UNICODE));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
 
@@ -194,6 +204,7 @@ class AdminController extends AbstractController
             $data = Excel::readTeacherExcel($file);
 
             if ($data) {
+                $passwordEncoder = new PasswordEncoder();
 
                 $isSuccess = true;
 
@@ -209,10 +220,10 @@ class AdminController extends AbstractController
                     $user = new User();
                     $role = new Role('ROLE_TEACHER');
                     $user->setUsername($data[$i][0]);
-                    $user->setPassword($data[$i][1]);
+                    $user->setPassword($passwordEncoder->encode($user,
+                        $data[$i][1]));
                     $user->setRoles([$role->getRole()]);
                     $teacher->setUserdb($user);
-
                     $entityManager->persist($teacher);
 
                 }
@@ -270,7 +281,7 @@ class AdminController extends AbstractController
             return $response;
         } catch (UnexpectedValueException | SignatureInvalidException |
         BeforeValidException | ExpiredException $e) {
-            $response = new Response(json_encode(['ok' => "false", 'route'=>"login_form"], JSON_UNESCAPED_UNICODE));
+            $response = new Response(json_encode(['ok' => "false", 'route' => "login_form"], JSON_UNESCAPED_UNICODE));
 //            $response->headers->set('Content-Type', 'application/json');
             return $response;
 //            return $this->redirectToRoute('login_form');
@@ -428,7 +439,7 @@ class AdminController extends AbstractController
                 if (!$user) {
                     throw new NotFoundException();
                 }
-                foreach($student->getSurveyForms() as $surveyForm) {
+                foreach ($student->getSurveyForms() as $surveyForm) {
                     $entityManager->remove($surveyForm);
                 }
                 $entityManager->remove($student);
@@ -589,8 +600,6 @@ class AdminController extends AbstractController
             Authenticator::verifyFor($request, $entityManager, AdminController::$role);
 
             $data = $func($request, $entityManager);
-
-
             $response = new Response(json_encode(['ok' => 'true', 'data' => $data], JSON_UNESCAPED_UNICODE));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
@@ -607,7 +616,7 @@ class AdminController extends AbstractController
             return $response;
         } catch (UnexpectedValueException | SignatureInvalidException |
         BeforeValidException | ExpiredException $e) {
-            $response = new Response(json_encode(['ok' => "false", 'route'=>'login_form'], JSON_UNESCAPED_UNICODE));
+            $response = new Response(json_encode(['ok' => "false", 'route' => 'login_form'], JSON_UNESCAPED_UNICODE));
 //            $response->headers->set('Content-Type', 'application/json');
             return $response;
 //            return $this->redirectToRoute('login_form');
@@ -666,14 +675,15 @@ class AdminController extends AbstractController
      * @return Response
      */
 
-    public function getProfile(Request $request, EntityManagerInterface $entityManager) {
-        $response = $this->verifyTemplateForGet($request,  $entityManager, function ($request, $entityManager) {
+    public function getProfile(Request $request, EntityManagerInterface $entityManager)
+    {
+        $response = $this->verifyTemplateForGet($request, $entityManager, function ($request, $entityManager) {
 
-            $user = $entityManager->getRepository(User::class)->findOneBy(['jwt'=>$request->request->get('jwt')]);
-            $admin = $entityManager->getRepository(Admin::class)->findOneBy(['userdb'=>$user]);
+            $user = $entityManager->getRepository(User::class)->findOneBy(['jwt' => $request->request->get('jwt')]);
+            $admin = $entityManager->getRepository(Admin::class)->findOneBy(['userdb' => $user]);
             $retData = [
-                    'username' => $user->getUsername(),
-                    'fullname' => $admin->getFullname()];
+                'username' => $user->getUsername(),
+                'fullname' => $admin->getFullname()];
             return $retData;
         });
 
@@ -704,6 +714,246 @@ class AdminController extends AbstractController
         });
 
         return $response;
+
+    }
+
+    /**
+     * @Route("/admin/class/getresult", name="admin_classes_getResult")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     * @throws \Doctrine\DBAL\ConnectionException
+     */
+
+    public function getClassResult(Request $request, EntityManagerInterface $entityManager)
+    {
+        $entityManager->getConnection()->beginTransaction();
+        try {
+            Authenticator::verifyFor($request, $entityManager, AdminController::$role);
+
+            if ($request->request->get('id') === null) {
+                throw new BadRequestHttpException();
+            }
+            $class = $entityManager->getRepository(ClassSubject::class)->findOneBy(['idclass' => $request->request->get('id')]);
+            if($class === null) {
+                throw new NotFoundClassIdInDataBase();
+            }
+
+
+            // get criterialLevel
+            $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
+            if ($criterialLevels === null || count($criterialLevels) === 0) {
+                $criterialLevels = [];
+                for ($i = 0; $i < count(SRCConfig::DEFAULT_FORM); ++$i) {
+                    $criterialLevel = new CriteriaLevel();
+                    $criterialLevel->setName(SRCConfig::DEFAULT_FORM[$i]);
+                    $entityManager->persist($criterialLevel);
+
+                    $criterialLevels[] = $criterialLevel;
+                }
+                $entityManager->flush();
+
+                $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
+            }
+            $appendix = CriteriaLevel::convertArrayCriterialLevelObjectsToArray($criterialLevels);
+
+
+//            foreach ($classes as $class) {
+//                $statistic = [];
+//                $surveyForms = $class->getSurveyForm();
+//
+//                $criterialValues = [];
+//                foreach($criterialLevelArr as $key=>$value) {
+//                    $criterialValues[$key] = 0;
+//                }
+//
+//                foreach ($surveyForms as $surveyForm) {
+//                    $content = $surveyForm->getContent();
+//                    if($content !== null) {
+//                        foreach ($content as $key=>$value) {
+//                            $criterialValues[$key] += (int)$value;
+//                        }
+//                    }
+//
+//
+//                }
+//
+//                foreach ($criterialValues as $key=>$value) {
+//                    $statistic[$key] = $value;
+//                }
+//
+//
+//                $retData[] = ['idClass'=> $class->getIdclass(),
+//                    'namesubject'=>$class->getNamesubject(),
+//                    'location'=>$class->getLocation(),
+//                    'numberLesson'=>$class->getNumberlesson(),
+//                    'statistic'=>$statistic];
+//            }
+            $retData = $class->getStatistic($appendix);
+            $retData['idClass'] = $class->getIdclass();
+            $retData['nameSubject'] = $class->getNamesubject();
+            $retData['teacher'] = $class->getTeacher()->getFullname();
+
+            $entityManager->getConnection()->commit();
+
+            $response = new Response(json_encode(['ok' => 'true', 'data' => ['class' => $retData, 'appendix' => $appendix]], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch
+        (AuthenticationException $e) {
+            $response = new Response(json_encode(['ok' => "AuthenticationException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch
+        (CustomUserMessageAuthenticationException $e) {
+            $response = new Response(json_encode(['ok' => "CustomUserMessageAuthenticationException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (UnexpectedValueException | SignatureInvalidException |
+        BeforeValidException | ExpiredException $e) {
+            $response = new Response(json_encode(['ok' => "false", 'route' => 'login_form'], JSON_UNESCAPED_UNICODE));
+//            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+//            return $this->redirectToRoute('login_form');
+        } catch (NotTrueRoleException $e) {
+            $loginForm = new MyLoginFormAuthenticator($entityManager);
+            $credentials = $loginForm->getCredentials($request);
+            $user = $loginForm->getUserByJWT($credentials);
+            $response = new Response(json_encode(['ok' => 'NotTrueRoleException'], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (NotFoundJWTException $e) {
+            $response = new Response(json_encode(['ok' => "NotFoundJWTException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (\PhpOffice\PhpSpreadsheet\Exception $e) {
+            $response = new Response(json_encode(['ok' => "\PhpOffice\PhpSpreadsheet\Exception"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch(BadRequestHttpException $e) {
+            $response = new Response(json_encode(['ok' => "BadRequestHttpException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch(NotFoundClassIdInDataBase $e) {
+            $response = new Response(json_encode(['ok' => "NotFoundClassIdInDataBase"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
+        catch (Exception $e) {
+            $entityManager->getConnection()->rollBack();
+        } finally {
+            $entityManager->getConnection()->close();
+        }
+
+    }
+
+
+    /**
+     * @Route("/admin/class/delete", name="admin_class_delete")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+
+    public function deleteClass(Request $request, EntityManagerInterface $entityManager)
+    {
+        $response = new Response();
+        try {
+            if (!$request->request->has('id')) {
+                throw new BadRequestHttpException();
+            }
+            return $this->verifyTemplate($request, $entityManager, function ($request, $entityManager) {
+
+                $class = $entityManager->getRepository(ClassSubject::class)->findOneBy(['idclass' => $request->request->get('id')]);
+                if (!$class) {
+                    throw new NotFoundException();
+                }
+                $class->deleteSurveyForm($entityManager);
+                $entityManager->remove($class);
+                $entityManager->flush();
+                $entityManager->getConnection()->commit();
+                return true;
+            });
+        } catch (BadRequestHttpException $e) {
+            $response->setContent(json_encode(['ok' => 'false', 'message' => 'BadRequestHttpException'], JSON_UNESCAPED_UNICODE));
+            $response->setStatusCode(400);
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (NotFoundException $e) {
+            $response->setContent(json_encode(['ok' => 'false', 'message' => 'NotFoundException'], JSON_UNESCAPED_UNICODE));
+            $response->setStatusCode(400);
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
+
+
+    }
+
+    /**
+     * @Route("/admin/criterias/getall", name="admin_criterias_getall")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+
+    public function getAllCriterias(Request $request, EntityManagerInterface $entityManager)
+    {
+
+        $response = $this->verifyTemplateForGet($request, $entityManager, function ($request, $entityManager) {
+
+            $criterias = $entityManager->getRepository(CriteriaLevel::class)->findAll();
+            $retData = [];
+            foreach ($criterias as $value) {
+                $retData[] = ['id' => $value->getId(),
+                    'name' => $value->getName()];
+            }
+            return $retData;
+        });
+
+        return $response;
+
+    }
+
+    /**
+     * @Route("/admin/criteria/delete", name="admin_criteria_delete")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+
+    public function deleteCriteria(Request $request, EntityManagerInterface $entityManager)
+    {
+        $response = new Response();
+        try {
+            if (!$request->request->has('id')) {
+                throw new BadRequestHttpException();
+            }
+            return $this->verifyTemplate($request, $entityManager, function ($request, $entityManager) {
+
+                if(!$request->request->has('id')) {
+                    throw new BadRequestHttpException();
+                }
+                $criteria = $entityManager->getRepository(CriteriaLevel::class)->findOneBy(['id' => $request->request->get('id')]);
+                if (!$criteria) {
+                    throw new NotFoundException();
+                }
+                $entityManager->remove($criteria);
+                $entityManager->flush();
+                $entityManager->getConnection()->commit();
+                return true;
+            });
+        } catch (BadRequestHttpException $e) {
+            $response->setContent(json_encode(['ok' => 'false', 'message' => 'BadRequestHttpException'], JSON_UNESCAPED_UNICODE));
+            $response->setStatusCode(400);
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (NotFoundException $e) {
+            $response->setContent(json_encode(['ok' => 'false', 'message' => 'NotFoundException'], JSON_UNESCAPED_UNICODE));
+            $response->setStatusCode(400);
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
+
 
     }
 

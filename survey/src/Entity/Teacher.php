@@ -158,7 +158,7 @@ class Teacher
 
         foreach ($classesSameTeacher as $item) {
             $retStatistic = $item->getRawStatistic($appendix);
-            $rawStatistic = $retStatistic['statistic'];;
+            $rawStatistic = $retStatistic['statistic'];
             foreach ($rawStatistic as $key => $value) {
                 $statistic3[$key][0] += (float)$value;
                 $statistic3[$key][1] += 1;
@@ -218,6 +218,4 @@ class Teacher
 
         return $retData;
     }
-
-
 }

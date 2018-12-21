@@ -24,7 +24,7 @@
             <div id="login">LOGIN</div>
             <div class="input-group">
                 <input id="username" type="text" name="urn_login" placeholder="Username"
-                       onfocus="document.getElementById('error_sign_in').style.display = 'none'; hiddenError_User();">
+                       onfocus="hiddenError_User();">
                 <div class="input-group-append">
                     <div class="input-group-text error_login">Username is required</div>
                     <span id="user_login_warn" class="input-group-text icon_warn"><i class="fas fa-exclamation"></i></span>
@@ -33,21 +33,15 @@
             </div>
             <div class="input-group">
                 <input id="password" type="password" name="psw_login" placeholder="Password"
-                       onfocus="document.getElementById('error_sign_in').style.display = 'none'; hiddenError_Psw();">
+                       onfocus="hiddenError_Psw();">
                 <div class="input-group-append">
                     <div class="input-group-text error_login">Password is required</div>
                     <span id="psw_login_warn" class="input-group-text icon_warn"><i class="fas fa-exclamation"></i></span>
                     <span id="psw_login_icon" class="input-group-text icon_login"><i class="fa fa-unlock"></i></span>
                 </div>
             </div>
-            <div id="error_sign_in">
-                <!--<?php
-                    if(count($error) > 0) {
-                        foreach($error as $error) {
-                            echo "<i class='fas fa-exclamation'> " .$error. "</i>";
-                        }
-                    }
-                ?>-->
+            <div id="invalidLable" style="display: none">
+                Invalid username or password
             </div>
 
             <button type="button" name="button_login" id="button_login">Login</button>
@@ -116,10 +110,31 @@
                         if(responseObj['ok'] === true) {
                             window.localStorage.setItem('jwt', responseObj['jwt']);
                             window.location.replace(responseObj['route']);
+                            // xmlhttp = getXmlHttpObject();
+                            // let xmlhttp = getXmlHttpObject();
+                            // xmlhttp.onreadystatechange = function () {
+                            //     if (this.readyState === 4) {
+                            //
+                            //         if (this.status === 200) {
+                            //             let responseObj = JSON.parse(this.responseText);
+                            //             if (responseObj['ok'] === "true") {
+                            //
+                            //
+                            //             } else {
+                            //             }
+                            //         }
+                            //     }
+                            //
+                            // };
+                            let data = new FormData();
+                            data.append('jwt', window.localStorage.getItem('jwt'));
+                            xmlhttp.open("POST", "/"+responseObj['route'], true);
+                            xmlhttp.send(data);
+                            // window.location.replace(responseObj['route']);
                         } else {
                             console.log("failed login");
-                            invalidLable.style.display = "block";
-                            loginBtn.disabled = false;
+                            document.getElementById('invalidLable').style.display = "block";
+                            document.getElementById('invalidLable').style.color = "red";
                         }
                     }
                 }
@@ -135,5 +150,7 @@
         }
     };
 </script>
+<script src="js/Utils.js"></script>
+<script src="js/login.js"></script>
 </body>
 </html>

@@ -1,3 +1,7 @@
+function hideNotNeed() {
+    document.getElementById('tabInfor').style.display = 'none';
+
+}
 var conformDeleForm = new FormOverlap(document.getElementById('tabDelete'),
     document.getElementById('yes'), document.getElementById('no'));
 var showMessage = function () {
@@ -57,8 +61,69 @@ var getAllClasses = function () {
                             'style="cursor: pointer;"></td>',
                             '" src="img/trash.gif" style="cursor: pointer;"></td>',
                             '" src="img/infor.jpg" style="cursor: pointer; height: 16px; width:16px"></td>']);
+
+                    // event function
+                    for (let i = 0; i < table.body.rowsTable.length; ++i) {
+                        let deleteI = table.body.rowsTable[i];
+                        document.getElementById('view' + i).onclick = function () {
+                            request('POST',
+                                {'jwt': window.localStorage.getItem('jwt'),
+                                'id': deleteI.idRequest},
+                                '/admin/class/getresult',
+                                function (response) {
+                                console.log(response['ok'] === 'true');
+                                    if (response['ok'] === 'true') {
+
+                                        // title
+                                        let data = response['data'];
+                                        document.getElementById('className').innerText = data['class']['nameSubject'];
+                                        document.getElementById('idClass').innerText = data['class']['idClass'];
+                                        document.getElementById('teacherName').innerText = data['class']['teacher'];
+
+
+
+                                        setTimeout(function () {
+                                            document.getElementById('responseMessage').style.display = 'none';
+                                        }, 2000);
+                                        console.log('success');
+                                        document.getElementById('tabInfor').style.display = 'block';
+
+                                        let newTabel = new NewTable(document.getElementById('tableParent'),
+                                            'table table-hover',
+                                            'title', 'sub',
+                                        );
+                                        newTabel.generate(convertToTableData(response['data']))
+                                    }
+                                }.bind(this))
+                        };
+
+                        document.getElementById('delete' + i).onclick = function () {
+                            let showMess = new showMessage();
+                            showMess.ShowMessageWaiting();
+                            request('POST',
+                                {'jwt': window.localStorage.getItem('jwt'),
+                                    'id': deleteI.idRequest},
+                                '/admin/class/delete',
+                                function (response) {
+                                    console.log(response['ok'] === true);
+                                    if (response['ok'] === true) {
+                                        table.deleteRow(deleteI.index);
+                                        setTimeout(function () {
+                                            document.getElementById('responseMessage').style.display = 'none';
+                                        }, 2000);
+                                        console.log('success');
+                                    }
+                                }.bind(this))
+                        }
+                    }
+                } else {
+
                 }
+
+            } else {
+
             }
+
         }
 
     };
@@ -76,20 +141,21 @@ var getStudents = function () {
                 mainTable.innerHTML = '';
                 let table = new Table(mainTable, 'table table-hover',
                     'title', 'sub', ['Delete'], 'idStudent');
-
+                console.log(response['data']);
                 table.generate(response['data'],
                     ['<td class="items"><img id="delete'],
                     ['" src="img/trash.gif" ' +
                     'style="cursor: pointer;"></td>']);
                 for (let i = 0; i < table.body.rowsTable.length; ++i) {
-                    table.body.rowsTable[i].onclick = function () {
+                    let d = table.body.rowsTable[i]
+                    document.getElementById('delete'+i).onclick = function () {
                         console.log('on onclick');
                         conformDeleForm.setVisible(true);
                         conformDeleForm.setOnClickYes(function () {
                             request('POST',
                                 {
                                     'jwt': window.localStorage.getItem('jwt'),
-                                    'id': this.idRequest
+                                    'id': d.idRequest
                                 },
                                 '/admin/student/delete', function (response) {
                                     let showMess = new showMessage();
@@ -116,6 +182,56 @@ var getStudents = function () {
             }
         })
 };
+var getCriterias = function() {
+    let dataPost = {'jwt': window.localStorage.getItem('jwt')};
+    request('POST', dataPost,
+        '/admin/criterias/getall', function (response) {
+            let showMessageObj = new showMessage();
+            if (response['ok'] === 'true') {
+                mainTable.innerHTML = '';
+                let table = new Table(mainTable, 'table table-hover',
+                    'title', 'sub', ['Delete'], 'id');
+                console.log(response['data']);
+                table.generate(response['data'],
+                    ['<td class="items"><img id="delete'],
+                    ['" src="img/trash.gif" ' +
+                    'style="cursor: pointer;"></td>']);
+                for (let i = 0; i < table.body.rowsTable.length; ++i) {
+                    table.body.rowsTable[i].onclick = function () {
+                        console.log('on onclick');
+                        conformDeleForm.setVisible(true);
+                        conformDeleForm.setOnClickYes(function () {
+                            request('POST',
+                                {
+                                    'jwt': window.localStorage.getItem('jwt'),
+                                    'id': this.idRequest
+                                },
+                                '/admin/criteria/delete', function (response) {
+                                    let showMess = new showMessage();
+                                    if (response['ok'] === true) {
+                                        showMess.show('Success', showMessageObj.MessageType.Success);
+
+                                        console.log('delete row');
+                                        document.getElementById('rowBody' + i).outerHTML = '';
+
+                                    } else {
+                                        showMess.show('Error', showMessageObj.MessageType.Error);
+                                    }
+                                });
+                            conformDeleForm.setVisible(false);
+                        }.bind(this));
+                        conformDeleForm.setOnClickNo(function () {
+                            conformDeleForm.setVisible(false);
+                        });
+                        //
+                    }
+                }
+            } else {
+                showMessageObj.show('Error', showMessageObj.MessageType.Error);
+            }
+        })
+};
+
 let xmlhttp = getXmlHttpObject();
 xmlhttp.onreadystatechange = function () {
     if (this.readyState === 4) {
@@ -152,6 +268,7 @@ logout.href = '/logout?jwt=' + window.localStorage.getItem('jwt');
 // };
 
 document.getElementById('getTeachers').onclick = function () {
+    hideNotNeed();
     let dataPost = {'jwt': window.localStorage.getItem('jwt')};
     request('POST', dataPost,
         '/admin/teachers/getall', function (response) {
@@ -189,8 +306,9 @@ document.getElementById('getTeachers').onclick = function () {
                                     } else {
                                         responseMess.ShowMessageError();
                                     }
-                                }.bind(this))
-                        });
+                                }.bind(this));
+                            conformDeleForm.setVisible(false);
+                        }.bind(this));
                         conformDeleForm.setOnClickNo(function () {
                             conformDeleForm.setVisible(false);
                         });
@@ -202,12 +320,17 @@ document.getElementById('getTeachers').onclick = function () {
         })
 };
 document.getElementById('getClasses').onclick = function () {
+    hideNotNeed();
     getAllClasses();
-
-
 };
+
 document.getElementById('getStudents').onclick = function () {
+    hideNotNeed();
     getStudents();
+};
+document.getElementById('getCriterias').onclick = function () {
+    hideNotNeed();
+    getCriterias();
 };
 
 let windowOverLay = document.getElementById('addNewForm');
@@ -219,6 +342,7 @@ let windowOverLay = document.getElementById('addNewForm');
 let addNews = document.getElementsByClassName('addNew');
 for (let i = 0; i < addNews.length; ++i) {
     addNews[i].onclick = function () {
+        hideNotNeed();
         windowOverLay.style.display = "flex";
         document.getElementById('fileUpload').value = '';
 
@@ -285,4 +409,16 @@ for (let i = 0; i < addNews.length; ++i) {
 //     xmlhttp.send(data);
 // }
 
+
+/**
+ *
+ *  hide tab show info of a class
+ */
+var infor = document.getElementById("tabInfor");
+window.onclick = function(event) {
+    hideNotNeed();
+    if(event.target === infor) {
+        infor.style.display = "none";
+    }
+};
 

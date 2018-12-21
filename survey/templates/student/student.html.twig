@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Class Servay-Student</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/css_giaodien.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+        <img src="./img/logo_uet.png" id="uet" class="d-inline-block align-top" alt="">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="/student">
+                <!-- <img src="./img/logo_uet.png" id="uet" class="d-inline-block align-top" alt=""> -->
+                UET Class Survey
+            </a>
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Thông báo </a>
+                <ul class="dropdown-menu message-dropdown">
+                    <li class="message-preview">
+                        <a href="#">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h5 class="media-heading"><strong>Nguyễn Tài Đô</strong>
+                                    </h5>
+                                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                    <p>Đã mở một đánh giá môn học INT 1234</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="message-preview">
+                        <a href="#">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h5 class="media-heading"><strong> Văn Minh </strong>
+                                    </h5>
+                                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Today at 12:32</p>
+                                    <p>Đã gửi cho bạn một tin nhắn</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="message-footer">
+                        <a href="#">Read All New Messages</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Tin nhắn </a>
+                <ul class="dropdown-menu alert-dropdown">
+                    <li>
+                        <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">View All</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  Nguyễn Tài Đô<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="file:///C:/Users/Asus/Desktop/learn/profile/profile.html"><i class="fa fa-fw fa-user"></i> Profile </a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-gear"></i> Settings </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#" id="logout"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <a href="/student"><i class="fa fa-fw fa-home mr-2"></i> Trang chủ</a>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo" onclick="openListCourse()" style="cursor: pointer;"><i class="fa fa-fw fa-list-ul"></i> Danh sách lớp học phần </a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="#"> </i>INT 3302 1</a>
+
+                        </li>
+                        <li>
+                            <a href="#"> </i>INT 3302 3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-users"></i> Diễn đàn</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <h1>Welcome to UET Class Survey</h1>
+            <img src="./img/cover.jpg" class="d-inline-block align-top" alt="">
+            <!-- Page Heading -->
+            <!-- <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Dashboard <small>Statistics Overview</small>
+                    </h1>
+                    <ol class="body">
+                        <form action="#search" id="search-1">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search courses..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                  <button class="btn btn-primary" type="button">
+                                    <i class="fa fa-fw fas fa-search"></i>
+                                  </button>
+                                </div>
+                              </div>
+                        </form>
+
+                    </ol>
+                </div>
+            </div> -->
+            <!-- list course -->
+            <!-- <div class="wrapper1" id="list">
+                <ul class="properties_list">
+                    <li>
+                        <a href="course_student.html">
+                            <div>
+                                <img src="img/xulyanh.jpg" alt="" title="" class="property_img"/>
+                                <span class="course">INT3304</span>
+                            <div class="property_details">
+                                <h1><a href="course_student.html" class="name_course">Xử lý ảnh</a></h1>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                            </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="course_student.html">
+                            <div>
+                                <img src="img/thigiacmay.jpg" alt="" title="" class="property_img"/>
+                                <span class="course">INT3412</span>
+                            <div class="property_details">
+                                <h1><a href="course_student.html" class="name_course">Thị giác máy</a></h1>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                            </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="course_student.html">
+                            <div>
+                                <img src="img/xacsuatthongke.jpg" alt="" title="" class="property_img"/>
+                                <span class="course">MAT1104</span>
+                            <div class="property_details">
+                                <h1><a href="course_student.html" class="name_course">Xác suất thống kê</a></h1>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                            </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div> -->
+            <!-- /list course -->
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<div class="change_wrapper" id="tabListCourse">
+    <form class="formList clearfix">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Dashboard <small>Statistics Overview</small>
+            </h1>
+            <ol class="body">
+                <form action="#search" id="search-1">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search courses..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fa fa-fw fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </ol>
+            <!-- list course -->
+            <div class="wrapper1" id="list">
+                <ul class="properties_list">
+                    <li>
+                        <a href="course_student.html">
+                            <div>
+                                <img src="img/xulyanh.jpg" alt="" title="" class="property_img"/>
+                                <span class="course">INT3304</span>
+                                <div class="property_details">
+                                    <h1><a href="course_student.html" class="name_course">Xử lý ảnh</a></h1>
+                                    <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="course_student.html">
+                            <div>
+                                <img src="img/thigiacmay.jpg" alt="" title="" class="property_img"/>
+                                <span class="course">INT3412</span>
+                                <div class="property_details">
+                                    <h1><a href="course_student.html" class="name_course">Thị giác máy</a></h1>
+                                    <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="course_student.html">
+                            <div>
+                                <img src="img/xacsuatthongke.jpg" alt="" title="" class="property_img"/>
+                                <span class="course">MAT1104</span>
+                                <div class="property_details">
+                                    <h1><a href="course_student.html" class="name_course">Xác suất thống kê</a></h1>
+                                    <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /list course -->
+    </form>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+    function openListCourse() {
+        document.getElementById("tabListCourse").style.display = "block";
+    }
+    var list = document.getElementById("tabListCourse");
+    window.onclick = function(event) {
+        if(event.target === list) {
+            list.style.display = "none";
+        }
+
+    }
+</script>
+<script src="js/student.js"></script>
+<script src="js/logout.js"></script>
+</body>
+
+</html>
