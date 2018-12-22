@@ -1,0 +1,310 @@
+/*!
+ * Start Bootstrap - SB Admin Bootstrap Admin Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Global Styles */
+
+body {
+    margin-top: 100px;
+    background-color: #fff;
+}
+
+@media(min-width:768px) {
+    body {
+        margin-top: 50px;
+    }
+}
+
+#wrapper {
+    padding-left: 0;
+}
+
+#page-wrapper {
+    width: 100%;
+    padding: 0;
+    background-color: #fff;
+}
+
+#wrapper nav.navbar a.navbar-brand,
+#wrapper nav.navbar ul li.dropdown a.dropdown-toggle{
+    color: white;
+    padding-top: 20px;
+
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #page-wrapper {
+        padding: 10px;
+        padding-left: 35px;
+    }
+}
+
+/* Top Navigation */
+
+.top-nav {
+    padding: 0 15px;
+}
+
+.top-nav>li {
+    display: inline-block;
+    float: left;
+}
+
+.top-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;
+    color: #999;
+}
+
+
+.top-nav>li>a:hover,
+.top-nav>li>a:focus,
+.top-nav>.open>a,
+.top-nav>.open>a:hover,
+.top-nav>.open>a:focus {
+    background-color: blue;
+    height: 60px;
+}
+
+
+.top-nav>.open>.dropdown-menu {
+    position: absolute;
+    margin-top: 0;
+    border: 1px solid rgba(0,0,0,.15);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    /* -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175); */
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    
+}
+
+.top-nav>.open>.dropdown-menu>li>a {
+    white-space: normal;
+
+}
+
+ul.message-dropdown {
+    padding: 0;
+    max-height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+li.message-preview {
+    width: 275px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+li.message-preview>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+li.message-footer {
+    margin: 5px 0;
+}
+
+ul.alert-dropdown {
+    width: 200px;
+}
+
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 60px;
+        left: 225px;
+        width: 19%;
+        margin-left: -225px;
+        border: none;
+        border-radius: 0;
+        overflow-y: auto;
+        background-color: #EFEFFB;
+        bottom: 0;
+        overflow-x: hidden;
+        padding-bottom: 40px;
+        color: black;
+        border-right: 1px solid #F8F1F1;
+
+    }
+    /* .side-nav li{
+        /* border-bottom: 0.05px solid gray; */
+    /* } */
+
+    .navbar-inverse .navbar-nav>li>ul>li>a, 
+    .navbar-inverse .navbar-nav>li>a {
+        color: black;
+    }
+    .side-nav>li>a {
+        width: 250px;
+    }
+   
+
+    .side-nav li a:hover,
+    .side-nav li a:focus {
+        outline: none;
+        background-color:rgb(151, 213, 248) !important;
+        width: 250px;
+    }
+}
+
+.side-nav>li>ul {
+    padding: 0;
+}
+
+.side-nav>li>ul>li>a {
+    display: block;
+    padding: 10px 15px 10px 38px;
+    text-decoration: none;
+    color: #999;
+}
+
+.side-nav>li>ul>li>a:hover {
+    color: #fff;
+}
+
+
+#wrapper nav.navbar-inverse{
+    background-color:#2E64FE;
+    border-bottom: black;
+    height: 60px;
+}
+#search-1{
+    margin-left: 680px;
+}
+
+#uet{
+    width: 40px;
+    margin-top: 10px;
+}
+
+
+.input-group>.form-control {
+    width: 65%;
+}
+
+
+/* list course */
+
+#list ul.properties_list{
+    list-style: none;
+    overflow: hidden;
+}
+
+
+#list ul.properties_list li{
+    display: block;
+    width: 340px;
+    height: auto;
+    position: relative;
+    float: left;
+    margin: 30px 50px 40px 50px;
+}
+
+
+#list ul.properties_list li img.property_img{
+    width: 297px;
+    height: 170px;  
+    vertical-align: top;
+    
+}
+
+
+#list ul.properties_list li .course{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 15px 20px;
+    background: #ffffff;
+    color: #514d4d;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+/* css list course */
+/* 
+#list ul.properties_list li:nth-child(3n+0){
+    margin-right: 0;
+} */
+
+#list ul li .property_details{
+    width: 298px;
+    padding: 10px 20px 14px 20px;
+    border-bottom: 1px solid #f2f1f1;
+    border-left: 1px solid #f2f1f1;
+    border-right: 1px solid #f2f1f1;
+
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+}
+
+#list ul li:hover .property_details{
+    border-bottom: 1px solid #95badf;
+    border-left: 1px solid #95badf;
+    border-right: 1px solid #95badf;
+}
+
+#list ul li .property_details h1{
+    color: #666464;
+    font-size: 16px!important;
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 28px;
+    text-align: center;
+}
+
+#list ul li .property_details h1 a{
+    text-decoration: none;
+    color: #666464;
+}
+
+/* list student */
+#tabListStu {
+    display: none;
+    text-align: left;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color:white;
+}
+
+/* list Course */
+#tabListCourse {
+    display: none;
+    text-align: left;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color:white;
+}
+
+.formList {
+    float: right;
+    border: none;
+    margin-top: 53px;
+    /* width: 1050px; */
+    width: 78%;
+    overflow: auto;
+    background: white;
+    animation: animatezoom 0s;
+}
+

@@ -33,6 +33,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use http\Exception\UnexpectedValueException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+
 class StudentController extends AbstractController
 {
     public static $role = 'ROLE_STUDENT';
@@ -50,26 +51,24 @@ class StudentController extends AbstractController
         try {
             Authenticator::verifyFor($request, $entityManager, StudentController::$role);
 
-            if(!$request->request->has('survey_form'))
-            {
+            if (!$request->request->has('survey_form')) {
                 throw new BadRequestHttpException();
             }
             $survey_form = $request->request->get('survey_form');
 
-            if(!$request->request->has('idClass'))
-            {
+            if (!$request->request->has('idClass')) {
                 throw new NotFoundException();
             }
 
-            $class = $entityManager->getRepository(ClassSubject::class)->findOneBy(['idclass'=>$request->request->get('idClass')]);
+            $class = $entityManager->getRepository(ClassSubject::class)->findOneBy(['idclass' => $request->request->get('idClass')]);
 
 
-            if($class === null) {
+            if ($class === null) {
                 throw new NotFoundException();
             }
 
             $surveyForm = new SurveyForm();
-            $surveyForm->setContent(json_decode($survey_form,true, 512, JSON_UNESCAPED_UNICODE));
+            $surveyForm->setContent(json_decode($survey_form, true, 512, JSON_UNESCAPED_UNICODE));
             $class->addSurveyForm($surveyForm);
 
             $entityManager->persist($surveyForm);
@@ -124,7 +123,8 @@ class StudentController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function index(Request $request, EntityManagerInterface $entityManager) {
+    public function index(Request $request, EntityManagerInterface $entityManager)
+    {
 //        try {
 //            Authenticator::verifyFor($request, $entityManager, StudentController::$role);
 //
@@ -195,5 +195,87 @@ class StudentController extends AbstractController
         return $this->render('student/student.html.twig', [
             'controller_name' => 'StudentController',
         ]);
+    }
+
+    /**
+     * @Route("/student/getAll", name="student_getAll")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     * @throws \Doctrine\DBAL\ConnectionException
+     */
+    public function getAll(Request $request, EntityManagerInterface $entityManager)
+    {
+        try {
+            Authenticator::verifyFor($request, $entityManager, StudentController::$role);
+
+            $user = $entityManager->getRepository(User::class)->findOneBy(['jwt' => $request->request->get('jwt')]);
+            if ($user === null) {
+                throw new NotFoundException();
+            }
+            $student = $entityManager->getRepository(Student::class)->findOneBy(['iduserdb' => $user]);
+
+            $profile = $student->getProfile();
+
+
+            $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
+            if ($criterialLevels === null) {
+                $criterialLevels = [];
+                for ($i = 0; $i < count(SRCConfig::DEFAULT_FORM); ++$i) {
+                    $criterialLevel = new CriteriaLevel();
+                    $criterialLevel->setName(SRCConfig::DEFAULT_FORM[$i]);
+                    $entityManager->persist($criterialLevel);
+
+                    $criterialLevels[] = $criterialLevel;
+                }
+                $entityManager->flush();
+                $criterialLevels = $entityManager->getRepository(CriteriaLevel::class)->findAll();
+
+            }
+            $appendix = CriteriaLevel::convertArrayCriterialLevelObjectsToArray($criterialLevels);
+            $classes = $student->getNecessarySurveyFormsInfo($appendix);
+
+            $response = new Response(json_encode(['ok' => 'true', 'data' => ['profile' => $profile, 'classes' => $classes, 'appendix' => $appendix]], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch
+        (AuthenticationException $e) {
+            $response = new Response(json_encode(['ok' => "AuthenticationException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch
+        (CustomUserMessageAuthenticationException $e) {
+            $response = new Response(json_encode(['ok' => "CustomUserMessageAuthenticationException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (UnexpectedValueException | SignatureInvalidException |
+        BeforeValidException | ExpiredException $e) {
+//            $response = new Response(json_encode(['ok' => "SignatureInvalidException"], JSON_UNESCAPED_UNICODE));
+//            $response->headers->set('Content-Type', 'application/json');
+//            return $response;
+            return $this->redirectToRoute('login_form');
+        } catch (NotTrueRoleException $e) {
+            $loginForm = new MyLoginFormAuthenticator($entityManager);
+            $credentials = $loginForm->getCredentials($request);
+            $user = $loginForm->getUserByJWT($credentials);
+            $response = new Response(json_encode(['ok' => 'NotTrueRoleException'], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (NotFoundJWTException $e) {
+            $response = new Response(json_encode(['ok' => "NotFoundJWTException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (\PhpOffice\PhpSpreadsheet\Exception $e) {
+            $response = new Response(json_encode(['ok' => "\PhpOffice\PhpSpreadsheet\Exception"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (NotFoundException $e) {
+            $response = new Response(json_encode(['ok' => "NotFoundException"], JSON_UNESCAPED_UNICODE));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (Exception $e) {
+            $entityManager->getConnection()->rollBack();
+        }
+
     }
 }

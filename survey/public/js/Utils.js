@@ -39,3 +39,17 @@ function convertToTableData(data) {
     }
     return data;
 }
+var createElement = function (tagName, className, href, id) {
+    let tag = document.createElement(tagName);
+    if(className) {
+        tag.className = className;
+    }
+    if(href) {
+        tag.href = href;
+    }
+    if(id) {
+        tag.id = id;
+    }
+
+    return tag;
+};

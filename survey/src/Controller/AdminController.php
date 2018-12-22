@@ -355,7 +355,7 @@ class AdminController extends AbstractController
                         if ($teacher) {
                             $class->setTeacher($teacher);
                             $studentData = $data['data'];
-
+                            $passEncoder = new PasswordEncoder();
                             foreach ($studentData as $value) {
 
                                 $student = $entityManager->getRepository(Student::class)->findOneBy(['idstudent' => $value[0]]);
@@ -379,7 +379,7 @@ class AdminController extends AbstractController
                                     // not had account then add account
                                     $user = new User();
                                     $user->setUsername($student->getIdstudent());
-                                    $user->setPassword(SRCConfig::DEFAULT_PASSWORD);
+                                    $user->setPassword($passEncoder->encode($user,SRCConfig::DEFAULT_PASSWORD));
                                     $user->setRoles([(new Role('ROLE_STUDENT'))->getRole()]);
 
                                     $student->setIduserdb($user);
