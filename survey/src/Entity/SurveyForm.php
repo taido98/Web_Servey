@@ -111,14 +111,18 @@ class SurveyForm
     public function getNecessaryInfo($criterialLevels): array
     {
         $retData = [];
-        $retContent = $this->content;
-        if($this->content === []) {
-            foreach ($criterialLevels as $key=>$value) {
+        $retContent = [];
+
+        foreach ($criterialLevels as $key => $value) {
+            if ($this->content === []) {
                 $retContent[$key] = 0;
+            } else {
+                $retContent[$key] = $this->content[$key];
             }
         }
-        $retData = ['content'=>$retContent];
-        foreach ($this->classSubject[0]->toString() as $key=>$value) {
+
+        $retData = ['content' => $retContent];
+        foreach ($this->classSubject[0]->toString() as $key => $value) {
             $retData[$key] = $value;
         }
 

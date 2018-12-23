@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79b4d1b8-b128-45c4-9dfc-aaf2135bb5e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/survey/public/js/ClassList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/survey/public/js/Message.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/survey/public/js/Profile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/survey/public/js/UpdateProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/Server/config/configServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/old/Server/config/configServer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/public/js/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/survey/public/js/Admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/public/js/student.js" beforeDir="false" afterPath="$PROJECT_DIR$/survey/public/js/student.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/public/js/teacher.js" beforeDir="false" afterPath="$PROJECT_DIR$/survey/public/js/teacher.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/Controller/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Controller/StudentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/Controller/TeacherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Controller/TeacherController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/Entity/ClassSubject.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Entity/ClassSubject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/Entity/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Entity/Student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/src/Entity/Teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Entity/Teacher.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/templates/admin/admin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/survey/templates/admin/admin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/templates/student/student.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/survey/templates/student/student.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/survey/templates/teacher/teacher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/survey/templates/teacher/teacher.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/survey/src/Entity/SurveyForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/survey/src/Entity/SurveyForm.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +31,43 @@
     <favorites_list name="Servey" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/survey/src/Controller/StudentController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="689">
+              <caret line="242" column="60" selection-start-line="242" selection-start-column="33" selection-end-line="242" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/survey/src/Entity/SurveyForm.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="119" column="55" selection-start-line="119" selection-start-column="55" selection-end-line="119" selection-end-column="55" />
+              <folding>
+                <element signature="e#1311#1547#0#PHP" />
+                <element signature="e#1605#1688#0#PHP" />
+                <element signature="e#1694#1881#0#PHP" />
+                <element signature="e#1887#2088#0#PHP" />
+                <element signature="e#2094#2173#0#PHP" />
+                <element signature="e#2179#2297#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/survey/src/Entity/Student.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="166" column="57" selection-start-line="166" selection-start-column="41" selection-end-line="166" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -61,7 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Nguy</find>
       <find>col-lg-12</find>
       <find>./img/cover.jpg</find>
       <find>mainC</find>
@@ -91,6 +109,7 @@
       <find>contain</find>
       <find>encode</find>
       <find>PasswordEncoder</find>
+      <find>getNecessarySurveyFormsInfo</find>
     </findStrings>
     <replaceStrings>
       <replace>btnId</replace>
@@ -102,7 +121,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/old/public/LoginForm.html" />
         <option value="$PROJECT_DIR$/survey/public/LoginForm.html" />
         <option value="$PROJECT_DIR$/survey/public/css/LoginForm.css" />
         <option value="$PROJECT_DIR$/survey/templates/admin/index.html.twig" />
@@ -153,6 +171,7 @@
         <option value="$PROJECT_DIR$/survey/public/js/UpdateProfile.js" />
         <option value="$PROJECT_DIR$/survey/src/Controller/TeacherController.php" />
         <option value="$PROJECT_DIR$/survey/src/Controller/StudentController.php" />
+        <option value="$PROJECT_DIR$/survey/src/Entity/SurveyForm.php" />
       </list>
     </option>
   </component>
@@ -478,15 +497,16 @@
       <workItem from="1545381253567" duration="478000" />
       <workItem from="1545381827495" duration="25743000" />
       <workItem from="1545464786588" duration="14780000" />
-      <workItem from="1545561414671" duration="13517000" />
+      <workItem from="1545561414671" duration="13875000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="367520000" />
+    <option name="totallyTimeSpent" value="367878000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="32" width="1366" height="701" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49818182" visible="true" weight="0.21526718" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -765,22 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Entity/SurveyForm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-456">
-          <caret line="37" column="27" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="27" />
-          <folding>
-            <element signature="e#1311#1547#0#PHP" />
-            <element signature="e#1605#1688#0#PHP" />
-            <element signature="e#1694#1881#0#PHP" />
-            <element signature="e#1887#2088#0#PHP" />
-            <element signature="e#2094#2173#0#PHP" />
-            <element signature="e#2179#2297#0#PHP" />
-            <element signature="e#2303#2778#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/survey/public/js/NewTable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-115">
@@ -873,23 +877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Controller/StudentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="317" column="37" selection-start-line="317" selection-start-column="37" selection-end-line="317" selection-end-column="37" />
-          <folding>
-            <element signature="e#9762#13782#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/survey/src/Entity/Student.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="91" column="31" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/survey/src/Controller/TeacherController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
@@ -946,6 +933,35 @@
             <element signature="e#3514#3748#0#PHP" />
             <element signature="e#4801#5700#0#PHP" />
             <element signature="e#5706#6240#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Controller/StudentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="689">
+          <caret line="242" column="60" selection-start-line="242" selection-start-column="33" selection-end-line="242" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Entity/Student.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="166" column="57" selection-start-line="166" selection-start-column="41" selection-end-line="166" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/survey/src/Entity/SurveyForm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="119" column="55" selection-start-line="119" selection-start-column="55" selection-end-line="119" selection-end-column="55" />
+          <folding>
+            <element signature="e#1311#1547#0#PHP" />
+            <element signature="e#1605#1688#0#PHP" />
+            <element signature="e#1694#1881#0#PHP" />
+            <element signature="e#1887#2088#0#PHP" />
+            <element signature="e#2094#2173#0#PHP" />
+            <element signature="e#2179#2297#0#PHP" />
           </folding>
         </state>
       </provider>
