@@ -1,3 +1,11 @@
+// update profile behavior
+var updateProfile = null;
+document.getElementById('updateProfile').onclick = function () {
+    updateProfile = StudentUpdateProfile;
+    updateProfile.showPopup();
+    updateProfile.update();
+};
+
 // list class object
 var listClass = document.getElementById('demo');
 var mainContent = document.getElementById('mainContent');
@@ -42,11 +50,12 @@ var Row = function (idDB, ratioButton, defaultValue) {
  * @param className
  * @constructor
  */
-var SurveyForm = function (parent, contentData, appendix, className) {
+var SurveyForm = function (parent, contentData, appendix, className, classId) {
     this.parent = parent;
     this.contentData = contentData;
     this.appendix = appendix;
     this.className = className;
+    this.classId = classId;
     this.titile = null;
     this.backButton = null;
     this.submitButton = null;
@@ -60,8 +69,30 @@ var SurveyForm = function (parent, contentData, appendix, className) {
         createBackButton();
         createSubmitBtn();
         this.submitButton.onclick = function () {
-            console.log(this.getData());
-        }.bind(this);
+
+            try {
+                let formData = JSON.stringify(that.getData());
+                console.log(formData);
+                let data = {
+                    'jwt': window.localStorage.getItem('jwt'),
+                    'idClass': that.classId,
+                    'survey_form': formData
+                };
+                request('POST', data, '/student/submit_survey_form', function (response) {
+                    let mess = new Message('message');
+                    if(response['ok'] === 'true') {
+                        console.log('success');
+                        mess.ShowMessageSuccess();
+                    } else {
+                        mess.ShowMessageError();
+                    }
+                });
+            } catch (e) {
+                let mess = new Message('message');
+                mess.ShowMessageError();
+            }
+
+        };
     };
     var createBackButton = function () {
 
@@ -183,44 +214,6 @@ var SurveyForm = function (parent, contentData, appendix, className) {
     }
 };
 
-
-/**
- *
- * @param parent
- * @param data
- * @constructor
- */
-var ClassList = function (parent, data) {
-    this.parent = parent;
-    this.data = data;
-    this.listElements = [];
-    this.generate = function () {
-        console.log('generate');
-        this.parent.innerHTML = '';
-        let length = this.data.length;
-        for (let i = 0; i < length; ++i) {
-            let li = createElement('li');
-            let a = createElement('a', null, '#');
-            a.innerHTML = this.data[i]['idClass'];
-            li.appendChild(a);
-            this.parent.appendChild(li);
-            li.idClass = this.data[i]['idClass'];
-            li.contentData = this.data[i]['content'];
-            li.subjectName = this.data[i]['subjectName'];
-            li.numberLesson = this.data[i]['numberLesson'];
-            li.location = this.data[i]['location'];
-            li.onclick = function () {
-                mainContent.innerHTML = '';
-                // create survey form
-                document.getElementById('startMain').style.display = 'none';
-                let surveyForm = new SurveyForm(mainContent, this.contentData,
-                    appendix, this.subjectName);
-                surveyForm.generate();
-            };
-            this.listElements.push(li);
-        }
-    };
-};
 
 let dataPost = {'jwt': window.localStorage.getItem('jwt')};
 request('POST', dataPost, 'student/getAll', function (response) {

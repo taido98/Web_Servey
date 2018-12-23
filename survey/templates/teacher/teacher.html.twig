@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Class Servay-Teacher</title>
+    <title>Class Servay-Student</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="teacher.html">
+            <a class="navbar-brand" href="/student">
                 <!-- <img src="./img/logo_uet.png" id="uet" class="d-inline-block align-top" alt=""> -->
                 UET Class Survey
             </a>
@@ -46,15 +46,13 @@
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i>
-                    Thông báo
-                </a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Thông báo </a>
                 <ul class="dropdown-menu message-dropdown">
                     <li class="message-preview">
                         <a href="#">
                             <div class="media">
                                 <div class="media-body">
-                                    <h5 class="media-heading"><strong>Nguyễn Tài Đô</strong>
+                                    <h5 class="media-heading"><strong id="fullName">Nguyễn Tài Đô</strong>
                                     </h5>
                                     <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                     <p>Đã mở một đánh giá môn học INT 1234</p>
@@ -81,7 +79,7 @@
             </li>
             <li class="dropdown">
 
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Tin nhắn </b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Tin nhắn </a>
                 <ul class="dropdown-menu alert-dropdown">
                     <li>
                         <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
@@ -108,10 +106,13 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  Ngô Thị Duyên <b class="caret"></b></a>
+                <a href="#" id="nameStudent" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user"></i>  Nguyễn Tài Đô<b class="caret">
+
+                    </b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="profile.html"><i class="fa fa-fw fa-user"></i> Profile </a>
+                        <a id="updateProfile" href="file:///C:/Users/Asus/Desktop/learn/profile/profile.html"><i class="fa fa-fw fa-user"></i> Profile </a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
@@ -130,7 +131,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
-                    <a href="teacher.html"><i class="fa fa-fw fa-home mr-2"></i> Trang chủ</a>
+                    <a href="/student"><i class="fa fa-fw fa-home mr-2"></i> Trang chủ</a>
                 </li>
                 <li>
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo" onclick="openListCourse()" style="cursor: pointer;"><i class="fa fa-fw fa-list-ul"></i> Danh sách lớp học phần </a>
@@ -152,9 +153,73 @@
     </nav>
 
     <div id="page-wrapper">
-        <div class="container-fluid">
+        <div id="startMain" class="container-fluid">
             <h1>Welcome to UET Class Survey</h1>
             <img src="./img/cover.jpg" class="d-inline-block align-top" alt="">
+            <!-- Page Heading -->
+            <!-- <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Dashboard <small>Statistics Overview</small>
+                    </h1>
+                    <ol class="body">
+                        <form action="#search" id="search-1">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search courses..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                  <button class="btn btn-primary" type="button">
+                                    <i class="fa fa-fw fas fa-search"></i>
+                                  </button>
+                                </div>
+                              </div>
+                        </form>
+
+                    </ol>
+                </div>
+            </div> -->
+            <!-- list course -->
+            <!-- <div class="wrapper1" id="list">
+                <ul class="properties_list">
+                    <li>
+                        <a href="course_student.html">
+                            <div>
+                                <img src="img/xulyanh.jpg" alt="" title="" class="property_img"/>
+                                <span class="course">INT3304</span>
+                            <div class="property_details">
+                                <h1><a href="course_student.html" class="name_course">Xử lý ảnh</a></h1>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                            </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="course_student.html">
+                            <div>
+                                <img src="img/thigiacmay.jpg" alt="" title="" class="property_img"/>
+                                <span class="course">INT3412</span>
+                            <div class="property_details">
+                                <h1><a href="course_student.html" class="name_course">Thị giác máy</a></h1>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                            </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="course_student.html">
+                            <div>
+                                <img src="img/xacsuatthongke.jpg" alt="" title="" class="property_img"/>
+                                <span class="course">MAT1104</span>
+                            <div class="property_details">
+                                <h1><a href="course_student.html" class="name_course">Xác suất thống kê</a></h1>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                            </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div> -->
+            <!-- /list course -->
+
 
         </div>
         <!-- /.container-fluid -->
@@ -168,67 +233,72 @@
 <div class="change_wrapper" id="tabListCourse">
     <form class="formList clearfix">
         <div class="col-lg-12">
+            <span id="message" style="display: none"></span>
             <h1 class="page-header">
                 Dashboard <small>Statistics Overview</small>
             </h1>
-            <ol class="body">
-                <form action="#search" id="search-1">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search courses..." aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fa fa-fw fas fa-search"></i>
-                            </button>
+            <div id="mainContent">
+                <ol class="body">
+                    <form action="#search" id="search-1">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search courses..." aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fa fa-fw fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
 
-            </ol>
-            <!-- list course -->
-            <div class="wrapper1" id="list">
-                <ul class="properties_list">
-                    <li>
-                        <a href="course_student.html">
-                            <div>
-                                <img src="img/xulyanh.jpg" alt="" title="" class="property_img"/>
-                                <span class="course">INT3304</span>
-                                <div class="property_details">
-                                    <h1><a href="course_student.html" class="name_course">Xử lý ảnh</a></h1>
-                                    <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                </ol>
+                <!-- list course -->
+                <div class="wrapper1" id="list">
+                    <ul class="properties_list">
+                        <li>
+                            <a href="course_student.html">
+                                <div>
+                                    <img src="img/xulyanh.jpg" alt="" title="" class="property_img"/>
+                                    <span class="course">INT3304</span>
+                                    <div class="property_details">
+                                        <h1><a href="course_student.html" class="name_course">Xử lý ảnh</a></h1>
+                                        <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="course_student.html">
-                            <div>
-                                <img src="img/thigiacmay.jpg" alt="" title="" class="property_img"/>
-                                <span class="course">INT3412</span>
-                                <div class="property_details">
-                                    <h1><a href="course_student.html" class="name_course">Thị giác máy</a></h1>
-                                    <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="course_student.html">
+                                <div>
+                                    <img src="img/thigiacmay.jpg" alt="" title="" class="property_img"/>
+                                    <span class="course">INT3412</span>
+                                    <div class="property_details">
+                                        <h1><a href="course_student.html" class="name_course">Thị giác máy</a></h1>
+                                        <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="course_student.html">
-                            <div>
-                                <img src="img/xacsuatthongke.jpg" alt="" title="" class="property_img"/>
-                                <span class="course">MAT1104</span>
-                                <div class="property_details">
-                                    <h1><a href="course_student.html" class="name_course">Xác suất thống kê</a></h1>
-                                    <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="course_student.html">
+                                <div>
+                                    <img src="img/xacsuatthongke.jpg" alt="" title="" class="property_img"/>
+                                    <span class="course">MAT1104</span>
+                                    <div class="property_details">
+                                        <h1><a href="course_student.html" class="name_course">Xác suất thống kê</a></h1>
+                                        <button type="button" class="btn btn-secondary btn-lg btn-block">Course</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
         </div>
         <!-- /list course -->
     </form>
 </div>
+
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 
@@ -240,14 +310,21 @@
         document.getElementById("tabListCourse").style.display = "block";
     }
     var list = document.getElementById("tabListCourse");
-    window.onclick = function(event) {
-        if(event.target == list) {
-            list.style.display = "none";
-        }
-
-    }
+    // window.onclick = function(event) {
+    //     if(event.target === list) {
+    //         list.style.display = "none";
+    //     }
+    //
+    // }
 </script>
-<script src="js/teacher"></script>
+<script src="js/Utils.js"></script>
+<script src="js/Profile.js"></script>
+<script src="js/Message.js"></script>
+<script src="js/Request.js"></script>
+<script src="js/NewTable.js"></script>
+<script src="js/ClassList.js"></script>
+<script src="js/UpdateProfile.js"></script>
+<script src="js/teacher.js"></script>
 <script src="js/logout.js"></script>
 </body>
 

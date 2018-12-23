@@ -79,8 +79,8 @@ var getAllClasses = function () {
                                         document.getElementById('className').innerText = data['class']['nameSubject'];
                                         document.getElementById('idClass').innerText = data['class']['idClass'];
                                         document.getElementById('teacherName').innerText = data['class']['teacher'];
-
-
+                                        document.getElementById('totalDoneStudents').innerText = 'Số sinh viên tham gia đánh giá: '+
+                                            data['class']['numberStudentDone'];
 
                                         setTimeout(function () {
                                             document.getElementById('responseMessage').style.display = 'none';

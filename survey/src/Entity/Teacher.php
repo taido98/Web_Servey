@@ -145,76 +145,78 @@ class Teacher
     public function getStatisticAndClassInfo($appendix, $entityManager): array
     {
         $retData = [];
-
-
-        $M3 = null;
-        $STD3 = null;
         // statistic 3 all class same teacher
         $classesSameTeacher = $entityManager->getRepository(ClassSubject::class)->findBy(['teacher' => $this]);
         $statistic3 = [];
         foreach ($appendix as $key => $value) {
-            $statistic3[$key] = [0, 0];
+            $statistic[$key] = [];
         }
 
         foreach ($classesSameTeacher as $item) {
             $retStatistic = $item->getRawStatistic($appendix);
             $rawStatistic = $retStatistic['statistic'];
             foreach ($rawStatistic as $key => $value) {
-                $statistic3[$key][0] += (float)$value;
-                $statistic3[$key][1] += 1;
+                $data = [];
+                foreach ($value as $k => $v) {
+                    $data[] = [(int) $k, (int) $v];
+                }
+                $sta = new Statistic($data);
+                try {
+                    $sta->calculate();
+                    $statistic3[$key]['M3'] = round($sta->getAverage(), 2);
+                    $statistic3[$key]['STD3'] = round($sta->getAverage(), 2);
+
+                } catch (\ErrorException $e) {
+                    $statistic3[$key]['M'] = 0;
+                    $statistic3[$key]['STD'] = 0;
+                }
             }
 
-        }
-        $sta = new Statistic($statistic3);
-        try {
-            $sta->calculate();
-            $M3 = $sta->getAverage();
-            $STD3 = $sta->getVariant();
-        }catch (\ErrorException $e) {
-            $M3 = 0;
-            $STD3 = 0;
         }
 
 
         // statistic 1 each class
         foreach ($this->teacher as $class) {
             $classData = $class->toString();
-            $classData['statistic'] = $class->getStatistic($appendix);
+            $classData['statistic'] = $class->getStatistic($appendix)['statistic'];
 
 
             // statistic 2 same subject id
-            $statistic2 = [];
-            foreach ($appendix as $key => $value) {
-                $statistic2[$key] = [0, 0];
-            }
             $classesSameSub = $entityManager->getRepository(ClassSubject::class)->findBy(['idsubject' => $class->getIdsubject()]);
 
             foreach ($classesSameSub as $item) {
                 $retStatistic = $item->getRawStatistic($appendix);
                 $rawStatistic = $retStatistic['statistic'];;
                 foreach ($rawStatistic as $key => $value) {
-                    $statistic2[$key][0] += (float)$value;
-                    $statistic2[$key][1] += 1;
+                    $data = [];
+                    foreach ($value as $k => $v) {
+                        $data[] = [(int) $k, (int) $v];
+                    }
+                    $sta = new Statistic($data);
+                    try {
+                        $sta->calculate();
+                        $classData['statistic'][$key]['M2'] = round($sta->getAverage(), 2);
+                        $classData['statistic'][$key]['STD2'] = round($sta->getAverage(), 2);
+
+                    } catch (\ErrorException $e) {
+                        $classData['statistic'][$key]['M2'] = 0;
+                        $classData['statistic'][$key]['STD2'] = 0;
+                    }
                 }
 
             }
-            $sta = new Statistic($statistic2);
-            try {
-                $sta->calculate();
-                $classData['statistic']['M2'] = $sta->getAverage();
-                $classData['statistic']['STD2'] = $sta->getVariant();
-            }catch (\ErrorException $e) {
-                $classData['statistic']['M2'] = 0;
-                $classData['statistic']['STD2'] = 0;
+            foreach ($statistic3 as $key=>$value) {
+                $classData['statistic'][$key]['M3'] = $statistic3[$key]['M3'];
+                $classData['statistic'][$key]['STD3'] = $statistic3[$key]['STD3'];
             }
 
-            $classData['statistic']['M3'] = $M3;
-            $classData['statistic']['STD3'] = $STD3;
+
+
+
 
             $retData[] = $classData;
 
         }
-
 
         return $retData;
     }

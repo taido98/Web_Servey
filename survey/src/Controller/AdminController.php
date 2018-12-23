@@ -757,38 +757,6 @@ class AdminController extends AbstractController
             }
             $appendix = CriteriaLevel::convertArrayCriterialLevelObjectsToArray($criterialLevels);
 
-
-//            foreach ($classes as $class) {
-//                $statistic = [];
-//                $surveyForms = $class->getSurveyForm();
-//
-//                $criterialValues = [];
-//                foreach($criterialLevelArr as $key=>$value) {
-//                    $criterialValues[$key] = 0;
-//                }
-//
-//                foreach ($surveyForms as $surveyForm) {
-//                    $content = $surveyForm->getContent();
-//                    if($content !== null) {
-//                        foreach ($content as $key=>$value) {
-//                            $criterialValues[$key] += (int)$value;
-//                        }
-//                    }
-//
-//
-//                }
-//
-//                foreach ($criterialValues as $key=>$value) {
-//                    $statistic[$key] = $value;
-//                }
-//
-//
-//                $retData[] = ['idClass'=> $class->getIdclass(),
-//                    'namesubject'=>$class->getNamesubject(),
-//                    'location'=>$class->getLocation(),
-//                    'numberLesson'=>$class->getNumberlesson(),
-//                    'statistic'=>$statistic];
-//            }
             $retData = $class->getStatistic($appendix);
             $retData['idClass'] = $class->getIdclass();
             $retData['nameSubject'] = $class->getNamesubject();

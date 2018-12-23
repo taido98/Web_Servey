@@ -193,20 +193,23 @@ class ClassSubject
         $statistic = $retStatistic['statistic'];
         $retData['numberStudentDone'] = $retStatistic['numberStudentDone'];
         $retData['statistic'] = [];
+        $a = null;
         foreach ($statistic as $key => $value) {
-            $sta = new Statistic($value);
+            $data = [];
+            foreach ($value as $k => $v) {
+                $data[] = [(int) $k, (int) $v];
+            }
+            $sta = new Statistic($data);
             try {
                 $sta->calculate();
-                $retData['statistic'][$key]['M'] = $sta->getAverage();
-                $retData['statistic'][$key]['STD'] = $sta->getVariant();
+                $retData['statistic'][$key]['M'] = round($sta->getAverage(), 2);
+                $retData['statistic'][$key]['STD'] = round($sta->getVariant(), 2);
 
             } catch (\ErrorException $e) {
                 $retData['statistic'][$key]['M'] = 0;
                 $retData['statistic'][$key]['STD'] = 0;
             }
         }
-
-
 
         return $retData;
     }
@@ -233,8 +236,6 @@ class ClassSubject
                     if(array_key_exists($key, $statistic)) {
                         $statistic[$key][(int)$value] += 1;
                     }
-
-
                 }
             }
 
@@ -248,7 +249,7 @@ class ClassSubject
         $doneStudent = 0;
         foreach ($this->surveyForm as $s) {
             $contentData = $s->getContent();
-            if ($contentData !== null) {
+            if ($contentData !== null && count($contentData) >= 1) {
                 $doneStudent += 1;
             }
 

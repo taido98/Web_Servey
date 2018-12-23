@@ -165,7 +165,21 @@ class Student
         $returnData = [];
         foreach($this->surveyForms as $surveyForm) {
             $returnData[] = $surveyForm->getNecessaryInfo($criterialLevels);
+//            $returnData[] = $surveyForm->getId();
         }
         return $returnData;
     }
+    public  function setContentClassSubject(ClassSubject $class,array $content) {
+        foreach($this->surveyForms as $surveyForm) {
+            foreach ($surveyForm->getClassSubject() as $classSubject) {
+                $classId = $classSubject->getId();
+                if($classId === $class->getId()) {
+                    $surveyForm->setContent($content);
+                    break;
+                }
+            }
+
+        }
+    }
+
 }

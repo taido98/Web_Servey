@@ -14,7 +14,7 @@ return array(
         'user'     => 'root', // Database username
         'password' => 'root', // Database password
         'host'     => 'bulletin.any.com.vn', // Database host
-        'name'     => 'servey', // Database schema name
+        'name'     => 'survey', // Database schema name
     ),
     'serverName' => 'http://bulletin.any.com.vn/',
 );
