@@ -3,7 +3,7 @@ var updateProfile = null;
 document.getElementById('updateProfile').onclick = function () {
     updateProfile = StudentUpdateProfile;
     updateProfile.showPopup();
-    updateProfile.update();
+    // updateProfile.update();
 };
 
 // list class object

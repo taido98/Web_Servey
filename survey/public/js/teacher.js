@@ -4,7 +4,7 @@ var updateProfile = null;
 document.getElementById('updateProfile').onclick = function () {
     updateProfile = TeacherUpdateProfile;
     updateProfile.showPopup();
-    updateProfile.update();
+    // updateProfile.update();
 };
 
 // list class object
