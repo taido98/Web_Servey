@@ -167,8 +167,8 @@ class Teacher
                     $statistic3[$key]['STD3'] = round($sta->getAverage(), 2);
 
                 } catch (\ErrorException $e) {
-                    $statistic3[$key]['M'] = 0;
-                    $statistic3[$key]['STD'] = 0;
+                    $statistic3[$key]['M3'] = 0;
+                    $statistic3[$key]['STD3'] = 0;
                 }
             }
 
