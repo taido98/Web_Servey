@@ -925,4 +925,46 @@ class AdminController extends AbstractController
 
     }
 
+      /**
+     * @Route("/admin/criteria/add", name="admin_criteria_add")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+
+    public function addCriteria(Request $request, EntityManagerInterface $entityManager)
+    {
+        $response = new Response();
+        try {
+            if (!$request->request->has('name')) {
+                throw new BadRequestHttpException();
+            }
+            return $this->verifyTemplate($request, $entityManager, function ($request, $entityManager) {
+
+                if(!$request->request->has('name')) {
+                    throw new BadRequestHttpException();
+                }
+                $criteriaLevel = new CriteriaLevel();
+                $criteriaLevel->setName($request->request->get('name'));
+               
+                $entityManager->persist($criteriaLevel);
+                $entityManager->flush();
+                $entityManager->getConnection()->commit();
+                return true;
+            });
+        } catch (BadRequestHttpException $e) {
+            $response->setContent(json_encode(['ok' => 'false', 'message' => 'BadRequestHttpException'], JSON_UNESCAPED_UNICODE));
+            $response->setStatusCode(400);
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } catch (NotFoundException $e) {
+            $response->setContent(json_encode(['ok' => 'false', 'message' => 'NotFoundException'], JSON_UNESCAPED_UNICODE));
+            $response->setStatusCode(400);
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
+
+
+    }
+
 }

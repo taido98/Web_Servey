@@ -1,4 +1,4 @@
-a{
+    a{
     color: black;
 }
 
@@ -366,7 +366,7 @@ input.add_inforclass{
     float: right;
     border: none;
     margin-top: 53px;
-    width: 1123px;
+    width: 75%;
     overflow: auto;
     background: white;
     animation: animatezoom 0s;

@@ -117,7 +117,11 @@ class SurveyForm
             if ($this->content === []) {
                 $retContent[$key] = 0;
             } else {
-                $retContent[$key] = $this->content[$key];
+                if(array_key_exists($key, $this->content)) {
+                    $retContent[$key] = $this->content[$key];                   
+                } else {
+                    $retContent[$key] = 0;
+                }
             }
         }
 

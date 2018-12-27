@@ -1,6 +1,27 @@
 function hideNotNeed() {
+    addCriteriaBtn.style.display = 'none';
     document.getElementById('tabInfor').style.display = 'none';
+    document.getElementById('ADD').style.display = 'none'
 
+}
+var addCriteriaBtn = document.getElementById('addCriteriaBtn');
+var pushCriteriaLevel = document.getElementById('pushCriteriaLevel');
+pushCriteriaLevel.onclick = function () {
+    let value = document.getElementById('name').value;
+    if(value !== '') {
+        console.log(value);
+        let data = {'jwt': window.localStorage.getItem('jwt'),
+            'name': value};
+            request('POST', data, '/admin/criteria/add', function (response) {
+            let showMessageObj = new showMessage();
+            if (response['ok'] === true) {
+               showMessageObj.ShowMessageSuccess();
+               document.getElementById('getCriterias').onclick();
+            } else {
+                showMessageObj.ShowMessageError();
+            }
+        })
+    }
 }
 var conformDeleForm = new FormOverlap(document.getElementById('tabDelete'),
     document.getElementById('yes'), document.getElementById('no'));
@@ -39,6 +60,7 @@ var showMessage = function () {
 
 var mainTable = document.getElementById('col-8');
 var getAllClasses = function () {
+    addCriteriaBtn.style.display = 'none';
     let xmlhttp = getXmlHttpObject();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState === 4) {
@@ -133,6 +155,7 @@ var getAllClasses = function () {
     xmlhttp.send(data);
 };
 var getStudents = function () {
+    addCriteriaBtn.style.display = 'none';
     let dataPost = {'jwt': window.localStorage.getItem('jwt')};
     request('POST', dataPost,
         '/admin/students/getall', function (response) {
@@ -183,6 +206,7 @@ var getStudents = function () {
         })
 };
 var getCriterias = function() {
+    addCriteriaBtn.style.display = 'block';
     let dataPost = {'jwt': window.localStorage.getItem('jwt')};
     request('POST', dataPost,
         '/admin/criterias/getall', function (response) {
@@ -268,6 +292,7 @@ logout.href = '/logout?jwt=' + window.localStorage.getItem('jwt');
 // };
 
 document.getElementById('getTeachers').onclick = function () {
+
     hideNotNeed();
     let dataPost = {'jwt': window.localStorage.getItem('jwt')};
     request('POST', dataPost,
@@ -421,4 +446,38 @@ window.onclick = function(event) {
         infor.style.display = "none";
     }
 };
+// add creteria level
+/* JS create_servey */
+function add_class() {
+    document.getElementById("ADD").style.display = "block";
+}
+    var add = document.getElementById("ADD");
+    window.onclick = function(event) {
+    if(event.target == add) {
+        add.style.display = "none";
+    }
+}
+$(document).ready(function(){
+    $(".add-row").click(function(){
+        var name = $("#name").val();
+        var ID = $("#ID").val();
+        // var name_teacher = $("#name_teacher").val();
+        // if(name != '' && ID != '' && name_teacher != '') {
+        //     var markup = "<tr><td>" + ID + "</td><td>" + name + "</td><td>" + name_teacher + "</td><td><a href='#'><img src='img/survey_icon.jpg' style='width: 30px;height: 30px;'</a></td></tr>";
+        //     $("table tbody").append(markup);.
+        // }
+    });
+         
+    // // Find and remove selected table rows
+    // $(".delete-row").click(function(){
+    //     $("table tbody").find('input[name="record"]').each(function(){
+    //         if($(this).is(":checked")){
+    //             $(this).parents("tr").remove();
+    //         }
+    //     });
+    // });
+});
+
+
+
 
